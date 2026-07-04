@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>미션 원정대 네컷 만들기</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif;
+    background: #f2efe2;
+    color: #2f3e2a;
+    display: flex;
+    min-height: 100vh;
+  }
+  #sidebar {
+    width: 300px;
+    padding: 24px 20px;
+    background: #fffdf3;
+    border-right: 2px solid #d8d2b8;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+  #sidebar h1 { font-size: 20px; color: #3e6b35; }
+  #sidebar p.sub { font-size: 12px; color: #8a8468; line-height: 1.5; }
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .05s, opacity .15s;
+  }
+  .btn:active { transform: scale(.97); }
+  .btn-primary { background: #4e8a3f; color: #fff; }
+  .btn-save { background: #b07b34; color: #fff; }
+  .btn-ghost { background: #ece7d2; color: #5a5540; }
+  .btn:disabled { opacity: .4; cursor: default; }
+  #slotControls {
+    border: 2px solid #d8d2b8;
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  #slotControls[hidden] { display: none; }
+  #slotControls h2 { font-size: 14px; color: #3e6b35; }
+  #slotControls .row { display: flex; gap: 6px; }
+  #slotControls .row .btn { padding: 8px; font-size: 13px; }
+  #zoomSlider { width: 100%; accent-color: #4e8a3f; }
+  #help { font-size: 12px; color: #8a8468; line-height: 1.7; margin-top: auto; }
+  #stage {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 24px;
+    overflow: auto;
+  }
+  #canvasWrap { position: relative; }
+  canvas {
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 8px 30px rgba(60,50,20,.25);
+    cursor: pointer;
+    touch-action: none;
+  }
+  #fileInput, #slotFileInput { display: none; }
+  #toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #3e6b35;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s;
+  }
+  #toast.show { opacity: 1; }
+  #btnRow { display: flex; flex-direction: column; gap: 14px; }
+  @media (max-width: 700px) {
+    body { flex-direction: column; }
+    #sidebar {
+      width: 100%;
+      height: auto;
+      position: static;
+      border-right: none;
+      border-bottom: 2px solid #d8d2b8;
+      padding: 16px;
+      gap: 10px;
+    }
+    #sidebar h1 { font-size: 17px; }
+    #btnRow { flex-direction: row; gap: 8px; }
+    #help { display: none; }
+    #stage { padding: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+  <h1>🏕️ 미션 원정대 네컷</h1>
+  <p class="sub">2026 여름캠프 · 믿음으로 한 걸음!<br>사진 4장을 올리면 자동으로 배치됩니다.</p>
+
+  <button class="btn btn-primary" id="btnUpload">📷 사진 선택 (최대 4장)</button>
+  <input type="file" id="fileInput" accept="image/*" multiple>
+  <input type="file" id="slotFileInput" accept="image/*">
+
+  <div id="slotControls" hidden>
+    <h2 id="slotTitle">선택된 칸: 01</h2>
+    <label style="font-size:12px;color:#8a8468">확대/축소</label>
+    <input type="range" id="zoomSlider" min="100" max="300" value="100">
+    <div class="row">
+      <button class="btn btn-ghost" id="btnRotate">🔄 회전</button>
+      <button class="btn btn-ghost" id="btnReplace">🖼️ 교체</button>
+      <button class="btn btn-ghost" id="btnRemove">🗑️ 삭제</button>
+    </div>
+  </div>
+
+  <div id="btnRow">
+    <button class="btn btn-save" id="btnSave" disabled>💾 PNG로 저장</button>
+    <button class="btn btn-ghost" id="btnReset">전체 초기화</button>
+  </div>
+
+  <div id="help">
+    <b>사용법</b><br>
+    · 빈 칸을 클릭하거나 사진을 끌어다 놓으세요<br>
+    · 사진을 드래그하면 위치가 움직입니다<br>
+    · 마우스 휠 또는 슬라이더로 확대/축소<br>
+    · 완성되면 PNG로 저장하세요
+  </div>
+</div>
+
+<div id="stage">
+  <div id="canvasWrap"><canvas id="canvas"></canvas></div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const SLOTS = [
+  { x: 119, y: 239,  w: 493, h: 317 },
+  { x: 119, y: 566,  w: 493, h: 318 },
+  { x: 119, y: 894,  w: 493, h: 316 },
+  { x: 119, y: 1220, w: 493, h: 313 },
+];
+const TPL_W = 724, TPL_H = 2172;
+
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+canvas.width = TPL_W;
+canvas.height = TPL_H;
+
+let templateImg = null, overlayImg = null;
+// per-slot photo state: { bitmap, scale(>=1, relative to cover), ox, oy(0~1 center ratios), rot(0-3) }
+const photos = [null, null, null, null];
+let selected = -1;
+
+function loadImage(src) {
+  return new Promise((res, rej) => {
+    const img = new Image();
+    img.onload = () => res(img);
+    img.onerror = rej;
+    img.src = src;
+  });
+}
+
+Promise.all([loadImage('assets/template.png'), loadImage('assets/overlay.png')])
+  .then(([t, o]) => { templateImg = t; overlayImg = o; fitCanvas(); render(); })
+  .catch(() => toast('assets/template.png 또는 overlay.png를 찾을 수 없습니다'));
+
+function fitCanvas() {
+  const stage = document.getElementById('stage');
+  const maxW = stage.clientWidth - 24;
+  const maxH = window.innerHeight - 48;
+  // 모바일(세로 배치)에서는 가로폭 기준, 데스크톱에서는 높이 기준으로 맞춤
+  const scale = window.innerWidth <= 700
+    ? Math.min(1, maxW / TPL_W)
+    : Math.min(1, maxH / TPL_H, maxW / TPL_W);
+  canvas.style.width = (TPL_W * scale) + 'px';
+  canvas.style.height = (TPL_H * scale) + 'px';
+}
+window.addEventListener('resize', fitCanvas);
+
+// photo draw geometry: cover-fit with pan(ox,oy) & zoom(scale)
+function photoGeometry(p, slot) {
+  const rotated = p.rot % 2 === 1;
+  const iw = rotated ? p.bitmap.height : p.bitmap.width;
+  const ih = rotated ? p.bitmap.width : p.bitmap.height;
+  const cover = Math.max(slot.w / iw, slot.h / ih);
+  const s = cover * p.scale;
+  const dw = iw * s, dh = ih * s;
+  // ox, oy: 0..1 — position of the visible window within the oversized photo
+  const dx = slot.x - (dw - slot.w) * p.ox;
+  const dy = slot.y - (dh - slot.h) * p.oy;
+  return { dx, dy, dw, dh };
+}
+
+function render() {
+  if (!templateImg) return;
+  ctx.clearRect(0, 0, TPL_W, TPL_H);
+  ctx.drawImage(templateImg, 0, 0);
+
+  SLOTS.forEach((slot, i) => {
+    const p = photos[i];
+    if (!p) return;
+    const g = photoGeometry(p, slot);
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(slot.x, slot.y, slot.w, slot.h);
+    ctx.clip();
+    if (p.rot === 0) {
+      ctx.drawImage(p.bitmap, g.dx, g.dy, g.dw, g.dh);
+    } else {
+      ctx.translate(g.dx + g.dw / 2, g.dy + g.dh / 2);
+      ctx.rotate(p.rot * Math.PI / 2);
+      const rotated = p.rot % 2 === 1;
+      const w = rotated ? g.dh : g.dw;
+      const h = rotated ? g.dw : g.dh;
+      ctx.drawImage(p.bitmap, -w / 2, -h / 2, w, h);
+    }
+    ctx.restore();
+  });
+
+  ctx.drawImage(overlayImg, 0, 0);
+
+  // empty-slot hints & selection highlight
+  SLOTS.forEach((slot, i) => {
+    if (!photos[i]) {
+      ctx.save();
+      ctx.fillStyle = 'rgba(78,138,63,.08)';
+      ctx.fillRect(slot.x, slot.y, slot.w, slot.h);
+      ctx.fillStyle = '#a8c39a';
+      ctx.font = '700 28px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('클릭해서 사진 넣기', slot.x + slot.w / 2, slot.y + slot.h / 2);
+      ctx.restore();
+    }
+    if (i === selected) {
+      ctx.save();
+      ctx.strokeStyle = '#4e8a3f';
+      ctx.lineWidth = 6;
+      ctx.strokeRect(slot.x + 3, slot.y + 3, slot.w - 6, slot.h - 6);
+      ctx.restore();
+    }
+  });
+
+  document.getElementById('btnSave').disabled = !photos.some(Boolean);
+}
+
+// ---------- coordinates ----------
+function canvasPoint(e) {
+  const r = canvas.getBoundingClientRect();
+  return {
+    x: (e.clientX - r.left) * (TPL_W / r.width),
+    y: (e.clientY - r.top) * (TPL_H / r.height),
+  };
+}
+function slotAt(pt) {
+  return SLOTS.findIndex(s => pt.x >= s.x && pt.x <= s.x + s.w && pt.y >= s.y && pt.y <= s.y + s.h);
+}
+
+// ---------- loading photos ----------
+async function setPhoto(i, file) {
+  try {
+    const bitmap = await createImageBitmap(file, { imageOrientation: 'from-image' });
+    photos[i] = { bitmap, scale: 1, ox: 0.5, oy: 0.5, rot: 0 };
+    selectSlot(i);
+    render();
+  } catch {
+    toast('이미지를 열 수 없습니다: ' + file.name);
+  }
+}
+
+document.getElementById('btnUpload').onclick = () => document.getElementById('fileInput').click();
+document.getElementById('fileInput').onchange = async (e) => {
+  const files = [...e.target.files].slice(0, 4);
+  let idx = 0;
+  for (const f of files) {
+    while (idx < 4 && photos[idx]) idx++;      // fill empty slots first
+    if (idx >= 4) break;
+    await setPhoto(idx, f);
+  }
+  e.target.value = '';
+};
+
+let replaceTarget = -1;
+document.getElementById('slotFileInput').onchange = (e) => {
+  if (e.target.files[0] && replaceTarget >= 0) setPhoto(replaceTarget, e.target.files[0]);
+  e.target.value = '';
+};
+
+// drag & drop onto a slot
+canvas.addEventListener('dragover', e => e.preventDefault());
+canvas.addEventListener('drop', e => {
+  e.preventDefault();
+  const files = [...e.dataTransfer.files].filter(f => f.type.startsWith('image/'));
+  if (!files.length) return;
+  let i = slotAt(canvasPoint(e));
+  if (files.length === 1 && i >= 0) { setPhoto(i, files[0]); return; }
+  // multiple files: fill from the drop slot (or slot 0) onward
+  if (i < 0) i = 0;
+  files.slice(0, 4).forEach((f, k) => { if (i + k < 4) setPhoto(i + k, f); });
+});
+
+// ---------- selection & controls ----------
+function selectSlot(i) {
+  selected = i;
+  const panel = document.getElementById('slotControls');
+  if (i < 0 || !photos[i]) { panel.hidden = true; render(); return; }
+  panel.hidden = false;
+  document.getElementById('slotTitle').textContent = '선택된 칸: 0' + (i + 1);
+  document.getElementById('zoomSlider').value = Math.round(photos[i].scale * 100);
+  render();
+}
+
+document.getElementById('zoomSlider').oninput = (e) => {
+  if (selected < 0 || !photos[selected]) return;
+  photos[selected].scale = e.target.value / 100;
+  render();
+};
+document.getElementById('btnRotate').onclick = () => {
+  if (selected < 0 || !photos[selected]) return;
+  photos[selected].rot = (photos[selected].rot + 1) % 4;
+  render();
+};
+document.getElementById('btnReplace').onclick = () => {
+  replaceTarget = selected;
+  document.getElementById('slotFileInput').click();
+};
+document.getElementById('btnRemove').onclick = () => {
+  if (selected < 0) return;
+  photos[selected] = null;
+  selectSlot(-1);
+};
+document.getElementById('btnReset').onclick = () => {
+  if (!photos.some(Boolean) || confirm('사진 4칸을 모두 비울까요?')) {
+    photos.fill(null);
+    selectSlot(-1);
+  }
+};
+
+// ---------- pan (drag), pinch & zoom (wheel) ----------
+const pointers = new Map();          // pointerId -> canvas point
+let dragStart = null;                // single-finger pan state
+let pinchStart = null;               // two-finger zoom state
+
+canvas.addEventListener('pointerdown', (e) => {
+  const pt = canvasPoint(e);
+  pointers.set(e.pointerId, pt);
+
+  if (pointers.size === 2 && selected >= 0 && photos[selected]) {
+    // second finger down: switch from pan to pinch
+    dragStart = null;
+    const [a, b] = [...pointers.values()];
+    pinchStart = { dist: Math.hypot(a.x - b.x, a.y - b.y), scale: photos[selected].scale };
+    return;
+  }
+
+  const i = slotAt(pt);
+  if (i < 0) { selectSlot(-1); return; }
+  if (!photos[i]) { replaceTarget = i; document.getElementById('slotFileInput').click(); return; }
+  selectSlot(i);
+  dragStart = { pt, ox: photos[i].ox, oy: photos[i].oy };
+  canvas.setPointerCapture(e.pointerId);
+});
+
+canvas.addEventListener('pointermove', (e) => {
+  if (!pointers.has(e.pointerId)) return;
+  const pt = canvasPoint(e);
+  pointers.set(e.pointerId, pt);
+  if (selected < 0 || !photos[selected]) return;
+  const p = photos[selected];
+  const slot = SLOTS[selected];
+
+  if (pinchStart && pointers.size >= 2) {
+    const [a, b] = [...pointers.values()];
+    const dist = Math.hypot(a.x - b.x, a.y - b.y);
+    if (pinchStart.dist > 0) {
+      p.scale = Math.min(3, Math.max(1, pinchStart.scale * dist / pinchStart.dist));
+      document.getElementById('zoomSlider').value = Math.round(p.scale * 100);
+      render();
+    }
+    return;
+  }
+
+  if (!dragStart) return;
+  const g = photoGeometry(p, slot);
+  const spanX = g.dw - slot.w, spanY = g.dh - slot.h;
+  if (spanX > 0) p.ox = Math.min(1, Math.max(0, dragStart.ox - (pt.x - dragStart.pt.x) / spanX));
+  if (spanY > 0) p.oy = Math.min(1, Math.max(0, dragStart.oy - (pt.y - dragStart.pt.y) / spanY));
+  render();
+});
+
+function endPointer(e) {
+  pointers.delete(e.pointerId);
+  if (pointers.size < 2) pinchStart = null;
+  if (pointers.size === 0) dragStart = null;
+}
+canvas.addEventListener('pointerup', endPointer);
+canvas.addEventListener('pointercancel', endPointer);
+canvas.addEventListener('wheel', (e) => {
+  const pt = canvasPoint(e);
+  const i = slotAt(pt);
+  if (i < 0 || !photos[i]) return;
+  e.preventDefault();
+  if (i !== selected) selectSlot(i);
+  const p = photos[i];
+  p.scale = Math.min(3, Math.max(1, p.scale * (e.deltaY < 0 ? 1.05 : 0.95)));
+  document.getElementById('zoomSlider').value = Math.round(p.scale * 100);
+  render();
+}, { passive: false });
+
+// ---------- save ----------
+document.getElementById('btnSave').onclick = async () => {
+  const prev = selected;
+  selected = -1;
+  render();                       // render without selection outline
+
+  const d = new Date();
+  const pad = n => String(n).padStart(2, '0');
+  const name = `미션원정대_${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}_${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}.png`;
+
+  try {
+    const blob = await new Promise((res, rej) =>
+      canvas.toBlob(b => b ? res(b) : rej(new Error('toBlob null')), 'image/png'));
+
+    // 모바일: 공유 시트로 사진 앱/카톡에 바로 저장
+    const file = new File([blob], name, { type: 'image/png' });
+    const isTouch = matchMedia('(pointer: coarse)').matches;
+    if (isTouch && navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({ files: [file] });
+        toast('저장 완료! 🎉');
+        return;
+      } catch (e) {
+        if (e.name === 'AbortError') return;   // 사용자가 공유 시트를 닫음
+        // 공유 실패 시 아래 다운로드로 폴백
+      }
+    }
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.download = name;
+    a.href = url;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);  // 즉시 revoke하면 다운로드가 중단될 수 있음
+    toast('저장 완료! 다운로드 폴더를 확인하세요 🎉');
+  } catch (err) {
+    // 최후 폴백: 새 탭에 이미지를 띄워 길게 눌러/우클릭으로 저장
+    try {
+      const dataUrl = canvas.toDataURL('image/png');
+      const w = window.open();
+      if (w) {
+        w.document.write('<img src="' + dataUrl + '" style="max-width:100%">');
+        toast('이미지를 길게 누르거나 우클릭해서 저장하세요');
+      } else {
+        toast('저장 실패: 팝업 차단을 해제해주세요');
+      }
+    } catch (e2) {
+      toast('저장 실패: ' + err.message);
+    }
+  } finally {
+    selected = prev;
+    render();
+  }
+};
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+</script>
+</body>
+</html>
