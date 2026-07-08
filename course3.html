@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>미션 원정대 · 코스 3 안내</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif;
+    background: #f2efe2;
+    color: #2f3e2a;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 20px 16px 60px; }
+
+  /* ---------- header ---------- */
+  header {
+    text-align: center;
+    padding: 28px 12px 20px;
+  }
+  header .camp {
+    display: inline-block;
+    background: #3e6b35;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 5px 16px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+  }
+  header h1 {
+    font-size: 30px;
+    margin: 14px 0 6px;
+    color: #3e6b35;
+  }
+  header p.sub { font-size: 15px; color: #6f6a50; }
+
+  /* ---------- quick nav ---------- */
+  nav {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 10px 0 26px;
+  }
+  nav a {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 9px 16px;
+    border-radius: 24px;
+    color: #fff;
+    box-shadow: 0 3px 0 rgba(0,0,0,.12);
+    transition: transform .08s;
+  }
+  nav a:active { transform: translateY(2px); box-shadow: none; }
+  nav a.gold { background: #e0762c; }
+  nav a.love { background: #d4547a; }
+  nav a.obey { background: #4a6fb5; }
+
+  /* ---------- course card ---------- */
+  .course {
+    background: #fffdf3;
+    border: 2px solid #d8d2b8;
+    border-radius: 20px;
+    padding: 26px 24px;
+    margin-bottom: 34px;
+    box-shadow: 0 6px 22px rgba(60,50,20,.10);
+    scroll-margin-top: 16px;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 800;
+    color: #fff;
+    padding: 4px 14px;
+    border-radius: 16px;
+    margin-bottom: 10px;
+  }
+  .course h2 { font-size: 24px; margin-bottom: 4px; }
+  .course p.concept {
+    font-size: 15px;
+    color: #5a5540;
+    background: #f4f0dd;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin: 12px 0 18px;
+  }
+  .course.gold  { border-top: 8px solid #e0762c; }
+  .course.love  { border-top: 8px solid #d4547a; }
+  .course.obey  { border-top: 8px solid #4a6fb5; }
+  .course.gold .badge { background: #e0762c; }
+  .course.love .badge { background: #d4547a; }
+  .course.obey .badge { background: #4a6fb5; }
+  .course.gold h2 { color: #b85a18; }
+  .course.love h2 { color: #b03a60; }
+  .course.obey h2 { color: #35548f; }
+
+  .pic {
+    background: #fff;
+    border: 2px dashed #d8d2b8;
+    border-radius: 16px;
+    padding: 10px;
+    margin: 6px 0 20px;
+  }
+  .pic svg { display: block; width: 100%; height: auto; }
+  .pic .cap {
+    text-align: center;
+    font-size: 12px;
+    color: #8a8468;
+    padding: 6px 0 2px;
+  }
+
+  h3.sec {
+    font-size: 16px;
+    margin: 18px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  h3.sec::before { content: ""; width: 6px; height: 20px; border-radius: 3px; background: #4e8a3f; }
+
+  ol.steps { list-style: none; counter-reset: n; }
+  ol.steps li {
+    counter-increment: n;
+    position: relative;
+    padding: 10px 12px 10px 52px;
+    background: #f8f5e8;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    font-size: 15px;
+  }
+  ol.steps li::before {
+    content: counter(n);
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #4e8a3f;
+    color: #fff;
+    font-weight: 800;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .course.gold ol.steps li::before { background: #e0762c; }
+  .course.love ol.steps li::before { background: #d4547a; }
+  .course.obey ol.steps li::before { background: #4a6fb5; }
+
+  .reward {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #fdf3d0;
+    border: 2px solid #eeda92;
+    border-radius: 14px;
+    padding: 12px 16px;
+    margin-top: 16px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #7a5c10;
+  }
+  .reward .ic { font-size: 26px; }
+
+  details.prep {
+    margin-top: 14px;
+    background: #f1eee0;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: #5a5540;
+  }
+  details.prep summary { cursor: pointer; font-weight: 700; color: #6f6a50; }
+  details.prep p { margin-top: 8px; }
+
+  .tip {
+    margin-top: 12px;
+    font-size: 14px;
+    background: #e9f2e4;
+    border-radius: 12px;
+    padding: 10px 14px;
+    color: #3e6b35;
+  }
+
+  /* ---------- common rule ---------- */
+  .common {
+    background: #3e6b35;
+    color: #fff;
+    border-radius: 20px;
+    padding: 26px 24px;
+    text-align: center;
+  }
+  .common h2 { font-size: 20px; margin-bottom: 14px; }
+  .common .items {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .common .item {
+    background: rgba(255,255,255,.12);
+    border-radius: 14px;
+    padding: 14px 18px;
+    min-width: 130px;
+  }
+  .common .item .big { font-size: 34px; display: block; margin-bottom: 6px; }
+  .common .item b { font-size: 15px; }
+  .common p.note { margin-top: 16px; font-size: 14px; opacity: .9; }
+
+  footer { text-align: center; font-size: 12px; color: #8a8468; margin-top: 30px; }
+
+  @media (max-width: 560px) {
+    header h1 { font-size: 24px; }
+    .course { padding: 20px 16px; }
+    .course h2 { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="camp">2026 여름캠프 · 미션 원정대</span>
+  <h1>🗝️ 코스 3을 소개합니다!</h1>
+  <p class="sub">세 개의 미션을 성공하면 <b>열쇠</b>와 <b>말씀 퍼즐 조각</b>을 얻을 수 있어요.<br>친구들과 힘을 모아 도전해 보세요!</p>
+</header>
+
+<nav>
+  <a class="gold" href="#gold">⚽ 골든슛 챌린지</a>
+  <a class="love" href="#love">🔍 말씀 암호 해독</a>
+  <a class="obey" href="#obey">🙈 신뢰의 미로</a>
+</nav>
+
+<!-- ================= 열정 코스 3 ================= -->
+<section class="course gold" id="gold">
+  <span class="badge">열정 코스 3</span>
+  <h2>⚽ 골든슛 챌린지 — 점수판 축구</h2>
+  <p class="concept">벽에 걸린 <b>점수판</b>을 향해 공을 뻥! 차서 점수 구역을 맞히는 미션이에요.
+  규칙이 아주 간단해서 누구나 바로 할 수 있어요.</p>
+
+  <div class="pic">
+    <svg viewBox="0 0 800 360" role="img" aria-label="골든슛 챌린지 예시 그림">
+      <!-- floor & wall -->
+      <rect x="0" y="0" width="800" height="270" fill="#fdf8ea"/>
+      <rect x="0" y="270" width="800" height="90" fill="#e8e0c4"/>
+      <line x1="0" y1="270" x2="800" y2="270" stroke="#cfc6a2" stroke-width="3"/>
+      <!-- target mat -->
+      <rect x="560" y="30" width="200" height="230" rx="14" fill="#2f6d46"/>
+      <rect x="572" y="42" width="176" height="206" rx="10" fill="#fff" opacity=".95"/>
+      <line x1="572" y1="145" x2="748" y2="145" stroke="#2f6d46" stroke-width="4"/>
+      <line x1="660" y1="42" x2="660" y2="248" stroke="#2f6d46" stroke-width="4"/>
+      <text x="616" y="105" font-size="34" font-weight="800" fill="#e0762c" text-anchor="middle">10</text>
+      <text x="704" y="105" font-size="34" font-weight="800" fill="#d4547a" text-anchor="middle">30</text>
+      <text x="616" y="210" font-size="34" font-weight="800" fill="#4a6fb5" text-anchor="middle">20</text>
+      <text x="704" y="210" font-size="34" font-weight="800" fill="#c9a227" text-anchor="middle">50</text>
+      <!-- hooks -->
+      <circle cx="585" cy="24" r="6" fill="#8a8468"/>
+      <circle cx="735" cy="24" r="6" fill="#8a8468"/>
+      <text x="660" y="290" font-size="15" fill="#6f6a50" text-anchor="middle">점수판 매트</text>
+
+      <!-- distance markers -->
+      <ellipse cx="330" cy="300" rx="34" ry="12" fill="#f2c94c" stroke="#d8a91e" stroke-width="3"/>
+      <text x="330" y="336" font-size="15" fill="#8a6d10" text-anchor="middle" font-weight="700">저학년 라인</text>
+      <ellipse cx="120" cy="300" rx="34" ry="12" fill="#7aa5e0" stroke="#4a6fb5" stroke-width="3"/>
+      <text x="120" y="336" font-size="15" fill="#35548f" text-anchor="middle" font-weight="700">고학년 라인</text>
+
+      <!-- kicking kid -->
+      <g>
+        <circle cx="300" cy="180" r="24" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+        <path d="M282 168 q18 -18 36 0 v-8 q-18 -14 -36 0 z" fill="#5a4632"/>
+        <circle cx="292" cy="178" r="3" fill="#2f3e2a"/>
+        <circle cx="308" cy="178" r="3" fill="#2f3e2a"/>
+        <path d="M292 192 q8 7 16 0" stroke="#2f3e2a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <rect x="282" y="205" width="36" height="46" rx="12" fill="#e0762c"/>
+        <!-- arms -->
+        <path d="M284 214 q-22 6 -26 26" stroke="#ffd9b3" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <path d="M316 214 q24 -4 30 -22" stroke="#ffd9b3" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <!-- legs: one planted, one kicking -->
+        <path d="M292 250 q-4 24 -6 34" stroke="#4a6fb5" stroke-width="10" fill="none" stroke-linecap="round"/>
+        <path d="M310 248 q26 6 42 -6" stroke="#4a6fb5" stroke-width="10" fill="none" stroke-linecap="round"/>
+        <ellipse cx="284" cy="290" rx="12" ry="6" fill="#2f3e2a"/>
+        <ellipse cx="360" cy="240" rx="12" ry="6" fill="#2f3e2a" transform="rotate(-30 360 240)"/>
+      </g>
+
+      <!-- ball with motion lines -->
+      <g>
+        <circle cx="470" cy="150" r="20" fill="#fff" stroke="#2f3e2a" stroke-width="3"/>
+        <path d="M470 143 l7 5 -2.7 8 h-8.6 l-2.7 -8 z" fill="#2f3e2a"/>
+        <path d="M470 143 v-11 M477 148 l10 -4 M474.3 156 l6 8 M465.7 156 l-6 8 M463 148 l-10 -4" stroke="#2f3e2a" stroke-width="2.5"/>
+        <line x1="415" y1="165" x2="440" y2="160" stroke="#c9b98a" stroke-width="4" stroke-linecap="round"/>
+        <line x1="410" y1="150" x2="437" y2="148" stroke="#c9b98a" stroke-width="4" stroke-linecap="round"/>
+        <line x1="415" y1="135" x2="440" y2="137" stroke="#c9b98a" stroke-width="4" stroke-linecap="round"/>
+      </g>
+
+      <!-- flight path -->
+      <path d="M370 220 Q470 90 640 105" stroke="#e0762c" stroke-width="4" fill="none" stroke-dasharray="10 10" opacity=".7"/>
+
+      <!-- cheering kid -->
+      <g>
+        <circle cx="80" cy="190" r="18" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+        <path d="M66 182 q14 -14 28 0 v-7 q-14 -11 -28 0 z" fill="#3c2f22"/>
+        <circle cx="74" cy="188" r="2.5" fill="#2f3e2a"/>
+        <circle cx="86" cy="188" r="2.5" fill="#2f3e2a"/>
+        <path d="M74 198 q6 6 12 0" stroke="#2f3e2a" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <rect x="66" y="209" width="28" height="38" rx="10" fill="#4e8a3f"/>
+        <path d="M68 216 q-16 -12 -14 -26" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <path d="M92 216 q16 -12 14 -26" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <path d="M74 247 v22 M86 247 v22" stroke="#35548f" stroke-width="8" stroke-linecap="round"/>
+        <text x="80" y="160" font-size="17" text-anchor="middle" fill="#b85a18" font-weight="800">파이팅!</text>
+      </g>
+    </svg>
+    <div class="cap">▲ 내 라인에서 공을 차서 점수판을 맞혀요!</div>
+  </div>
+
+  <h3 class="sec">이렇게 해요!</h3>
+  <ol class="steps">
+    <li>벽에 붙은 <b>점수판</b>을 향해 공을 차요.</li>
+    <li>한 사람당 <b>2번씩</b> 슛! (팀 인원에 따라 3번이 될 수도 있어요)</li>
+    <li>동생들(저학년)은 <b>가까운 노란 라인</b>, 형·누나들(고학년)은 <b>먼 파란 라인</b>에서 차요.</li>
+    <li>몇 점 구역을 맞혔는지 선생님이 적어 두세요. 점수 발표는 <b>모든 코스가 끝난 뒤</b>에 해요!</li>
+    <li>팀 전원이 슛을 다 하면 미션 성공! 🎉</li>
+  </ol>
+
+  <div class="reward"><span class="ic">🗝️🧩</span>성공하면 → 열쇠 1개 + 말씀 퍼즐 조각 획득!</div>
+
+  <details class="prep">
+    <summary>👩‍🏫 선생님 준비물</summary>
+    <p>점수판 축구 매트 세트(공 포함, 예산 30만원 내 구매), 거리 표시용 원마커 2개(저학년/고학년 라인), 점수 기록지<br>
+    · 매트는 구성품 후크/스트랩으로 벽에 설치 · 실내 진행</p>
+  </details>
+</section>
+
+<!-- ================= 사랑 코스 3 ================= -->
+<section class="course love" id="love">
+  <span class="badge">사랑 코스 3</span>
+  <h2>🔍 말씀 암호 해독</h2>
+  <p class="concept">방 곳곳에 숨겨진 <b>낱말 카드</b>를 찾고, <b>암호판</b>을 풀어서 성경 말씀을 완성하는 미션이에요.
+  서로 돕고 역할을 나눠야만 풀 수 있어요!</p>
+
+  <div class="pic">
+    <svg viewBox="0 0 800 360" role="img" aria-label="말씀 암호 해독 예시 그림">
+      <rect x="0" y="0" width="800" height="270" fill="#fdf2f5"/>
+      <rect x="0" y="270" width="800" height="90" fill="#ecdfd2"/>
+      <line x1="0" y1="270" x2="800" y2="270" stroke="#d8c4b0" stroke-width="3"/>
+
+      <!-- hidden cards around the room -->
+      <!-- under chair -->
+      <g>
+        <rect x="60" y="190" width="70" height="14" rx="4" fill="#a9744f"/>
+        <rect x="64" y="204" width="10" height="66" fill="#a9744f"/>
+        <rect x="116" y="204" width="10" height="66" fill="#a9744f"/>
+        <rect x="64" y="130" width="10" height="64" fill="#a9744f"/>
+        <rect x="116" y="130" width="10" height="64" fill="#a9744f"/>
+        <rect x="60" y="118" width="70" height="16" rx="6" fill="#a9744f"/>
+        <rect x="78" y="238" width="52" height="34" rx="6" fill="#fff" stroke="#d4547a" stroke-width="3" transform="rotate(-8 104 255)"/>
+        <text x="104" y="261" font-size="17" text-anchor="middle" fill="#b03a60" font-weight="800" transform="rotate(-8 104 255)">사랑</text>
+      </g>
+      <!-- behind curtain -->
+      <g>
+        <line x1="192" y1="38" x2="300" y2="38" stroke="#b08968" stroke-width="6" stroke-linecap="round"/>
+        <path d="M206 42 q14 40 6 78 q-4 24 -12 40 q16 -8 30 -6 q16 2 26 8 q-10 -20 -12 -44 q-4 -40 8 -76 q-12 8 -24 8 q-12 0 -22 -8 z" fill="#e8b4c8" stroke="#d69cb4" stroke-width="3"/>
+        <path d="M226 46 q6 50 -2 106" stroke="#d69cb4" stroke-width="3" fill="none"/>
+        <rect x="238" y="120" width="50" height="32" rx="6" fill="#fff" stroke="#d4547a" stroke-width="3" transform="rotate(6 263 136)"/>
+        <text x="263" y="142" font-size="16" text-anchor="middle" fill="#b03a60" font-weight="800" transform="rotate(6 263 136)">서로</text>
+      </g>
+
+      <!-- running younger kid with card -->
+      <g>
+        <circle cx="370" cy="150" r="21" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+        <path d="M354 141 q16 -16 32 0 v-8 q-16 -12 -32 0 z" fill="#5a4632"/>
+        <circle cx="362" cy="148" r="3" fill="#2f3e2a"/>
+        <circle cx="378" cy="148" r="3" fill="#2f3e2a"/>
+        <path d="M362 160 q8 7 16 0" stroke="#2f3e2a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <rect x="354" y="172" width="32" height="42" rx="11" fill="#d4547a"/>
+        <!-- arm holding card up -->
+        <path d="M384 180 q22 -14 26 -34" stroke="#ffd9b3" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <path d="M356 182 q-16 10 -18 24" stroke="#ffd9b3" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <rect x="396" y="118" width="56" height="36" rx="6" fill="#fff" stroke="#d4547a" stroke-width="3" transform="rotate(10 424 136)"/>
+        <text x="424" y="142" font-size="17" text-anchor="middle" fill="#b03a60" font-weight="800" transform="rotate(10 424 136)">하라</text>
+        <!-- running legs -->
+        <path d="M362 214 q-14 16 -24 18" stroke="#35548f" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <path d="M378 214 q14 14 10 30" stroke="#35548f" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <line x1="322" y1="200" x2="342" y2="196" stroke="#e3c9d2" stroke-width="4" stroke-linecap="round"/>
+        <line x1="318" y1="214" x2="340" y2="212" stroke="#e3c9d2" stroke-width="4" stroke-linecap="round"/>
+        <text x="370" y="112" font-size="16" text-anchor="middle" fill="#b03a60" font-weight="800">찾았다~!</text>
+      </g>
+
+      <!-- older kid at cipher board -->
+      <g>
+        <rect x="530" y="50" width="230" height="150" rx="12" fill="#fff" stroke="#b03a60" stroke-width="4"/>
+        <text x="645" y="82" font-size="19" text-anchor="middle" fill="#b03a60" font-weight="800">🔑 암호판</text>
+        <text x="560" y="118" font-size="18" fill="#2f3e2a" font-weight="700">1 → 서로</text>
+        <text x="560" y="148" font-size="18" fill="#2f3e2a" font-weight="700">2 → 사랑</text>
+        <text x="560" y="178" font-size="18" fill="#2f3e2a" font-weight="700">3 → 하라</text>
+        <!-- kid -->
+        <circle cx="500" cy="185" r="19" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+        <path d="M486 177 q14 -14 28 0 v-7 q-14 -11 -28 0 z" fill="#3c2f22"/>
+        <circle cx="494" cy="183" r="2.5" fill="#2f3e2a"/>
+        <circle cx="506" cy="183" r="2.5" fill="#2f3e2a"/>
+        <path d="M494 193 q6 5 12 0" stroke="#2f3e2a" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <rect x="486" y="205" width="28" height="40" rx="10" fill="#4a6fb5"/>
+        <!-- pointing arm -->
+        <path d="M512 212 q18 -18 28 -34" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <path d="M488 214 q-10 12 -10 24" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <path d="M494 245 v24 M506 245 v24" stroke="#35548f" stroke-width="8" stroke-linecap="round"/>
+      </g>
+
+      <!-- completed verse strip -->
+      <g>
+        <rect x="470" y="296" width="290" height="46" rx="10" fill="#fdf3d0" stroke="#eeda92" stroke-width="3"/>
+        <text x="615" y="326" font-size="20" text-anchor="middle" fill="#7a5c10" font-weight="800">“1 2 3” = 서로 사랑하라 ✔</text>
+      </g>
+    </svg>
+    <div class="cap">▲ 동생들은 카드를 찾고, 형·누나들은 암호를 풀어요!</div>
+  </div>
+
+  <h3 class="sec">이렇게 해요!</h3>
+  <ol class="steps">
+    <li>방 곳곳에 <b>낱말 카드</b>가 숨어 있어요. (커튼 뒤? 의자 밑?)</li>
+    <li>동생들(저학년)은 <b>카드를 찾아</b> 달려오고, 형·누나들(고학년)은 <b>암호판(숫자→글자)</b>을 풀어 순서를 알려줘요.</li>
+    <li>카드를 올바른 순서로 놓아 <b>성경 말씀을 완성</b>하면 성공!</li>
+    <li>완성한 말씀을 팀 모두가 <b>큰 소리로 함께 낭독</b>해요. 📖</li>
+  </ol>
+
+  <div class="reward"><span class="ic">🗝️🧩</span>성공하면 → 열쇠 1개 + 말씀 퍼즐 조각 획득!</div>
+
+  <details class="prep">
+    <summary>👩‍🏫 선생님 준비물</summary>
+    <p>암호판, 낱말 카드(교재 말씀의 단어들), 힌트 소품 (교재 말씀 활용)</p>
+  </details>
+</section>
+
+<!-- ================= 순종 코스 3 ================= -->
+<section class="course obey" id="obey">
+  <span class="badge">순종 코스 3</span>
+  <h2>🙈 신뢰의 미로 — 눈 가리고 길 안내</h2>
+  <p class="concept">눈을 가리고 <b>친구들의 목소리만 믿고</b> 길을 걸어가는 미션이에요.
+  “보이지 않아도 인도하시는 음성에 순종한다”를 몸으로 느껴 봐요!</p>
+
+  <div class="pic">
+    <svg viewBox="0 0 800 360" role="img" aria-label="신뢰의 미로 예시 그림">
+      <rect x="0" y="0" width="800" height="360" fill="#eef3fa"/>
+      <!-- path of round markers -->
+      <g fill="#f2c94c" stroke="#d8a91e" stroke-width="3">
+        <ellipse cx="120" cy="300" rx="24" ry="10"/>
+        <ellipse cx="210" cy="270" rx="24" ry="10"/>
+        <ellipse cx="290" cy="220" rx="24" ry="10"/>
+        <ellipse cx="380" cy="250" rx="24" ry="10"/>
+        <ellipse cx="470" cy="210" rx="24" ry="10"/>
+        <ellipse cx="560" cy="240" rx="24" ry="10"/>
+        <ellipse cx="650" cy="200" rx="24" ry="10"/>
+      </g>
+      <path d="M120 300 Q170 285 210 270 Q255 245 290 220 Q340 240 380 250 Q430 225 470 210 Q520 230 560 240 Q610 215 650 200"
+            stroke="#c9d6ea" stroke-width="4" fill="none" stroke-dasharray="8 8"/>
+
+      <!-- obstacles -->
+      <g>
+        <rect x="240" y="150" width="56" height="46" rx="6" fill="#c9a06a" stroke="#a9744f" stroke-width="3"/>
+        <line x1="240" y1="172" x2="296" y2="172" stroke="#a9744f" stroke-width="3"/>
+        <text x="268" y="140" font-size="13" text-anchor="middle" fill="#8a6d4a" font-weight="700">빈 박스</text>
+      </g>
+      <g>
+        <path d="M430 300 l18 -46 l18 46 z" fill="#e0762c" stroke="#b85a18" stroke-width="3"/>
+        <rect x="424" y="298" width="48" height="9" rx="4" fill="#b85a18"/>
+        <text x="448" y="330" font-size="13" text-anchor="middle" fill="#b85a18" font-weight="700">콘</text>
+      </g>
+      <g>
+        <path d="M560 140 l16 -40 l16 40 z" fill="#e0762c" stroke="#b85a18" stroke-width="3"/>
+        <rect x="554" y="138" width="44" height="8" rx="4" fill="#b85a18"/>
+      </g>
+
+      <!-- blindfolded challenger -->
+      <g>
+        <circle cx="330" cy="120" r="24" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+        <path d="M312 108 q18 -18 36 0 v-8 q-18 -14 -36 0 z" fill="#5a4632"/>
+        <rect x="306" y="110" width="48" height="14" rx="7" fill="#35548f"/>
+        <path d="M318 134 q12 8 24 0" stroke="#2f3e2a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <rect x="312" y="145" width="36" height="48" rx="12" fill="#4a6fb5"/>
+        <!-- arms stretched forward -->
+        <path d="M346 154 q26 2 40 10" stroke="#ffd9b3" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <path d="M314 156 q-8 14 -4 28" stroke="#ffd9b3" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <!-- careful stepping legs -->
+        <path d="M322 192 q-4 22 -10 30" stroke="#2f3e2a" stroke-width="10" fill="none" stroke-linecap="round"/>
+        <path d="M340 192 q14 14 26 16" stroke="#2f3e2a" stroke-width="10" fill="none" stroke-linecap="round"/>
+        <text x="330" y="82" font-size="15" text-anchor="middle" fill="#35548f" font-weight="800">조심조심…</text>
+      </g>
+
+      <!-- guiding teammates with speech bubbles -->
+      <g>
+        <circle cx="80" cy="120" r="18" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+        <path d="M66 112 q14 -14 28 0 v-7 q-14 -11 -28 0 z" fill="#3c2f22"/>
+        <circle cx="74" cy="118" r="2.5" fill="#2f3e2a"/>
+        <circle cx="86" cy="118" r="2.5" fill="#2f3e2a"/>
+        <ellipse cx="80" cy="130" rx="5" ry="6" fill="#b03a60"/>
+        <rect x="66" y="139" width="28" height="38" rx="10" fill="#d4547a"/>
+        <path d="M92 146 q14 -6 22 -16" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <path d="M68 148 q-10 8 -10 20" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <path d="M74 177 v22 M86 177 v22" stroke="#35548f" stroke-width="8" stroke-linecap="round"/>
+        <!-- bubble -->
+        <g>
+          <rect x="104" y="40" width="150" height="40" rx="18" fill="#fff" stroke="#4a6fb5" stroke-width="3"/>
+          <path d="M120 78 l-8 16 l22 -14 z" fill="#fff" stroke="#4a6fb5" stroke-width="3" stroke-linejoin="round"/>
+          <text x="179" y="67" font-size="17" text-anchor="middle" fill="#35548f" font-weight="800">앞으로 두 걸음!</text>
+        </g>
+      </g>
+      <g>
+        <circle cx="185" cy="180" r="18" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+        <path d="M171 172 q14 -14 28 0 v-7 q-14 -11 -28 0 z" fill="#5a4632"/>
+        <circle cx="179" cy="178" r="2.5" fill="#2f3e2a"/>
+        <circle cx="191" cy="178" r="2.5" fill="#2f3e2a"/>
+        <ellipse cx="185" cy="190" rx="5" ry="6" fill="#b03a60"/>
+        <rect x="171" y="199" width="28" height="36" rx="10" fill="#4e8a3f"/>
+        <path d="M197 206 q14 -4 20 -14" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <path d="M173 208 q-10 8 -10 18" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <path d="M179 235 v20 M191 235 v20" stroke="#2f3e2a" stroke-width="8" stroke-linecap="round"/>
+        <g>
+          <rect x="205" y="140" width="100" height="38" rx="17" fill="#fff" stroke="#4a6fb5" stroke-width="3" transform="translate(15 -55)"/>
+          <text x="270" y="110" font-size="17" text-anchor="middle" fill="#35548f" font-weight="800">오른쪽!</text>
+          <path d="M232 122 l-6 14 l18 -10 z" fill="#fff" stroke="#4a6fb5" stroke-width="3" stroke-linejoin="round"/>
+        </g>
+      </g>
+
+      <!-- goal: key on a stand -->
+      <g>
+        <rect x="700" y="150" width="70" height="14" rx="6" fill="#c9a06a"/>
+        <rect x="726" y="164" width="16" height="40" fill="#a9744f"/>
+        <g transform="rotate(35 735 120)">
+          <circle cx="735" cy="105" r="16" fill="none" stroke="#c9a227" stroke-width="8"/>
+          <line x1="735" y1="121" x2="735" y2="158" stroke="#c9a227" stroke-width="8" stroke-linecap="round"/>
+          <line x1="735" y1="146" x2="748" y2="146" stroke="#c9a227" stroke-width="7" stroke-linecap="round"/>
+          <line x1="735" y1="158" x2="750" y2="158" stroke="#c9a227" stroke-width="7" stroke-linecap="round"/>
+        </g>
+        <text x="710" y="232" font-size="15" text-anchor="middle" fill="#8a6d10" font-weight="800">🎯 도착! 열쇠를 잡아요</text>
+        <path d="M700 96 q10 -18 24 -8 M760 90 q14 -6 18 8" stroke="#f2c94c" stroke-width="4" fill="none" stroke-linecap="round"/>
+      </g>
+    </svg>
+    <div class="cap">▲ 친구들의 목소리만 듣고 장애물을 피해 열쇠까지!</div>
+  </div>
+
+  <h3 class="sec">이렇게 해요!</h3>
+  <ol class="steps">
+    <li>바닥에 <b>원마커 길</b>이 있고, 중간중간 <b>장애물</b>(빈 박스, 콘)이 놓여 있어요.</li>
+    <li>도전자는 <b>안대</b>를 쓰고, 팀원들이 <b>목소리로만</b> 길을 알려줘요. (“앞으로 두 걸음!”, “오른쪽!”)</li>
+    <li>장애물을 건드리지 않고 <b>도착 지점의 열쇠</b>를 잡으면 성공! (건드리면 출발선으로 돌아가요)</li>
+    <li>팀에서 <b>2명이 통과</b>하면 미션 클리어!</li>
+    <li>동생들이 도전하고 형·누나들이 안내해요. 한 번은 <b>반대로</b> 해 보면 두 배로 재미있어요! 😄</li>
+  </ol>
+
+  <div class="reward"><span class="ic">🗝️🧩</span>성공하면 → 열쇠 1개 + 말씀 퍼즐 조각 획득!</div>
+
+  <div class="tip">🦺 <b>안전 약속:</b> 선생님이 도전자 바로 옆에서 함께 걸어요. 뛰지 않고 천천히!</div>
+
+  <details class="prep">
+    <summary>👩‍🏫 선생님 준비물</summary>
+    <p>안대(또는 수건), 원마커(이선희 선생님 보유), 빈 박스·콘 등 장애물</p>
+  </details>
+</section>
+
+<!-- ================= common ================= -->
+<section class="common">
+  <h2>🌟 모든 코스 공통 규칙</h2>
+  <div class="items">
+    <div class="item"><span class="big">🗝️</span><b>열쇠 1개</b><br><small>미션 성공 보상</small></div>
+    <div class="item"><span class="big">🧩</span><b>말씀 퍼즐 조각</b><br><small>모아서 완성해요</small></div>
+    <div class="item"><span class="big">🏆</span><b>점수 발표·시상</b><br><small>9개 코스가 모두 끝난 뒤!</small></div>
+  </div>
+  <p class="note">중간 점수는 비밀! 끝까지 최선을 다하는 팀이 진짜 승자예요 💪</p>
+</section>
+
+<footer>2026 여름캠프 · 미션 원정대 — 믿음으로 한 걸음!</footer>
+
+</div>
+</body>
+</html>
