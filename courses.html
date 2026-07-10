@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>미션 원정대 · 전체 코스 안내 (9개)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif;
+    background: #f2efe2;
+    color: #222;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 20px 16px 60px; }
+
+  header { text-align: center; padding: 28px 12px 18px; }
+  header .camp {
+    display: inline-block; background: #3e6b35; color: #fff;
+    font-size: 13px; font-weight: 700; padding: 5px 16px;
+    border-radius: 20px; letter-spacing: 1px;
+  }
+  header h1 { font-size: 28px; margin: 14px 0 6px; color: #3e6b35; }
+  header p.sub { font-size: 14px; color: #6f6a50; }
+
+  /* ---------- overview table ---------- */
+  .overview {
+    background: #fffdf3; border: 2px solid #d8d2b8; border-radius: 16px;
+    padding: 20px; margin: 16px 0 34px;
+  }
+  .overview h2 { font-size: 18px; color: #3e6b35; margin-bottom: 12px; }
+  .overview table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .overview th, .overview td { border: 1px solid #d8d2b8; padding: 8px 10px; text-align: center; }
+  .overview th { background: #cfe3f7; font-weight: 800; }
+  .overview td.name { text-align: left; font-weight: 700; }
+  .overview .stars { color: #e0762c; letter-spacing: 1px; white-space: nowrap; }
+  .theme-tag { display: inline-block; font-size: 12px; font-weight: 800; color: #fff; padding: 2px 10px; border-radius: 12px; }
+  .theme-tag.passion { background: #e0762c; }
+  .theme-tag.love    { background: #d4547a; }
+  .theme-tag.obey    { background: #4a6fb5; }
+
+  /* ---------- course card (기존 카드 양식) ---------- */
+  .card {
+    background: #fff; border: 1px solid #9db8d2; border-radius: 6px;
+    margin-bottom: 34px; overflow: hidden;
+    box-shadow: 0 4px 14px rgba(60,50,20,.08);
+    page-break-inside: avoid;
+  }
+  .card .titlebar {
+    background: #d6e8fb; color: #1a56b0;
+    font-size: 18px; font-weight: 800; padding: 12px 16px;
+  }
+  .card.passion .titlebar { border-left: 8px solid #e0762c; }
+  .card.love    .titlebar { border-left: 8px solid #d4547a; }
+  .card.obey    .titlebar { border-left: 8px solid #4a6fb5; }
+  .card .titlebar .stars { color: #e0762c; }
+
+  .card table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .card th, .card td { border: 1px solid #9db8d2; padding: 10px 14px; vertical-align: top; }
+  .card th {
+    background: #bcd7f2; font-weight: 800; width: 120px;
+    text-align: center; vertical-align: middle; white-space: nowrap;
+  }
+  .card td.blank { min-width: 120px; background: #fff; }
+  .card td.reward { font-size: 14px; line-height: 1.5; }
+
+  .card ol { margin-left: 20px; }
+  .card ol li { margin-bottom: 4px; }
+  .card .sub-choice { font-size: 14px; margin-left: 6px; }
+  .card .sub-choice.ok   { color: #1a56b0; }
+  .card .sub-choice.fail { color: #c0392b; }
+  .card .check td { background: #eaf3fd; }
+  .card .check ul { list-style: none; }
+  .card .check ul li::before { content: "* "; font-weight: 800; }
+
+  .pic {
+    border: 2px dashed #bcd7f2; border-radius: 10px;
+    padding: 8px; margin-top: 12px; background: #fbfdff;
+  }
+  .pic svg { display: block; width: 100%; max-width: 520px; height: auto; margin: 0 auto; }
+  .pic .cap { text-align: center; font-size: 12px; color: #6f8bab; padding-top: 4px; }
+
+  footer { text-align: center; font-size: 12px; color: #8a8468; margin-top: 30px; }
+
+  @media print {
+    body { background: #fff; }
+    .card { box-shadow: none; }
+  }
+  @media (max-width: 560px) {
+    header h1 { font-size: 22px; }
+    .card .titlebar { font-size: 15px; }
+    .card th { width: 78px; padding: 8px 6px; font-size: 13px; }
+    .card td { padding: 8px 10px; font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="camp">2026 여름캠프 · 미션 원정대</span>
+  <h1>🗺️ 전체 코스 안내 (9개)</h1>
+  <p class="sub">‘열정’ · ‘사랑’ · ‘순종’ 세 가지 테마, 테마별 3개씩 총 9개 코스!<br>난이도가 낮은 코스부터 순서대로 정리했어요.</p>
+</header>
+
+<!-- ================= 한눈에 보기 ================= -->
+<section class="overview">
+  <h2>📋 한눈에 보기 (난이도순)</h2>
+  <table>
+    <thead>
+      <tr><th>순서</th><th>코스</th><th>테마</th><th style="width:200px">이름</th><th>난이도</th><th>성공 보상</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>열정 3</td><td><span class="theme-tag passion">열정</span></td><td class="name">골든슛 챌린지</td><td class="stars">★★</td><td>지구젤리 (점수제)</td></tr>
+      <tr><td>2</td><td>열정 1</td><td><span class="theme-tag passion">열정</span></td><td class="name">주사위 일심동체</td><td class="stars">★★★</td><td>단계별 지구젤리 1~3개</td></tr>
+      <tr><td>3</td><td>사랑 1</td><td><span class="theme-tag love">사랑</span></td><td class="name">풍선 띄우기</td><td class="stars">★★★</td><td>단계별 지구젤리 1~3개</td></tr>
+      <tr><td>4</td><td>순종 2</td><td><span class="theme-tag obey">순종</span></td><td class="name">복음 존으로 골인! (계란판 탁구공)</td><td class="stars">★★★</td><td>지구젤리 3개</td></tr>
+      <tr><td>5</td><td>열정 2</td><td><span class="theme-tag passion">열정</span></td><td class="name">사탄핀을 쓰러뜨려라! (볼링)</td><td class="stars">★★★★</td><td>지구젤리 3개</td></tr>
+      <tr><td>6</td><td>사랑 2</td><td><span class="theme-tag love">사랑</span></td><td class="name">한마음 병뚜껑 슬라이드</td><td class="stars">★★★★</td><td>지구젤리 3개</td></tr>
+      <tr><td>7</td><td>사랑 3</td><td><span class="theme-tag love">사랑</span></td><td class="name">말씀 암호 해독</td><td class="stars">★★★★</td><td>지구젤리 3개</td></tr>
+      <tr><td>8</td><td>순종 3</td><td><span class="theme-tag obey">순종</span></td><td class="name">신뢰의 미로</td><td class="stars">★★★★</td><td>지구젤리 3개</td></tr>
+      <tr><td>9</td><td>순종 1</td><td><span class="theme-tag obey">순종</span></td><td class="name">‘예스’로 하나되기</td><td class="stars">★★★★★</td><td>지구젤리 3개</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================= 1. 열정 코스 3 · 골든슛 챌린지 ================= -->
+<section class="card passion">
+  <div class="titlebar">‘열정’ 코스 3 &nbsp;난이도 <span class="stars">★★</span>&nbsp; 〈부제: 골든슛 챌린지〉</div>
+  <table>
+    <tr>
+      <th>장소</th><td class="blank"></td>
+      <th>성공</th><td class="reward">지구젤리 (점수제 — 모든 코스 종료 후 발표)</td>
+    </tr>
+    <tr>
+      <th>준비물</th>
+      <td colspan="3">점수판 축구 매트 세트(공 포함) 1개, 거리 표시용 원마커 2개(저학년/고학년 라인), 점수 기록지</td>
+    </tr>
+    <tr>
+      <th>구호</th>
+      <td colspan="3">하나님의 열정으로! OO조 파이팅!!</td>
+    </tr>
+    <tr>
+      <th>활동 내용</th>
+      <td colspan="3">
+        <ol>
+          <li>벽에 붙은 <b>점수판</b>을 향해 공을 찬다.</li>
+          <li>한 사람당 <b>2번씩</b> 슛! (팀 인원에 따라 3번 가능)</li>
+          <li>저학년은 <b>가까운 라인</b>, 고학년은 <b>먼 라인</b>에서 찬다.</li>
+          <li>맞힌 점수 구역을 기록한다. 점수 발표는 모든 코스가 끝난 뒤!</li>
+          <li>팀 전원이 슛을 마치면 미션 성공</li>
+        </ol>
+      </td>
+    </tr>
+    <tr class="check">
+      <th>☑ 체크해요</th>
+      <td colspan="3">
+        <ul>
+          <li>매트는 구성품 후크/스트랩으로 벽에 설치, 실내 진행</li>
+          <li>중간 점수는 비밀로 유지하기</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<!-- ================= 2. 열정 코스 1 · 주사위 일심동체 ================= -->
+<section class="card passion">
+  <div class="titlebar">‘열정’ 코스 1 &nbsp;난이도 <span class="stars">★★★</span>&nbsp; 〈부제: 주사위 일심동체〉</div>
+  <table>
+    <tr>
+      <th>장소</th><td class="blank"></td>
+      <th>성공</th><td class="reward">〈1단계〉 지구젤리 1개<br>〈2단계〉 지구젤리 2개<br>〈3단계〉 지구젤리 3개 등</td>
+    </tr>
+    <tr>
+      <th>준비물</th>
+      <td colspan="3">주사위 4개(주사위 개수=팀원 수), 콘(반환점) 1개</td>
+    </tr>
+    <tr>
+      <th>구호</th>
+      <td colspan="3">하나님의 열정으로! OO조 파이팅!!</td>
+    </tr>
+    <tr>
+      <th>활동 내용</th>
+      <td colspan="3">
+        <ol>
+          <li>〈1단계〉 2명의 팀원이 각각 주사위를 던져서 같은 숫자가 나오면 성공
+            <div class="sub-choice ok">– 성공하면 〈2단계〉 도전 또는 다른 방으로~ (선택)</div>
+            <div class="sub-choice fail">– 실패하면 콘(반환점)을 돌아와서 다시 〈1단계〉 도전 또는 다른 방으로~ (선택)</div>
+          </li>
+          <li>〈2단계〉 3명의 팀원이 각각 주사위를 던져서 같은 숫자가 나오면 성공
+            <div class="sub-choice ok">– 성공하면 〈3단계〉 도전 또는 다른 방으로~ (선택)</div>
+            <div class="sub-choice fail">– 실패하면 콘(반환점)을 돌아와서 다시 〈2단계〉 도전 또는 다른 방으로~ (선택)</div>
+          </li>
+          <li>〈3단계〉 4명의 팀원이 각각 주사위를 던져서 같은 숫자가 나오면 성공
+            <div class="sub-choice ok">– 성공하면 다른 방으로~ GO!</div>
+            <div class="sub-choice fail">– 실패하면 콘(반환점)을 돌아와서 다시 〈3단계〉 도전 또는 다른 방으로~ (선택)</div>
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr class="check">
+      <th>☑ 체크해요</th>
+      <td colspan="3">
+        <ul>
+          <li>단계=팀원수−1 (예: 팀원 수가 4명이면 3단계까지, 팀원 수가 5명이면 4단계까지 가능)</li>
+          <li>성공 시 단계에 따라 ‘지구젤리’ 수여</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<!-- ================= 3. 사랑 코스 1 · 풍선 띄우기 ================= -->
+<section class="card love">
+  <div class="titlebar">‘사랑’ 코스 1 &nbsp;난이도 <span class="stars">★★★</span>&nbsp; 〈부제: 풍선 띄우기〉</div>
+  <table>
+    <tr>
+      <th>장소</th><td class="blank"></td>
+      <th>성공</th><td class="reward">〈1단계〉 지구젤리 1개<br>〈2단계〉 지구젤리 2개<br>〈3단계〉 지구젤리 3개</td>
+    </tr>
+    <tr>
+      <th>준비물</th>
+      <td colspan="3">풍선 1개, 공기 주입기 1개</td>
+    </tr>
+    <tr>
+      <th>구호</th>
+      <td colspan="3">서로 사랑하자! 모든 일은 사랑으로! OO조 파이팅!!</td>
+    </tr>
+    <tr>
+      <th>활동 내용</th>
+      <td colspan="3">
+        <ol>
+          <li>모든 조원이 손을 잡고 서서 원을 만든다.</li>
+          <li>모든 조원이 손을 잡은 채로 풍선이 떨어지지 않도록 위로 튕긴다.</li>
+          <li>도전과제
+            <div class="sub-choice">〈1단계〉 10번 띄우기</div>
+            <div class="sub-choice">〈2단계〉 20번 띄우기</div>
+            <div class="sub-choice">〈3단계〉 30번 띄우기</div>
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr class="check">
+      <th>☑ 체크해요</th>
+      <td colspan="3">
+        <ul>
+          <li>〈안전지도〉 손을 너무 꽉! 잡지 않기. 서로 배려하며 넘어지지 않도록 조심하기</li>
+          <li>성공 시 단계에 따라 ‘지구젤리’ 수여</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<!-- ================= 4. 순종 코스 2 · 계란판 탁구공 ================= -->
+<section class="card obey">
+  <div class="titlebar">‘순종’ 코스 2 &nbsp;난이도 <span class="stars">★★★</span>&nbsp; 〈부제: 복음 존으로 골인! — 계란판 탁구공〉</div>
+  <table>
+    <tr>
+      <th>장소</th><td class="blank"></td>
+      <th>성공</th><td class="reward">지구젤리 3개</td>
+    </tr>
+    <tr>
+      <th>준비물</th>
+      <td colspan="3">계란판(가운데에 ‘복음 존’ 표시), 탁구공 (팀원 1인당 6개), 던지는 라인 표시(테이프)</td>
+    </tr>
+    <tr>
+      <th>구호</th>
+      <td colspan="3">하나님 말씀에 ‘예스’로 순종하자! OO조 파이팅!!</td>
+    </tr>
+    <tr>
+      <th>활동 내용</th>
+      <td colspan="3">
+        <ol>
+          <li>계란판 가운데 표시된 <b>‘복음 존’</b>을 향해 라인 뒤에서 탁구공을 던진다.</li>
+          <li>팀원 1인당 <b>6개</b>의 탁구공을 던진다. (바운드 OK!)</li>
+          <li>팀 전체 합계 <b>10개 이상</b>이 복음 존에 들어가면 성공!</li>
+        </ol>
+        <div class="pic">
+          <svg viewBox="0 0 520 200" role="img" aria-label="계란판 탁구공 예시 그림">
+            <rect x="0" y="150" width="520" height="50" fill="#f0ead2"/>
+            <!-- egg carton outer -->
+            <rect x="30" y="40" width="200" height="130" rx="8" fill="#fdf3d0" stroke="#c0392b" stroke-width="4" transform="rotate(-4 130 105)"/>
+            <!-- gospel zone inner -->
+            <rect x="80" y="75" width="100" height="62" rx="6" fill="#fff" stroke="#2f3e2a" stroke-width="3" transform="rotate(-4 130 105)"/>
+            <text x="130" y="100" font-size="15" font-weight="800" fill="#c0392b" text-anchor="middle" transform="rotate(-4 130 105)">복음 존</text>
+            <circle cx="130" cy="120" r="7" fill="#e0762c" transform="rotate(-4 130 105)"/>
+            <!-- flight path -->
+            <path d="M420 80 Q290 10 150 90" stroke="#4a6fb5" stroke-width="4" fill="none" stroke-dasharray="9 9" opacity=".8"/>
+            <circle cx="300" cy="42" r="10" fill="#fff" stroke="#2f3e2a" stroke-width="3"/>
+            <!-- thrower -->
+            <g>
+              <circle cx="450" cy="90" r="17" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+              <rect x="437" y="109" width="26" height="36" rx="9" fill="#4a6fb5"/>
+              <path d="M440 116 q-20 -14 -22 -32" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M460 116 q12 8 14 20" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M443 145 v22 M457 145 v22" stroke="#2f3e2a" stroke-width="7" stroke-linecap="round"/>
+            </g>
+            <line x1="395" y1="150" x2="395" y2="175" stroke="#c0392b" stroke-width="5"/>
+            <text x="395" y="192" font-size="13" text-anchor="middle" fill="#c0392b" font-weight="700">던지는 라인</text>
+          </svg>
+          <div class="cap">▲ 라인 뒤에서 탁구공을 던져 복음 존에 골인!</div>
+        </div>
+      </td>
+    </tr>
+    <tr class="check">
+      <th>☑ 체크해요</th>
+      <td colspan="3">
+        <ul>
+          <li>인원이 적은 팀은 1인당 개수를 늘려 기회를 맞춰 주기</li>
+          <li>튕겨 나간 탁구공은 주워서 정리하기 (미끄럼 주의)</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<!-- ================= 5. 열정 코스 2 · 볼링 ================= -->
+<section class="card passion">
+  <div class="titlebar">‘열정’ 코스 2 &nbsp;난이도 <span class="stars">★★★★</span>&nbsp; 〈부제: 사탄핀을 쓰러뜨려라! — 볼링〉</div>
+  <table>
+    <tr>
+      <th>장소</th><td class="blank"></td>
+      <th>성공</th><td class="reward">지구젤리 3개</td>
+    </tr>
+    <tr>
+      <th>준비물</th>
+      <td colspan="3">볼링핀 10개, 에어하키공 1개(배터리가 없으면 볼링공으로 대체), 우드락(레인 라인 설정)</td>
+    </tr>
+    <tr>
+      <th>구호</th>
+      <td colspan="3">하나님의 열정으로! OO조 파이팅!!</td>
+    </tr>
+    <tr>
+      <th>활동 내용</th>
+      <td colspan="3">
+        <ol>
+          <li>우드락으로 만든 레인 끝에 볼링핀 10개를 세운다.</li>
+          <li>팀원 1인당 <b>2회씩</b> 공을 굴려(차서) 핀을 쓰러뜨린다.</li>
+          <li>매 차례가 끝나면 핀을 다시 세우고, 쓰러뜨린 핀 수를 더한다.</li>
+          <li>팀 전체 합계가 <b>30개 이상</b>이면 성공!</li>
+        </ol>
+        <div class="pic">
+          <svg viewBox="0 0 520 190" role="img" aria-label="볼링 예시 그림">
+            <!-- lane -->
+            <polygon points="40,60 480,75 480,145 40,170" fill="#f6f1dc" stroke="#c9b98a" stroke-width="3"/>
+            <line x1="40" y1="60" x2="480" y2="75" stroke="#8a8468" stroke-width="4"/>
+            <line x1="40" y1="170" x2="480" y2="145" stroke="#8a8468" stroke-width="4"/>
+            <text x="260" y="45" font-size="13" fill="#6f6a50" text-anchor="middle" font-weight="700">우드락으로 라인 설정</text>
+            <!-- pins -->
+            <g fill="#fff" stroke="#c0392b" stroke-width="2.5">
+              <ellipse cx="70" cy="95" rx="9" ry="16"/>
+              <ellipse cx="70" cy="130" rx="9" ry="16"/>
+              <ellipse cx="92" cy="112" rx="9" ry="16"/>
+              <ellipse cx="92" cy="145" rx="9" ry="16"/>
+              <ellipse cx="114" cy="128" rx="9" ry="16"/>
+            </g>
+            <text x="90" y="185" font-size="13" fill="#c0392b" text-anchor="middle" font-weight="700">사탄핀 🎳</text>
+            <!-- puck -->
+            <circle cx="330" cy="115" r="15" fill="#e8f0fb" stroke="#4a6fb5" stroke-width="3"/>
+            <circle cx="330" cy="115" r="5" fill="#4a6fb5"/>
+            <line x1="360" y1="108" x2="390" y2="105" stroke="#c9b98a" stroke-width="4" stroke-linecap="round"/>
+            <line x1="360" y1="122" x2="390" y2="123" stroke="#c9b98a" stroke-width="4" stroke-linecap="round"/>
+            <!-- kicker -->
+            <g>
+              <circle cx="455" cy="80" r="16" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+              <rect x="443" y="98" width="24" height="34" rx="8" fill="#e0762c"/>
+              <path d="M446 104 q-14 6 -16 18" stroke="#ffd9b3" stroke-width="6" fill="none" stroke-linecap="round"/>
+              <path d="M464 104 q14 -2 18 -14" stroke="#ffd9b3" stroke-width="6" fill="none" stroke-linecap="round"/>
+              <path d="M449 132 q-4 16 -8 22" stroke="#2f3e2a" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M461 130 q16 4 26 -2" stroke="#2f3e2a" stroke-width="7" fill="none" stroke-linecap="round"/>
+            </g>
+          </svg>
+          <div class="cap">▲ 레인을 따라 공을 굴려 사탄핀을 쓰러뜨려요!</div>
+        </div>
+      </td>
+    </tr>
+    <tr class="check">
+      <th>☑ 체크해요</th>
+      <td colspan="3">
+        <ul>
+          <li>쓰러진 볼링핀은 <b>복음 전달을 방해하는 사탄</b>을 상징 — 시작 전에 의미를 설명해 주기</li>
+          <li>에어하키공 배터리가 없으면 볼링공으로 대체</li>
+          <li>인원이 적은 팀은 1인당 횟수를 늘려 기회를 맞춰 주기</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<!-- ================= 6. 사랑 코스 2 · 병뚜껑 게임 ================= -->
+<section class="card love">
+  <div class="titlebar">‘사랑’ 코스 2 &nbsp;난이도 <span class="stars">★★★★</span>&nbsp; 〈부제: 한마음 병뚜껑 슬라이드〉</div>
+  <table>
+    <tr>
+      <th>장소</th><td class="blank"></td>
+      <th>성공</th><td class="reward">지구젤리 3개</td>
+    </tr>
+    <tr>
+      <th>준비물</th>
+      <td colspan="3">병뚜껑 (팀원 1인당 3개), 긴 테이블 1개, 구역(존) 표시 테이프, 타이머</td>
+    </tr>
+    <tr>
+      <th>구호</th>
+      <td colspan="3">서로 사랑하자! 모든 일은 사랑으로! OO조 파이팅!!</td>
+    </tr>
+    <tr>
+      <th>활동 내용</th>
+      <td colspan="3">
+        <ol>
+          <li>테이블 한쪽 끝(출발선)에서 손가락으로 병뚜껑을 튕겨 반대편 <b>구역(존)</b> 안에 밀어 넣는다.</li>
+          <li>팀원 1인당 병뚜껑 <b>3개</b>씩 도전 — <b>하나라도</b> 존 안에 들어가면 그 팀원은 성공!</li>
+          <li>전체 팀원이 성공할 때까지 도전한다. 제한시간 <b>3분</b>!</li>
+          <li>제한시간 안에 <b>팀원 전원</b>이 성공하면 미션 성공!</li>
+        </ol>
+        <div class="pic">
+          <svg viewBox="0 0 520 190" role="img" aria-label="병뚜껑 게임 예시 그림">
+            <!-- table top -->
+            <polygon points="60,60 460,60 490,120 30,120" fill="#f6f1dc" stroke="#4a6fb5" stroke-width="3"/>
+            <!-- legs -->
+            <line x1="45" y1="120" x2="45" y2="175" stroke="#4a6fb5" stroke-width="6"/>
+            <line x1="475" y1="120" x2="475" y2="175" stroke="#4a6fb5" stroke-width="6"/>
+            <line x1="120" y1="120" x2="120" y2="168" stroke="#4a6fb5" stroke-width="6"/>
+            <line x1="400" y1="120" x2="400" y2="168" stroke="#4a6fb5" stroke-width="6"/>
+            <!-- start line (red) -->
+            <line x1="440" y1="60" x2="466" y2="120" stroke="#c0392b" stroke-width="5"/>
+            <text x="470" y="50" font-size="13" fill="#c0392b" font-weight="700" text-anchor="middle">출발선</text>
+            <!-- target zone -->
+            <polygon points="60,60 130,60 110,120 30,120" fill="#fdeef3" stroke="#d4547a" stroke-width="3" stroke-dasharray="7 6"/>
+            <text x="80" y="95" font-size="14" fill="#b03a60" font-weight="800" text-anchor="middle">존</text>
+            <!-- caps -->
+            <circle cx="420" cy="92" r="9" fill="#fff" stroke="#2f3e2a" stroke-width="3"/>
+            <circle cx="250" cy="88" r="9" fill="#fff" stroke="#2f3e2a" stroke-width="3"/>
+            <line x1="280" y1="84" x2="330" y2="82" stroke="#c9b98a" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="85" cy="90" r="9" fill="#f9c8d8" stroke="#b03a60" stroke-width="3"/>
+            <!-- flicking finger hand -->
+            <g>
+              <circle cx="500" cy="35" r="0" fill="none"/>
+              <path d="M470 78 q-14 -18 -2 -26 q10 -6 16 6 l6 12" stroke="#e0a86e" stroke-width="4" fill="#ffd9b3"/>
+            </g>
+          </svg>
+          <div class="cap">▲ 출발선에서 병뚜껑을 튕겨 반대편 존 안에 쏙!</div>
+        </div>
+      </td>
+    </tr>
+    <tr class="check">
+      <th>☑ 체크해요</th>
+      <td colspan="3">
+        <ul>
+          <li>테이블 밖으로 떨어진 병뚜껑은 실패 — 주워서 다시 도전 가능 (제한시간 내)</li>
+          <li>친구가 성공할 때까지 팀원 모두 함께 응원하기 — 서로 격려가 핵심!</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<!-- ================= 7. 사랑 코스 3 · 말씀 암호 해독 ================= -->
+<section class="card love">
+  <div class="titlebar">‘사랑’ 코스 3 &nbsp;난이도 <span class="stars">★★★★</span>&nbsp; 〈부제: 말씀 암호 해독〉</div>
+  <table>
+    <tr>
+      <th>장소</th><td class="blank"></td>
+      <th>성공</th><td class="reward">지구젤리 3개</td>
+    </tr>
+    <tr>
+      <th>준비물</th>
+      <td colspan="3">암호판, 낱말 카드(교재 말씀의 단어들), 힌트 소품 (교재 말씀 활용)</td>
+    </tr>
+    <tr>
+      <th>구호</th>
+      <td colspan="3">서로 사랑하자! 모든 일은 사랑으로! OO조 파이팅!!</td>
+    </tr>
+    <tr>
+      <th>활동 내용</th>
+      <td colspan="3">
+        <ol>
+          <li>방 곳곳에 <b>낱말 카드</b>가 숨어 있다. (커튼 뒤? 의자 밑?)</li>
+          <li>저학년은 <b>카드를 찾아</b> 오고, 고학년은 <b>암호판(숫자→글자)</b>을 풀어 순서를 알아낸다.</li>
+          <li>카드를 올바른 순서로 놓아 <b>성경 말씀을 완성</b>하면 성공!</li>
+          <li>완성한 말씀을 팀 모두가 큰 소리로 함께 낭독한다. 📖</li>
+        </ol>
+      </td>
+    </tr>
+    <tr class="check">
+      <th>☑ 체크해요</th>
+      <td colspan="3">
+        <ul>
+          <li>역할을 나눠야 풀 수 있는 미션 — 서로 돕도록 안내하기</li>
+          <li>카드는 너무 어렵지 않은 곳에 숨기기 (저학년 눈높이)</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<!-- ================= 8. 순종 코스 3 · 신뢰의 미로 ================= -->
+<section class="card obey">
+  <div class="titlebar">‘순종’ 코스 3 &nbsp;난이도 <span class="stars">★★★★</span>&nbsp; 〈부제: 신뢰의 미로 — 눈 가리고 길 안내〉</div>
+  <table>
+    <tr>
+      <th>장소</th><td class="blank"></td>
+      <th>성공</th><td class="reward">지구젤리 3개</td>
+    </tr>
+    <tr>
+      <th>준비물</th>
+      <td colspan="3">안대(또는 수건), 원마커, 빈 박스·콘 등 장애물</td>
+    </tr>
+    <tr>
+      <th>구호</th>
+      <td colspan="3">하나님 말씀에 ‘예스’로 순종하자! OO조 파이팅!!</td>
+    </tr>
+    <tr>
+      <th>활동 내용</th>
+      <td colspan="3">
+        <ol>
+          <li>바닥에 <b>원마커 길</b>이 있고, 중간중간 <b>장애물</b>(빈 박스, 콘)이 놓여 있다.</li>
+          <li>도전자는 <b>안대</b>를 쓰고, 팀원들이 <b>목소리로만</b> 길을 알려준다. (“앞으로 두 걸음!”, “오른쪽!”)</li>
+          <li>장애물을 건드리지 않고 <b>도착 지점</b>까지 가면 성공! (건드리면 출발선으로)</li>
+          <li>팀에서 <b>2명이 통과</b>하면 미션 클리어!</li>
+          <li>저학년이 도전하고 고학년이 안내한다. 한 번은 반대로 해 보면 두 배로 재미있어요!</li>
+        </ol>
+      </td>
+    </tr>
+    <tr class="check">
+      <th>☑ 체크해요</th>
+      <td colspan="3">
+        <ul>
+          <li>〈안전지도〉 진행자가 도전자 바로 옆에서 함께 걷기. 뛰지 않고 천천히!</li>
+          <li>“보이지 않아도 인도하시는 음성에 순종한다”는 의미를 설명해 주기</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<!-- ================= 9. 순종 코스 1 · 예스로 하나되기 ================= -->
+<section class="card obey">
+  <div class="titlebar">‘순종’ 코스 1 &nbsp;난이도 <span class="stars">★★★★★</span>&nbsp; 〈부제: ‘예스’로 하나되기〉</div>
+  <table>
+    <tr>
+      <th>장소</th><td class="blank"></td>
+      <th>성공</th><td class="reward">지구젤리 3개</td>
+    </tr>
+    <tr>
+      <th>준비물</th>
+      <td colspan="3">다트판 1개, 다트 4개</td>
+    </tr>
+    <tr>
+      <th>구호</th>
+      <td colspan="3">하나님 말씀에 ‘예스’로 순종하자! OO조 파이팅!!</td>
+    </tr>
+    <tr>
+      <th>활동 내용</th>
+      <td colspan="3">
+        <ol>
+          <li>진행자가 다트판을 매우 빠른 속도로 회전시킨다.</li>
+          <li>모든 조원이 동시에 다트를 던진다.</li>
+          <li>모든 조원의 다트가 <b>‘YES’ 줄</b>에 위치하면 성공!</li>
+        </ol>
+      </td>
+    </tr>
+    <tr class="check">
+      <th>☑ 체크해요</th>
+      <td colspan="3">
+        <ul>
+          <li>〈안전지도〉 다트를 사람에게 던지지 않기</li>
+          <li>실패하면 계속 도전하거나, 다른 코스로 이동할 수 있음</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<footer>2026 여름캠프 · 미션 원정대 — 믿음으로 한 걸음!</footer>
+
+</div>
+</body>
+</html>
