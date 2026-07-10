@@ -6,6 +6,8 @@
 
 **🗝️ 코스 3 안내 페이지(어린이용): https://jbb100.github.io/2026-sarang-summer/course3.html** — 골든슛 챌린지 · 말씀 암호 해독 · 신뢰의 미로 (`course3.html`)
 
+**🗺️ 전체 코스 안내(운영용, 9개): https://jbb100.github.io/2026-sarang-summer/courses.html** — 열정·사랑·순종 테마별 3개씩, 난이도순 정리 (`courses.html`)
+
 사진은 서버로 전송되지 않고 전부 기기 안에서만 처리됩니다.
 
 ## 현장에서 쓰는 법

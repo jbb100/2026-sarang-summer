@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>미션 원정대 · 전체 코스 안내 (9개)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif;
+    background: #f2efe2;
+    color: #222;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 20px 16px 60px; }
+
+  header { text-align: center; padding: 28px 12px 18px; }
+  header .camp {
+    display: inline-block; background: #3e6b35; color: #fff;
+    font-size: 13px; font-weight: 700; padding: 5px 16px;
+    border-radius: 20px; letter-spacing: 1px;
+  }
+  header h1 { font-size: 28px; margin: 14px 0 6px; color: #3e6b35; }
+  header p.sub { font-size: 14px; color: #6f6a50; }
+
+  /* ---------- overview table ---------- */
+  .overview {
+    background: #fffdf3; border: 2px solid #d8d2b8; border-radius: 16px;
+    padding: 20px; margin: 16px 0 34px;
+  }
+  .overview h2 { font-size: 18px; color: #3e6b35; margin-bottom: 12px; }
+  .overview table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .overview th, .overview td { border: 1px solid #d8d2b8; padding: 8px 10px; text-align: center; }
+  .overview th { background: #cfe3f7; font-weight: 800; }
+  .overview td.name { text-align: left; font-weight: 700; }
+  .overview .stars { color: #e0762c; letter-spacing: 1px; white-space: nowrap; }
+  .theme-tag { display: inline-block; font-size: 12px; font-weight: 800; color: #fff; padding: 2px 10px; border-radius: 12px; }
+  .theme-tag.passion { background: #e0762c; }
+  .theme-tag.love    { background: #d4547a; }
+  .theme-tag.obey    { background: #4a6fb5; }
+
+  /* ---------- course card (기존 카드 양식) ---------- */
+  .card {
+    background: #fff; border: 1px solid #9db8d2; border-radius: 6px;
+    margin-bottom: 34px; overflow: hidden;
+    box-shadow: 0 4px 14px rgba(60,50,20,.08);
+    page-break-inside: avoid;
+  }
+  .card .titlebar {
+    background: #d6e8fb; color: #1a56b0;
+    font-size: 18px; font-weight: 800; padding: 12px 16px;
+  }
+  .card.passion .titlebar { border-left: 8px solid #e0762c; }
+  .card.love    .titlebar { border-left: 8px solid #d4547a; }
+  .card.obey    .titlebar { border-left: 8px solid #4a6fb5; }
+  .card .titlebar .stars { color: #e0762c; }
+
+  .card table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .card th, .card td { border: 1px solid #9db8d2; padding: 10px 14px; vertical-align: top; }
+  .card th {
+    background: #bcd7f2; font-weight: 800; width: 120px;
+    text-align: center; vertical-align: middle; white-space: nowrap;
+  }
+  .card td.blank { min-width: 120px; background: #fff; }
+  .card td.reward { font-size: 14px; line-height: 1.5; }
+
+  .card ol { margin-left: 20px; }
+  .card ol li { margin-bottom: 4px; }
+  .card .sub-choice { font-size: 14px; margin-left: 6px; }
+  .card .sub-choice.ok   { color: #1a56b0; }
+  .card .sub-choice.fail { color: #c0392b; }
+  .card .check td { background: #eaf3fd; }
+  .card .check ul { list-style: none; }
+  .card .check ul li::before { content: "* "; font-weight: 800; }
+
+  .pic {
+    border: 2px dashed #bcd7f2; border-radius: 10px;
+    padding: 8px; margin-top: 12px; background: #fbfdff;
+  }
+  .pic svg { display: block; width: 100%; max-width: 520px; height: auto; margin: 0 auto; }
+  .pic .cap { text-align: center; font-size: 12px; color: #6f8bab; padding-top: 4px; }
+
+  footer { text-align: center; font-size: 12px; color: #8a8468; margin-top: 30px; }
+
+  @media print {
+    body { background: #fff; }
+    .card { box-shadow: none; }
+  }
+  @media (max-width: 560px) {
+    header h1 { font-size: 22px; }
+    .card .titlebar { font-size: 15px; }
+    .card th { width: 78px; padding: 8px 6px; font-size: 13px; }
+    .card td { padding: 8px 10px; font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="camp">2026 여름캠프 · 미션 원정대</span>
+  <h1>🗺️ 전체 코스 안내 (9개)</h1>
+  <p class="sub">‘열정’ · ‘사랑’ · ‘순종’ 세 가지 테마, 테마별 3개씩 총 9개 코스!<br>난이도가 낮은 코스부터 순서대로 정리했어요.</p>
+</header>
+
+<!-- ================= 한눈에 보기 ================= -->
+<section class="overview">
+  <h2>📋 한눈에 보기 (난이도순)</h2>
+  <table>
+    <thead>
+      <tr><th>순서</th><th>코스</th><th>테마</th><th style="width:200px">이름</th><th>난이도</th><th>성공 보상</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>열정 3</td><td><span class="theme-tag passion">열정</span></td><td class="name">골든슛 챌린지</td><td class="stars">★★</td><td>지구젤리 (점수제)</td></tr>
+      <tr><td>2</td><td>열정 1</td><td><span class="theme-tag passion">열정</span></td><td class="name">주사위 일심동체</td><td class="stars">★★★</td><td>단계별 지구젤리 1~3개</td></tr>
+      <tr><td>3</td><td>사랑 1</td><td><span class="theme-tag love">사랑</span></td><td class="name">풍선 띄우기</td><td class="stars">★★★</td><td>단계별 지구젤리 1~3개</td></tr>
+      <tr><td>4</td><td>순종 2</td><td><span class="theme-tag obey">순종</span></td><td class="name">복음 존으로 골인! (계란판 탁구공)</td><td class="stars">★★★</td><td>지구젤리 3개</td></tr>
+      <tr><td>5</td><td>열정 2</td><td><span class="theme-tag passion">열정</span></td><td class="name">사탄핀을 쓰러뜨려라! (볼링)</td><td class="stars">★★★★</td><td>지구젤리 3개</td></tr>
+      <tr><td>6</td><td>사랑 2</td><td><span class="theme-tag love">사랑</span></td><td class="name">한마음 병뚜껑 슬라이드</td><td class="stars">★★★★</td><td>지구젤리 3개</td></tr>
+      <tr><td>7</td><td>사랑 3</td><td><span class="theme-tag love">사랑</span></td><td class="name">말씀 암호 해독</td><td class="stars">★★★★</td><td>지구젤리 3개</td></tr>
+      <tr><td>8</td><td>순종 3</td><td><span class="theme-tag obey">순종</span></td><td class="name">신뢰의 미로</td><td class="stars">★★★★</td><td>지구젤리 3개</td></tr>
+      <tr><td>9</td><td>순종 1</td><td><span class="theme-tag obey">순종</span></td><td class="name">‘예스’로 하나되기</td><td class="stars">★★★★★</td><td>지구젤리 3개</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================= 1. 열정 코스 3 · 골든슛 챌린지 ================= -->
+<section class="card passion">
+  <div class="titlebar">‘열정’ 코스 3 &nbsp;난이도 <span class="stars">★★</span>&nbsp; 〈부제: 골든슛 챌린지〉</div>
+  <table>
+    <tr>
+      <th>장소</th><td class="blank"></td>
+      <th>성공</th><td class="reward">지구젤리 (점수제 — 모든 코스 종료 후 발표)</td>
+    </tr>
+    <tr>
+      <th>준비물</th>
+      <td colspan="3">점수판 축구 매트 세트(공 포함) 1개, 거리 표시용 원마커 2개(저학년/고학년 라인), 점수 기록지</td>
+    </tr>
+    <tr>
+      <th>구호</th>
+      <td colspan="3">하나님의 열정으로! OO조 파이팅!!</td>
+    </tr>
+    <tr>
+      <th>활동 내용</th>
+      <td colspan="3">
+        <ol>
+          <li>벽에 붙은 <b>점수판</b>을 향해 공을 찬다.</li>
+          <li>한 사람당 <b>2번씩</b> 슛! (팀 인원에 따라 3번 가능)</li>
+          <li>저학년은 <b>가까운 라인</b>, 고학년은 <b>먼 라인</b>에서 찬다.</li>
+          <li>맞힌 점수 구역을 기록한다. 점수 발표는 모든 코스가 끝난 뒤!</li>
+          <li>팀 전원이 슛을 마치면 미션 성공</li>
+        </ol>
+        <div class="pic">
+          <svg viewBox="0 0 800 360" role="img" aria-label="골든슛 챌린지 예시 그림">
+            <rect x="0" y="0" width="800" height="270" fill="#fdf8ea"/>
+            <rect x="0" y="270" width="800" height="90" fill="#e8e0c4"/>
+            <line x1="0" y1="270" x2="800" y2="270" stroke="#cfc6a2" stroke-width="3"/>
+            <rect x="560" y="30" width="200" height="230" rx="14" fill="#2f6d46"/>
+            <rect x="572" y="42" width="176" height="206" rx="10" fill="#fff" opacity=".95"/>
+            <line x1="572" y1="145" x2="748" y2="145" stroke="#2f6d46" stroke-width="4"/>
+            <line x1="660" y1="42" x2="660" y2="248" stroke="#2f6d46" stroke-width="4"/>
+            <text x="616" y="105" font-size="34" font-weight="800" fill="#e0762c" text-anchor="middle">10</text>
+            <text x="704" y="105" font-size="34" font-weight="800" fill="#d4547a" text-anchor="middle">30</text>
+            <text x="616" y="210" font-size="34" font-weight="800" fill="#4a6fb5" text-anchor="middle">20</text>
+            <text x="704" y="210" font-size="34" font-weight="800" fill="#c9a227" text-anchor="middle">50</text>
+            <circle cx="585" cy="24" r="6" fill="#8a8468"/>
+            <circle cx="735" cy="24" r="6" fill="#8a8468"/>
+            <text x="660" y="290" font-size="15" fill="#6f6a50" text-anchor="middle">점수판 매트</text>
+            <ellipse cx="330" cy="300" rx="34" ry="12" fill="#f2c94c" stroke="#d8a91e" stroke-width="3"/>
+            <text x="330" y="336" font-size="15" fill="#8a6d10" text-anchor="middle" font-weight="700">저학년 라인</text>
+            <ellipse cx="120" cy="300" rx="34" ry="12" fill="#7aa5e0" stroke="#4a6fb5" stroke-width="3"/>
+            <text x="120" y="336" font-size="15" fill="#35548f" text-anchor="middle" font-weight="700">고학년 라인</text>
+            <g>
+              <circle cx="300" cy="180" r="24" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+              <path d="M282 168 q18 -18 36 0 v-8 q-18 -14 -36 0 z" fill="#5a4632"/>
+              <circle cx="292" cy="178" r="3" fill="#2f3e2a"/>
+              <circle cx="308" cy="178" r="3" fill="#2f3e2a"/>
+              <path d="M292 192 q8 7 16 0" stroke="#2f3e2a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <rect x="282" y="205" width="36" height="46" rx="12" fill="#e0762c"/>
+              <path d="M284 214 q-22 6 -26 26" stroke="#ffd9b3" stroke-width="9" fill="none" stroke-linecap="round"/>
+              <path d="M316 214 q24 -4 30 -22" stroke="#ffd9b3" stroke-width="9" fill="none" stroke-linecap="round"/>
+              <path d="M292 250 q-4 24 -6 34" stroke="#4a6fb5" stroke-width="10" fill="none" stroke-linecap="round"/>
+              <path d="M310 248 q26 6 42 -6" stroke="#4a6fb5" stroke-width="10" fill="none" stroke-linecap="round"/>
+              <ellipse cx="284" cy="290" rx="12" ry="6" fill="#2f3e2a"/>
+              <ellipse cx="360" cy="240" rx="12" ry="6" fill="#2f3e2a" transform="rotate(-30 360 240)"/>
+            </g>
+            <g>
+              <circle cx="470" cy="150" r="20" fill="#fff" stroke="#2f3e2a" stroke-width="3"/>
+              <path d="M470 143 l7 5 -2.7 8 h-8.6 l-2.7 -8 z" fill="#2f3e2a"/>
+              <path d="M470 143 v-11 M477 148 l10 -4 M474.3 156 l6 8 M465.7 156 l-6 8 M463 148 l-10 -4" stroke="#2f3e2a" stroke-width="2.5"/>
+              <line x1="415" y1="165" x2="440" y2="160" stroke="#c9b98a" stroke-width="4" stroke-linecap="round"/>
+              <line x1="410" y1="150" x2="437" y2="148" stroke="#c9b98a" stroke-width="4" stroke-linecap="round"/>
+              <line x1="415" y1="135" x2="440" y2="137" stroke="#c9b98a" stroke-width="4" stroke-linecap="round"/>
+            </g>
+            <path d="M370 220 Q470 90 640 105" stroke="#e0762c" stroke-width="4" fill="none" stroke-dasharray="10 10" opacity=".7"/>
+            <g>
+              <circle cx="80" cy="190" r="18" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+              <path d="M66 182 q14 -14 28 0 v-7 q-14 -11 -28 0 z" fill="#3c2f22"/>
+              <circle cx="74" cy="188" r="2.5" fill="#2f3e2a"/>
+              <circle cx="86" cy="188" r="2.5" fill="#2f3e2a"/>
+              <path d="M74 198 q6 6 12 0" stroke="#2f3e2a" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <rect x="66" y="209" width="28" height="38" rx="10" fill="#4e8a3f"/>
+              <path d="M68 216 q-16 -12 -14 -26" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M92 216 q16 -12 14 -26" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M74 247 v22 M86 247 v22" stroke="#35548f" stroke-width="8" stroke-linecap="round"/>
+              <text x="80" y="160" font-size="17" text-anchor="middle" fill="#b85a18" font-weight="800">파이팅!</text>
+            </g>
+          </svg>
+          <div class="cap">▲ 내 라인에서 공을 차서 점수판을 맞혀요!</div>
+        </div>
+      </td>
+    </tr>
+    <tr class="check">
+      <th>☑ 체크해요</th>
+      <td colspan="3">
+        <ul>
+          <li>매트는 구성품 후크/스트랩으로 벽에 설치, 실내 진행</li>
+          <li>중간 점수는 비밀로 유지하기</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<!-- ================= 2. 열정 코스 1 · 주사위 일심동체 ================= -->
+<section class="card passion">
+  <div class="titlebar">‘열정’ 코스 1 &nbsp;난이도 <span class="stars">★★★</span>&nbsp; 〈부제: 주사위 일심동체〉</div>
+  <table>
+    <tr>
+      <th>장소</th><td class="blank"></td>
+      <th>성공</th><td class="reward">〈1단계〉 지구젤리 1개<br>〈2단계〉 지구젤리 2개<br>〈3단계〉 지구젤리 3개 등</td>
+    </tr>
+    <tr>
+      <th>준비물</th>
+      <td colspan="3">주사위 4개(주사위 개수=팀원 수), 콘(반환점) 1개</td>
+    </tr>
+    <tr>
+      <th>구호</th>
+      <td colspan="3">하나님의 열정으로! OO조 파이팅!!</td>
+    </tr>
+    <tr>
+      <th>활동 내용</th>
+      <td colspan="3">
+        <ol>
+          <li>〈1단계〉 2명의 팀원이 각각 주사위를 던져서 같은 숫자가 나오면 성공
+            <div class="sub-choice ok">– 성공하면 〈2단계〉 도전 또는 다른 방으로~ (선택)</div>
+            <div class="sub-choice fail">– 실패하면 콘(반환점)을 돌아와서 다시 〈1단계〉 도전 또는 다른 방으로~ (선택)</div>
+          </li>
+          <li>〈2단계〉 3명의 팀원이 각각 주사위를 던져서 같은 숫자가 나오면 성공
+            <div class="sub-choice ok">– 성공하면 〈3단계〉 도전 또는 다른 방으로~ (선택)</div>
+            <div class="sub-choice fail">– 실패하면 콘(반환점)을 돌아와서 다시 〈2단계〉 도전 또는 다른 방으로~ (선택)</div>
+          </li>
+          <li>〈3단계〉 4명의 팀원이 각각 주사위를 던져서 같은 숫자가 나오면 성공
+            <div class="sub-choice ok">– 성공하면 다른 방으로~ GO!</div>
+            <div class="sub-choice fail">– 실패하면 콘(반환점)을 돌아와서 다시 〈3단계〉 도전 또는 다른 방으로~ (선택)</div>
+          </li>
+        </ol>
+        <div class="pic">
+          <svg viewBox="0 0 520 210" role="img" aria-label="주사위 일심동체 예시 그림">
+            <rect x="0" y="160" width="520" height="50" fill="#f0ead2"/>
+            <!-- two matching dice -->
+            <g>
+              <rect x="120" y="70" width="64" height="64" rx="12" fill="#fff" stroke="#2f3e2a" stroke-width="3" transform="rotate(-8 152 102)"/>
+              <g fill="#2f3e2a" transform="rotate(-8 152 102)">
+                <circle cx="136" cy="86" r="6"/><circle cx="168" cy="86" r="6"/>
+                <circle cx="152" cy="102" r="6"/>
+                <circle cx="136" cy="118" r="6"/><circle cx="168" cy="118" r="6"/>
+              </g>
+              <rect x="230" y="74" width="64" height="64" rx="12" fill="#fff" stroke="#2f3e2a" stroke-width="3" transform="rotate(7 262 106)"/>
+              <g fill="#2f3e2a" transform="rotate(7 262 106)">
+                <circle cx="246" cy="90" r="6"/><circle cx="278" cy="90" r="6"/>
+                <circle cx="262" cy="106" r="6"/>
+                <circle cx="246" cy="122" r="6"/><circle cx="278" cy="122" r="6"/>
+              </g>
+              <text x="207" y="45" font-size="18" font-weight="800" fill="#b85a18" text-anchor="middle">같은 숫자면 성공! ✨</text>
+              <path d="M150 58 l-8 -12 M207 52 v-14 M264 60 l8 -12" stroke="#f2c94c" stroke-width="4" stroke-linecap="round"/>
+            </g>
+            <!-- thrower -->
+            <g>
+              <circle cx="55" cy="95" r="17" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+              <path d="M42 87 q13 -13 26 0 v-7 q-13 -10 -26 0 z" fill="#5a4632"/>
+              <circle cx="49" cy="93" r="2.5" fill="#2f3e2a"/><circle cx="61" cy="93" r="2.5" fill="#2f3e2a"/>
+              <path d="M49 103 q6 5 12 0" stroke="#2f3e2a" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <rect x="42" y="114" width="26" height="36" rx="9" fill="#e0762c"/>
+              <path d="M66 120 q18 -12 26 -26" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M44 122 q-10 10 -10 22" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M48 150 v22 M62 150 v22" stroke="#35548f" stroke-width="7" stroke-linecap="round"/>
+            </g>
+            <!-- cone (return point) with loop arrow -->
+            <g>
+              <path d="M430 160 l22 -52 l22 52 z" fill="#e0762c" stroke="#b85a18" stroke-width="3"/>
+              <rect x="422" y="158" width="60" height="10" rx="5" fill="#b85a18"/>
+              <text x="452" y="190" font-size="14" text-anchor="middle" fill="#b85a18" font-weight="700">콘(반환점)</text>
+              <path d="M340 150 q60 -70 108 -30" stroke="#c0392b" stroke-width="4" fill="none" stroke-dasharray="8 8"/>
+              <path d="M448 116 l4 10 l-12 0 z" fill="#c0392b"/>
+              <text x="382" y="80" font-size="14" fill="#c0392b" font-weight="700" text-anchor="middle">실패하면 돌아와요~</text>
+            </g>
+          </svg>
+          <div class="cap">▲ 팀원이 동시에 던져서 같은 숫자가 나오면 성공!</div>
+        </div>
+      </td>
+    </tr>
+    <tr class="check">
+      <th>☑ 체크해요</th>
+      <td colspan="3">
+        <ul>
+          <li>단계=팀원수−1 (예: 팀원 수가 4명이면 3단계까지, 팀원 수가 5명이면 4단계까지 가능)</li>
+          <li>성공 시 단계에 따라 ‘지구젤리’ 수여</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<!-- ================= 3. 사랑 코스 1 · 풍선 띄우기 ================= -->
+<section class="card love">
+  <div class="titlebar">‘사랑’ 코스 1 &nbsp;난이도 <span class="stars">★★★</span>&nbsp; 〈부제: 풍선 띄우기〉</div>
+  <table>
+    <tr>
+      <th>장소</th><td class="blank"></td>
+      <th>성공</th><td class="reward">〈1단계〉 지구젤리 1개<br>〈2단계〉 지구젤리 2개<br>〈3단계〉 지구젤리 3개</td>
+    </tr>
+    <tr>
+      <th>준비물</th>
+      <td colspan="3">풍선 1개, 공기 주입기 1개</td>
+    </tr>
+    <tr>
+      <th>구호</th>
+      <td colspan="3">서로 사랑하자! 모든 일은 사랑으로! OO조 파이팅!!</td>
+    </tr>
+    <tr>
+      <th>활동 내용</th>
+      <td colspan="3">
+        <ol>
+          <li>모든 조원이 손을 잡고 서서 원을 만든다.</li>
+          <li>모든 조원이 손을 잡은 채로 풍선이 떨어지지 않도록 위로 튕긴다.</li>
+          <li>도전과제
+            <div class="sub-choice">〈1단계〉 10번 띄우기</div>
+            <div class="sub-choice">〈2단계〉 20번 띄우기</div>
+            <div class="sub-choice">〈3단계〉 30번 띄우기</div>
+          </li>
+        </ol>
+        <div class="pic">
+          <svg viewBox="0 0 520 220" role="img" aria-label="풍선 띄우기 예시 그림">
+            <rect x="0" y="180" width="520" height="40" fill="#f0ead2"/>
+            <!-- balloon -->
+            <g>
+              <ellipse cx="260" cy="52" rx="30" ry="36" fill="#f9c8d8" stroke="#d4547a" stroke-width="3"/>
+              <path d="M254 88 l6 8 l6 -8 z" fill="#d4547a"/>
+              <path d="M248 34 q6 -8 14 -6" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".8"/>
+              <path d="M228 96 q-6 10 -2 18 M292 96 q6 10 2 18" stroke="#c9b98a" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <!-- count bubble -->
+              <rect x="330" y="24" width="80" height="40" rx="18" fill="#fff" stroke="#d4547a" stroke-width="3"/>
+              <path d="M340 62 l-6 12 l18 -9 z" fill="#fff" stroke="#d4547a" stroke-width="3" stroke-linejoin="round"/>
+              <text x="370" y="51" font-size="19" text-anchor="middle" fill="#b03a60" font-weight="800">열 번!</text>
+            </g>
+            <!-- circle of kids holding hands (front row of the circle) -->
+            <g>
+              <!-- kid 1 -->
+              <circle cx="120" cy="120" r="17" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+              <rect x="107" y="139" width="26" height="34" rx="9" fill="#d4547a"/>
+              <path d="M111 174 v18 M129 174 v18" stroke="#35548f" stroke-width="6" stroke-linecap="round"/>
+              <!-- kid 2 -->
+              <circle cx="215" cy="132" r="17" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+              <rect x="202" y="151" width="26" height="32" rx="9" fill="#4e8a3f"/>
+              <path d="M206 184 v14 M224 184 v14" stroke="#2f3e2a" stroke-width="6" stroke-linecap="round"/>
+              <!-- kid 3 -->
+              <circle cx="310" cy="132" r="17" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+              <rect x="297" y="151" width="26" height="32" rx="9" fill="#e0762c"/>
+              <path d="M301 184 v14 M319 184 v14" stroke="#2f3e2a" stroke-width="6" stroke-linecap="round"/>
+              <!-- kid 4 -->
+              <circle cx="405" cy="120" r="17" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+              <rect x="392" y="139" width="26" height="34" rx="9" fill="#4a6fb5"/>
+              <path d="M396 174 v18 M414 174 v18" stroke="#35548f" stroke-width="6" stroke-linecap="round"/>
+              <!-- joined hands (arcs between kids) -->
+              <path d="M133 150 q40 -18 70 6" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M228 160 q40 -14 70 0" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M323 156 q40 -22 70 -6" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <!-- outer arms suggesting a circle continues -->
+              <path d="M107 148 q-24 -6 -34 -22" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M418 148 q24 -6 34 -22" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+            </g>
+            <text x="260" y="214" font-size="14" text-anchor="middle" fill="#8a6d10" font-weight="700">손을 잡은 채로 풍선을 위로 통! 통!</text>
+          </svg>
+          <div class="cap">▲ 모두 손을 잡고 풍선이 떨어지지 않게 띄워요!</div>
+        </div>
+      </td>
+    </tr>
+    <tr class="check">
+      <th>☑ 체크해요</th>
+      <td colspan="3">
+        <ul>
+          <li>〈안전지도〉 손을 너무 꽉! 잡지 않기. 서로 배려하며 넘어지지 않도록 조심하기</li>
+          <li>성공 시 단계에 따라 ‘지구젤리’ 수여</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<!-- ================= 4. 순종 코스 2 · 계란판 탁구공 ================= -->
+<section class="card obey">
+  <div class="titlebar">‘순종’ 코스 2 &nbsp;난이도 <span class="stars">★★★</span>&nbsp; 〈부제: 복음 존으로 골인! — 계란판 탁구공〉</div>
+  <table>
+    <tr>
+      <th>장소</th><td class="blank"></td>
+      <th>성공</th><td class="reward">지구젤리 3개</td>
+    </tr>
+    <tr>
+      <th>준비물</th>
+      <td colspan="3">계란판(가운데에 ‘복음 존’ 표시), 탁구공 (팀원 1인당 6개), 던지는 라인 표시(테이프)</td>
+    </tr>
+    <tr>
+      <th>구호</th>
+      <td colspan="3">하나님 말씀에 ‘예스’로 순종하자! OO조 파이팅!!</td>
+    </tr>
+    <tr>
+      <th>활동 내용</th>
+      <td colspan="3">
+        <ol>
+          <li>계란판 가운데 표시된 <b>‘복음 존’</b>을 향해 라인 뒤에서 탁구공을 던진다.</li>
+          <li>팀원 1인당 <b>6개</b>의 탁구공을 던진다. (바운드 OK!)</li>
+          <li>팀 전체 합계 <b>10개 이상</b>이 복음 존에 들어가면 성공!</li>
+        </ol>
+        <div class="pic">
+          <svg viewBox="0 0 520 200" role="img" aria-label="계란판 탁구공 예시 그림">
+            <rect x="0" y="150" width="520" height="50" fill="#f0ead2"/>
+            <!-- egg carton outer -->
+            <rect x="30" y="40" width="200" height="130" rx="8" fill="#fdf3d0" stroke="#c0392b" stroke-width="4" transform="rotate(-4 130 105)"/>
+            <!-- gospel zone inner -->
+            <rect x="80" y="75" width="100" height="62" rx="6" fill="#fff" stroke="#2f3e2a" stroke-width="3" transform="rotate(-4 130 105)"/>
+            <text x="130" y="100" font-size="15" font-weight="800" fill="#c0392b" text-anchor="middle" transform="rotate(-4 130 105)">복음 존</text>
+            <circle cx="130" cy="120" r="7" fill="#e0762c" transform="rotate(-4 130 105)"/>
+            <!-- flight path -->
+            <path d="M420 80 Q290 10 150 90" stroke="#4a6fb5" stroke-width="4" fill="none" stroke-dasharray="9 9" opacity=".8"/>
+            <circle cx="300" cy="42" r="10" fill="#fff" stroke="#2f3e2a" stroke-width="3"/>
+            <!-- thrower -->
+            <g>
+              <circle cx="450" cy="90" r="17" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+              <rect x="437" y="109" width="26" height="36" rx="9" fill="#4a6fb5"/>
+              <path d="M440 116 q-20 -14 -22 -32" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M460 116 q12 8 14 20" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M443 145 v22 M457 145 v22" stroke="#2f3e2a" stroke-width="7" stroke-linecap="round"/>
+            </g>
+            <line x1="395" y1="150" x2="395" y2="175" stroke="#c0392b" stroke-width="5"/>
+            <text x="395" y="192" font-size="13" text-anchor="middle" fill="#c0392b" font-weight="700">던지는 라인</text>
+          </svg>
+          <div class="cap">▲ 라인 뒤에서 탁구공을 던져 복음 존에 골인!</div>
+        </div>
+      </td>
+    </tr>
+    <tr class="check">
+      <th>☑ 체크해요</th>
+      <td colspan="3">
+        <ul>
+          <li>인원이 적은 팀은 1인당 개수를 늘려 기회를 맞춰 주기</li>
+          <li>튕겨 나간 탁구공은 주워서 정리하기 (미끄럼 주의)</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<!-- ================= 5. 열정 코스 2 · 볼링 ================= -->
+<section class="card passion">
+  <div class="titlebar">‘열정’ 코스 2 &nbsp;난이도 <span class="stars">★★★★</span>&nbsp; 〈부제: 사탄핀을 쓰러뜨려라! — 볼링〉</div>
+  <table>
+    <tr>
+      <th>장소</th><td class="blank"></td>
+      <th>성공</th><td class="reward">지구젤리 3개</td>
+    </tr>
+    <tr>
+      <th>준비물</th>
+      <td colspan="3">볼링핀 10개, 에어하키공 1개(배터리가 없으면 볼링공으로 대체), 우드락(레인 라인 설정)</td>
+    </tr>
+    <tr>
+      <th>구호</th>
+      <td colspan="3">하나님의 열정으로! OO조 파이팅!!</td>
+    </tr>
+    <tr>
+      <th>활동 내용</th>
+      <td colspan="3">
+        <ol>
+          <li>우드락으로 만든 레인 끝에 볼링핀 10개를 세운다.</li>
+          <li>팀원 1인당 <b>2회씩</b> 공을 굴려(차서) 핀을 쓰러뜨린다.</li>
+          <li>매 차례가 끝나면 핀을 다시 세우고, 쓰러뜨린 핀 수를 더한다.</li>
+          <li>팀 전체 합계가 <b>30개 이상</b>이면 성공!</li>
+        </ol>
+        <div class="pic">
+          <svg viewBox="0 0 520 190" role="img" aria-label="볼링 예시 그림">
+            <!-- lane -->
+            <polygon points="40,60 480,75 480,145 40,170" fill="#f6f1dc" stroke="#c9b98a" stroke-width="3"/>
+            <line x1="40" y1="60" x2="480" y2="75" stroke="#8a8468" stroke-width="4"/>
+            <line x1="40" y1="170" x2="480" y2="145" stroke="#8a8468" stroke-width="4"/>
+            <text x="260" y="45" font-size="13" fill="#6f6a50" text-anchor="middle" font-weight="700">우드락으로 라인 설정</text>
+            <!-- pins -->
+            <g fill="#fff" stroke="#c0392b" stroke-width="2.5">
+              <ellipse cx="70" cy="95" rx="9" ry="16"/>
+              <ellipse cx="70" cy="130" rx="9" ry="16"/>
+              <ellipse cx="92" cy="112" rx="9" ry="16"/>
+              <ellipse cx="92" cy="145" rx="9" ry="16"/>
+              <ellipse cx="114" cy="128" rx="9" ry="16"/>
+            </g>
+            <text x="90" y="185" font-size="13" fill="#c0392b" text-anchor="middle" font-weight="700">사탄핀 🎳</text>
+            <!-- puck -->
+            <circle cx="330" cy="115" r="15" fill="#e8f0fb" stroke="#4a6fb5" stroke-width="3"/>
+            <circle cx="330" cy="115" r="5" fill="#4a6fb5"/>
+            <line x1="360" y1="108" x2="390" y2="105" stroke="#c9b98a" stroke-width="4" stroke-linecap="round"/>
+            <line x1="360" y1="122" x2="390" y2="123" stroke="#c9b98a" stroke-width="4" stroke-linecap="round"/>
+            <!-- kicker -->
+            <g>
+              <circle cx="455" cy="80" r="16" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+              <rect x="443" y="98" width="24" height="34" rx="8" fill="#e0762c"/>
+              <path d="M446 104 q-14 6 -16 18" stroke="#ffd9b3" stroke-width="6" fill="none" stroke-linecap="round"/>
+              <path d="M464 104 q14 -2 18 -14" stroke="#ffd9b3" stroke-width="6" fill="none" stroke-linecap="round"/>
+              <path d="M449 132 q-4 16 -8 22" stroke="#2f3e2a" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M461 130 q16 4 26 -2" stroke="#2f3e2a" stroke-width="7" fill="none" stroke-linecap="round"/>
+            </g>
+          </svg>
+          <div class="cap">▲ 레인을 따라 공을 굴려 사탄핀을 쓰러뜨려요!</div>
+        </div>
+      </td>
+    </tr>
+    <tr class="check">
+      <th>☑ 체크해요</th>
+      <td colspan="3">
+        <ul>
+          <li>쓰러진 볼링핀은 <b>복음 전달을 방해하는 사탄</b>을 상징 — 시작 전에 의미를 설명해 주기</li>
+          <li>에어하키공 배터리가 없으면 볼링공으로 대체</li>
+          <li>인원이 적은 팀은 1인당 횟수를 늘려 기회를 맞춰 주기</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<!-- ================= 6. 사랑 코스 2 · 병뚜껑 게임 ================= -->
+<section class="card love">
+  <div class="titlebar">‘사랑’ 코스 2 &nbsp;난이도 <span class="stars">★★★★</span>&nbsp; 〈부제: 한마음 병뚜껑 슬라이드〉</div>
+  <table>
+    <tr>
+      <th>장소</th><td class="blank"></td>
+      <th>성공</th><td class="reward">지구젤리 3개</td>
+    </tr>
+    <tr>
+      <th>준비물</th>
+      <td colspan="3">병뚜껑 (팀원 1인당 3개), 긴 테이블 1개, 구역(존) 표시 테이프, 타이머</td>
+    </tr>
+    <tr>
+      <th>구호</th>
+      <td colspan="3">서로 사랑하자! 모든 일은 사랑으로! OO조 파이팅!!</td>
+    </tr>
+    <tr>
+      <th>활동 내용</th>
+      <td colspan="3">
+        <ol>
+          <li>테이블 한쪽 끝(출발선)에서 손가락으로 병뚜껑을 튕겨 반대편 <b>구역(존)</b> 안에 밀어 넣는다.</li>
+          <li>팀원 1인당 병뚜껑 <b>3개</b>씩 도전 — <b>하나라도</b> 존 안에 들어가면 그 팀원은 성공!</li>
+          <li>전체 팀원이 성공할 때까지 도전한다. 제한시간 <b>3분</b>!</li>
+          <li>제한시간 안에 <b>팀원 전원</b>이 성공하면 미션 성공!</li>
+        </ol>
+        <div class="pic">
+          <svg viewBox="0 0 520 190" role="img" aria-label="병뚜껑 게임 예시 그림">
+            <!-- table top -->
+            <polygon points="60,60 460,60 490,120 30,120" fill="#f6f1dc" stroke="#4a6fb5" stroke-width="3"/>
+            <!-- legs -->
+            <line x1="45" y1="120" x2="45" y2="175" stroke="#4a6fb5" stroke-width="6"/>
+            <line x1="475" y1="120" x2="475" y2="175" stroke="#4a6fb5" stroke-width="6"/>
+            <line x1="120" y1="120" x2="120" y2="168" stroke="#4a6fb5" stroke-width="6"/>
+            <line x1="400" y1="120" x2="400" y2="168" stroke="#4a6fb5" stroke-width="6"/>
+            <!-- start line (red) -->
+            <line x1="440" y1="60" x2="466" y2="120" stroke="#c0392b" stroke-width="5"/>
+            <text x="470" y="50" font-size="13" fill="#c0392b" font-weight="700" text-anchor="middle">출발선</text>
+            <!-- target zone -->
+            <polygon points="60,60 130,60 110,120 30,120" fill="#fdeef3" stroke="#d4547a" stroke-width="3" stroke-dasharray="7 6"/>
+            <text x="80" y="95" font-size="14" fill="#b03a60" font-weight="800" text-anchor="middle">존</text>
+            <!-- caps -->
+            <circle cx="420" cy="92" r="9" fill="#fff" stroke="#2f3e2a" stroke-width="3"/>
+            <circle cx="250" cy="88" r="9" fill="#fff" stroke="#2f3e2a" stroke-width="3"/>
+            <line x1="280" y1="84" x2="330" y2="82" stroke="#c9b98a" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="85" cy="90" r="9" fill="#f9c8d8" stroke="#b03a60" stroke-width="3"/>
+            <!-- flicking finger hand -->
+            <g>
+              <circle cx="500" cy="35" r="0" fill="none"/>
+              <path d="M470 78 q-14 -18 -2 -26 q10 -6 16 6 l6 12" stroke="#e0a86e" stroke-width="4" fill="#ffd9b3"/>
+            </g>
+          </svg>
+          <div class="cap">▲ 출발선에서 병뚜껑을 튕겨 반대편 존 안에 쏙!</div>
+        </div>
+      </td>
+    </tr>
+    <tr class="check">
+      <th>☑ 체크해요</th>
+      <td colspan="3">
+        <ul>
+          <li>테이블 밖으로 떨어진 병뚜껑은 실패 — 주워서 다시 도전 가능 (제한시간 내)</li>
+          <li>친구가 성공할 때까지 팀원 모두 함께 응원하기 — 서로 격려가 핵심!</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<!-- ================= 7. 사랑 코스 3 · 말씀 암호 해독 ================= -->
+<section class="card love">
+  <div class="titlebar">‘사랑’ 코스 3 &nbsp;난이도 <span class="stars">★★★★</span>&nbsp; 〈부제: 말씀 암호 해독〉</div>
+  <table>
+    <tr>
+      <th>장소</th><td class="blank"></td>
+      <th>성공</th><td class="reward">지구젤리 3개</td>
+    </tr>
+    <tr>
+      <th>준비물</th>
+      <td colspan="3">암호판, 낱말 카드(교재 말씀의 단어들), 힌트 소품 (교재 말씀 활용)</td>
+    </tr>
+    <tr>
+      <th>구호</th>
+      <td colspan="3">서로 사랑하자! 모든 일은 사랑으로! OO조 파이팅!!</td>
+    </tr>
+    <tr>
+      <th>활동 내용</th>
+      <td colspan="3">
+        <ol>
+          <li>방 곳곳에 <b>낱말 카드</b>가 숨어 있다. (커튼 뒤? 의자 밑?)</li>
+          <li>저학년은 <b>카드를 찾아</b> 오고, 고학년은 <b>암호판(숫자→글자)</b>을 풀어 순서를 알아낸다.</li>
+          <li>카드를 올바른 순서로 놓아 <b>성경 말씀을 완성</b>하면 성공!</li>
+          <li>완성한 말씀을 팀 모두가 큰 소리로 함께 낭독한다. 📖</li>
+        </ol>
+        <div class="pic">
+          <svg viewBox="0 0 800 360" role="img" aria-label="말씀 암호 해독 예시 그림">
+            <rect x="0" y="0" width="800" height="270" fill="#fdf2f5"/>
+            <rect x="0" y="270" width="800" height="90" fill="#ecdfd2"/>
+            <line x1="0" y1="270" x2="800" y2="270" stroke="#d8c4b0" stroke-width="3"/>
+            <g>
+              <rect x="60" y="190" width="70" height="14" rx="4" fill="#a9744f"/>
+              <rect x="64" y="204" width="10" height="66" fill="#a9744f"/>
+              <rect x="116" y="204" width="10" height="66" fill="#a9744f"/>
+              <rect x="64" y="130" width="10" height="64" fill="#a9744f"/>
+              <rect x="116" y="130" width="10" height="64" fill="#a9744f"/>
+              <rect x="60" y="118" width="70" height="16" rx="6" fill="#a9744f"/>
+              <rect x="78" y="238" width="52" height="34" rx="6" fill="#fff" stroke="#d4547a" stroke-width="3" transform="rotate(-8 104 255)"/>
+              <text x="104" y="261" font-size="17" text-anchor="middle" fill="#b03a60" font-weight="800" transform="rotate(-8 104 255)">사랑</text>
+            </g>
+            <g>
+              <line x1="192" y1="38" x2="300" y2="38" stroke="#b08968" stroke-width="6" stroke-linecap="round"/>
+              <path d="M206 42 q14 40 6 78 q-4 24 -12 40 q16 -8 30 -6 q16 2 26 8 q-10 -20 -12 -44 q-4 -40 8 -76 q-12 8 -24 8 q-12 0 -22 -8 z" fill="#e8b4c8" stroke="#d69cb4" stroke-width="3"/>
+              <path d="M226 46 q6 50 -2 106" stroke="#d69cb4" stroke-width="3" fill="none"/>
+              <rect x="238" y="120" width="50" height="32" rx="6" fill="#fff" stroke="#d4547a" stroke-width="3" transform="rotate(6 263 136)"/>
+              <text x="263" y="142" font-size="16" text-anchor="middle" fill="#b03a60" font-weight="800" transform="rotate(6 263 136)">서로</text>
+            </g>
+            <g>
+              <circle cx="370" cy="150" r="21" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+              <path d="M354 141 q16 -16 32 0 v-8 q-16 -12 -32 0 z" fill="#5a4632"/>
+              <circle cx="362" cy="148" r="3" fill="#2f3e2a"/>
+              <circle cx="378" cy="148" r="3" fill="#2f3e2a"/>
+              <path d="M362 160 q8 7 16 0" stroke="#2f3e2a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <rect x="354" y="172" width="32" height="42" rx="11" fill="#d4547a"/>
+              <path d="M384 180 q22 -14 26 -34" stroke="#ffd9b3" stroke-width="8" fill="none" stroke-linecap="round"/>
+              <path d="M356 182 q-16 10 -18 24" stroke="#ffd9b3" stroke-width="8" fill="none" stroke-linecap="round"/>
+              <rect x="396" y="118" width="56" height="36" rx="6" fill="#fff" stroke="#d4547a" stroke-width="3" transform="rotate(10 424 136)"/>
+              <text x="424" y="142" font-size="17" text-anchor="middle" fill="#b03a60" font-weight="800" transform="rotate(10 424 136)">하라</text>
+              <path d="M362 214 q-14 16 -24 18" stroke="#35548f" stroke-width="9" fill="none" stroke-linecap="round"/>
+              <path d="M378 214 q14 14 10 30" stroke="#35548f" stroke-width="9" fill="none" stroke-linecap="round"/>
+              <line x1="322" y1="200" x2="342" y2="196" stroke="#e3c9d2" stroke-width="4" stroke-linecap="round"/>
+              <line x1="318" y1="214" x2="340" y2="212" stroke="#e3c9d2" stroke-width="4" stroke-linecap="round"/>
+              <text x="370" y="112" font-size="16" text-anchor="middle" fill="#b03a60" font-weight="800">찾았다~!</text>
+            </g>
+            <g>
+              <rect x="530" y="50" width="230" height="150" rx="12" fill="#fff" stroke="#b03a60" stroke-width="4"/>
+              <text x="645" y="82" font-size="19" text-anchor="middle" fill="#b03a60" font-weight="800">🔑 암호판</text>
+              <text x="560" y="118" font-size="18" fill="#2f3e2a" font-weight="700">1 → 서로</text>
+              <text x="560" y="148" font-size="18" fill="#2f3e2a" font-weight="700">2 → 사랑</text>
+              <text x="560" y="178" font-size="18" fill="#2f3e2a" font-weight="700">3 → 하라</text>
+              <circle cx="500" cy="185" r="19" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+              <path d="M486 177 q14 -14 28 0 v-7 q-14 -11 -28 0 z" fill="#3c2f22"/>
+              <circle cx="494" cy="183" r="2.5" fill="#2f3e2a"/>
+              <circle cx="506" cy="183" r="2.5" fill="#2f3e2a"/>
+              <path d="M494 193 q6 5 12 0" stroke="#2f3e2a" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <rect x="486" y="205" width="28" height="40" rx="10" fill="#4a6fb5"/>
+              <path d="M512 212 q18 -18 28 -34" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M488 214 q-10 12 -10 24" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M494 245 v24 M506 245 v24" stroke="#35548f" stroke-width="8" stroke-linecap="round"/>
+            </g>
+            <g>
+              <rect x="470" y="296" width="290" height="46" rx="10" fill="#fdf3d0" stroke="#eeda92" stroke-width="3"/>
+              <text x="615" y="326" font-size="20" text-anchor="middle" fill="#7a5c10" font-weight="800">“1 2 3” = 서로 사랑하라 ✔</text>
+            </g>
+          </svg>
+          <div class="cap">▲ 저학년은 카드를 찾고, 고학년은 암호를 풀어요!</div>
+        </div>
+      </td>
+    </tr>
+    <tr class="check">
+      <th>☑ 체크해요</th>
+      <td colspan="3">
+        <ul>
+          <li>역할을 나눠야 풀 수 있는 미션 — 서로 돕도록 안내하기</li>
+          <li>카드는 너무 어렵지 않은 곳에 숨기기 (저학년 눈높이)</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<!-- ================= 8. 순종 코스 3 · 신뢰의 미로 ================= -->
+<section class="card obey">
+  <div class="titlebar">‘순종’ 코스 3 &nbsp;난이도 <span class="stars">★★★★</span>&nbsp; 〈부제: 신뢰의 미로 — 눈 가리고 길 안내〉</div>
+  <table>
+    <tr>
+      <th>장소</th><td class="blank"></td>
+      <th>성공</th><td class="reward">지구젤리 3개</td>
+    </tr>
+    <tr>
+      <th>준비물</th>
+      <td colspan="3">안대(또는 수건), 원마커, 빈 박스·콘 등 장애물</td>
+    </tr>
+    <tr>
+      <th>구호</th>
+      <td colspan="3">하나님 말씀에 ‘예스’로 순종하자! OO조 파이팅!!</td>
+    </tr>
+    <tr>
+      <th>활동 내용</th>
+      <td colspan="3">
+        <ol>
+          <li>바닥에 <b>원마커 길</b>이 있고, 중간중간 <b>장애물</b>(빈 박스, 콘)이 놓여 있다.</li>
+          <li>도전자는 <b>안대</b>를 쓰고, 팀원들이 <b>목소리로만</b> 길을 알려준다. (“앞으로 두 걸음!”, “오른쪽!”)</li>
+          <li>장애물을 건드리지 않고 <b>도착 지점</b>까지 가면 성공! (건드리면 출발선으로)</li>
+          <li>팀에서 <b>2명이 통과</b>하면 미션 클리어!</li>
+          <li>저학년이 도전하고 고학년이 안내한다. 한 번은 반대로 해 보면 두 배로 재미있어요!</li>
+        </ol>
+        <div class="pic">
+          <svg viewBox="0 0 800 360" role="img" aria-label="신뢰의 미로 예시 그림">
+            <rect x="0" y="0" width="800" height="360" fill="#eef3fa"/>
+            <g fill="#f2c94c" stroke="#d8a91e" stroke-width="3">
+              <ellipse cx="120" cy="300" rx="24" ry="10"/>
+              <ellipse cx="210" cy="270" rx="24" ry="10"/>
+              <ellipse cx="290" cy="220" rx="24" ry="10"/>
+              <ellipse cx="380" cy="250" rx="24" ry="10"/>
+              <ellipse cx="470" cy="210" rx="24" ry="10"/>
+              <ellipse cx="560" cy="240" rx="24" ry="10"/>
+              <ellipse cx="650" cy="200" rx="24" ry="10"/>
+            </g>
+            <path d="M120 300 Q170 285 210 270 Q255 245 290 220 Q340 240 380 250 Q430 225 470 210 Q520 230 560 240 Q610 215 650 200"
+                  stroke="#c9d6ea" stroke-width="4" fill="none" stroke-dasharray="8 8"/>
+            <g>
+              <rect x="240" y="150" width="56" height="46" rx="6" fill="#c9a06a" stroke="#a9744f" stroke-width="3"/>
+              <line x1="240" y1="172" x2="296" y2="172" stroke="#a9744f" stroke-width="3"/>
+              <text x="268" y="140" font-size="13" text-anchor="middle" fill="#8a6d4a" font-weight="700">빈 박스</text>
+            </g>
+            <g>
+              <path d="M430 300 l18 -46 l18 46 z" fill="#e0762c" stroke="#b85a18" stroke-width="3"/>
+              <rect x="424" y="298" width="48" height="9" rx="4" fill="#b85a18"/>
+              <text x="448" y="330" font-size="13" text-anchor="middle" fill="#b85a18" font-weight="700">콘</text>
+            </g>
+            <g>
+              <path d="M560 140 l16 -40 l16 40 z" fill="#e0762c" stroke="#b85a18" stroke-width="3"/>
+              <rect x="554" y="138" width="44" height="8" rx="4" fill="#b85a18"/>
+            </g>
+            <g>
+              <circle cx="330" cy="120" r="24" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+              <path d="M312 108 q18 -18 36 0 v-8 q-18 -14 -36 0 z" fill="#5a4632"/>
+              <rect x="306" y="110" width="48" height="14" rx="7" fill="#35548f"/>
+              <path d="M318 134 q12 8 24 0" stroke="#2f3e2a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <rect x="312" y="145" width="36" height="48" rx="12" fill="#4a6fb5"/>
+              <path d="M346 154 q26 2 40 10" stroke="#ffd9b3" stroke-width="9" fill="none" stroke-linecap="round"/>
+              <path d="M314 156 q-8 14 -4 28" stroke="#ffd9b3" stroke-width="9" fill="none" stroke-linecap="round"/>
+              <path d="M322 192 q-4 22 -10 30" stroke="#2f3e2a" stroke-width="10" fill="none" stroke-linecap="round"/>
+              <path d="M340 192 q14 14 26 16" stroke="#2f3e2a" stroke-width="10" fill="none" stroke-linecap="round"/>
+              <text x="330" y="82" font-size="15" text-anchor="middle" fill="#35548f" font-weight="800">조심조심…</text>
+            </g>
+            <g>
+              <circle cx="80" cy="120" r="18" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+              <path d="M66 112 q14 -14 28 0 v-7 q-14 -11 -28 0 z" fill="#3c2f22"/>
+              <circle cx="74" cy="118" r="2.5" fill="#2f3e2a"/>
+              <circle cx="86" cy="118" r="2.5" fill="#2f3e2a"/>
+              <ellipse cx="80" cy="130" rx="5" ry="6" fill="#b03a60"/>
+              <rect x="66" y="139" width="28" height="38" rx="10" fill="#d4547a"/>
+              <path d="M92 146 q14 -6 22 -16" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M68 148 q-10 8 -10 20" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M74 177 v22 M86 177 v22" stroke="#35548f" stroke-width="8" stroke-linecap="round"/>
+              <g>
+                <rect x="104" y="40" width="150" height="40" rx="18" fill="#fff" stroke="#4a6fb5" stroke-width="3"/>
+                <path d="M120 78 l-8 16 l22 -14 z" fill="#fff" stroke="#4a6fb5" stroke-width="3" stroke-linejoin="round"/>
+                <text x="179" y="67" font-size="17" text-anchor="middle" fill="#35548f" font-weight="800">앞으로 두 걸음!</text>
+              </g>
+            </g>
+            <g>
+              <circle cx="185" cy="180" r="18" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+              <path d="M171 172 q14 -14 28 0 v-7 q-14 -11 -28 0 z" fill="#5a4632"/>
+              <circle cx="179" cy="178" r="2.5" fill="#2f3e2a"/>
+              <circle cx="191" cy="178" r="2.5" fill="#2f3e2a"/>
+              <ellipse cx="185" cy="190" rx="5" ry="6" fill="#b03a60"/>
+              <rect x="171" y="199" width="28" height="36" rx="10" fill="#4e8a3f"/>
+              <path d="M197 206 q14 -4 20 -14" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M173 208 q-10 8 -10 18" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M179 235 v20 M191 235 v20" stroke="#2f3e2a" stroke-width="8" stroke-linecap="round"/>
+              <g>
+                <rect x="205" y="140" width="100" height="38" rx="17" fill="#fff" stroke="#4a6fb5" stroke-width="3" transform="translate(15 -55)"/>
+                <text x="270" y="110" font-size="17" text-anchor="middle" fill="#35548f" font-weight="800">오른쪽!</text>
+                <path d="M232 122 l-6 14 l18 -10 z" fill="#fff" stroke="#4a6fb5" stroke-width="3" stroke-linejoin="round"/>
+              </g>
+            </g>
+            <g>
+              <line x1="726" y1="200" x2="726" y2="110" stroke="#8a6d10" stroke-width="6" stroke-linecap="round"/>
+              <path d="M726 110 l46 14 l-46 14 z" fill="#e0762c" stroke="#b85a18" stroke-width="3" stroke-linejoin="round"/>
+              <text x="712" y="232" font-size="15" text-anchor="middle" fill="#8a6d10" font-weight="800">🎯 도착!</text>
+              <path d="M690 96 q10 -18 24 -8 M756 90 q14 -6 18 8" stroke="#f2c94c" stroke-width="4" fill="none" stroke-linecap="round"/>
+            </g>
+          </svg>
+          <div class="cap">▲ 친구들의 목소리만 듣고 장애물을 피해 도착 지점까지!</div>
+        </div>
+      </td>
+    </tr>
+    <tr class="check">
+      <th>☑ 체크해요</th>
+      <td colspan="3">
+        <ul>
+          <li>〈안전지도〉 진행자가 도전자 바로 옆에서 함께 걷기. 뛰지 않고 천천히!</li>
+          <li>“보이지 않아도 인도하시는 음성에 순종한다”는 의미를 설명해 주기</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<!-- ================= 9. 순종 코스 1 · 예스로 하나되기 ================= -->
+<section class="card obey">
+  <div class="titlebar">‘순종’ 코스 1 &nbsp;난이도 <span class="stars">★★★★★</span>&nbsp; 〈부제: ‘예스’로 하나되기〉</div>
+  <table>
+    <tr>
+      <th>장소</th><td class="blank"></td>
+      <th>성공</th><td class="reward">지구젤리 3개</td>
+    </tr>
+    <tr>
+      <th>준비물</th>
+      <td colspan="3">다트판 1개, 다트 4개</td>
+    </tr>
+    <tr>
+      <th>구호</th>
+      <td colspan="3">하나님 말씀에 ‘예스’로 순종하자! OO조 파이팅!!</td>
+    </tr>
+    <tr>
+      <th>활동 내용</th>
+      <td colspan="3">
+        <ol>
+          <li>진행자가 다트판을 매우 빠른 속도로 회전시킨다.</li>
+          <li>모든 조원이 동시에 다트를 던진다.</li>
+          <li>모든 조원의 다트가 <b>‘YES’ 줄</b>에 위치하면 성공!</li>
+        </ol>
+        <div class="pic">
+          <svg viewBox="0 0 520 240" role="img" aria-label="예스로 하나되기 예시 그림">
+            <!-- dartboard -->
+            <g>
+              <circle cx="150" cy="120" r="95" fill="#2f3e2a"/>
+              <circle cx="150" cy="120" r="84" fill="#f6f1dc" stroke="#2f3e2a" stroke-width="3"/>
+              <!-- 8 segments -->
+              <g stroke="#2f3e2a" stroke-width="2">
+                <line x1="150" y1="36" x2="150" y2="204"/>
+                <line x1="66" y1="120" x2="234" y2="120"/>
+                <line x1="91" y1="61" x2="209" y2="179"/>
+                <line x1="209" y1="61" x2="91" y2="179"/>
+              </g>
+              <circle cx="150" cy="120" r="34" fill="#4e8a3f" stroke="#2f3e2a" stroke-width="3"/>
+              <circle cx="150" cy="120" r="10" fill="#c0392b" stroke="#2f3e2a" stroke-width="2"/>
+              <!-- YES / NO labels around the ring -->
+              <g font-size="13" font-weight="800" text-anchor="middle">
+                <text x="150" y="56" fill="#1a56b0">YES</text>
+                <text x="197" y="80" fill="#c0392b">NO</text>
+                <text x="218" y="126" fill="#1a56b0">YES</text>
+                <text x="197" y="170" fill="#c0392b">NO</text>
+                <text x="150" y="196" fill="#1a56b0">YES</text>
+                <text x="103" y="170" fill="#c0392b">NO</text>
+                <text x="82" y="126" fill="#1a56b0">YES</text>
+                <text x="103" y="80" fill="#c0392b">NO</text>
+              </g>
+              <!-- rotation arrows -->
+              <path d="M150 8 a112 112 0 0 1 106 76" stroke="#e0762c" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <path d="M256 84 l4 -16 M256 84 l-16 -2" stroke="#e0762c" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <path d="M150 232 a112 112 0 0 1 -106 -76" stroke="#e0762c" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <path d="M44 156 l-4 16 M44 156 l16 2" stroke="#e0762c" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <!-- darts stuck on YES segments -->
+              <g stroke="#d8a91e" stroke-width="5" stroke-linecap="round">
+                <line x1="150" y1="66" x2="168" y2="34"/>
+                <line x1="206" y1="120" x2="240" y2="104"/>
+                <line x1="150" y1="182" x2="176" y2="210"/>
+              </g>
+              <g fill="#f2c94c" stroke="#d8a91e" stroke-width="2">
+                <circle cx="150" cy="66" r="6"/>
+                <circle cx="206" cy="120" r="6"/>
+                <circle cx="150" cy="182" r="6"/>
+              </g>
+            </g>
+            <!-- throwing kids -->
+            <g>
+              <circle cx="400" cy="80" r="17" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+              <path d="M387 72 q13 -13 26 0 v-7 q-13 -10 -26 0 z" fill="#5a4632"/>
+              <circle cx="394" cy="78" r="2.5" fill="#2f3e2a"/><circle cx="406" cy="78" r="2.5" fill="#2f3e2a"/>
+              <path d="M394 88 q6 5 12 0" stroke="#2f3e2a" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <rect x="387" y="99" width="26" height="36" rx="9" fill="#4a6fb5"/>
+              <path d="M389 106 q-22 -4 -32 -14" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M411 106 q12 8 14 20" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M393 135 v20 M407 135 v20" stroke="#35548f" stroke-width="7" stroke-linecap="round"/>
+            </g>
+            <g>
+              <circle cx="460" cy="150" r="17" fill="#ffd9b3" stroke="#e0a86e" stroke-width="2"/>
+              <path d="M447 142 q13 -13 26 0 v-7 q-13 -10 -26 0 z" fill="#3c2f22"/>
+              <circle cx="454" cy="148" r="2.5" fill="#2f3e2a"/><circle cx="466" cy="148" r="2.5" fill="#2f3e2a"/>
+              <path d="M454 158 q6 5 12 0" stroke="#2f3e2a" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <rect x="447" y="169" width="26" height="36" rx="9" fill="#d4547a"/>
+              <path d="M449 176 q-22 -4 -32 -14" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M471 176 q12 8 14 20" stroke="#ffd9b3" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M453 205 v18 M467 205 v18" stroke="#2f3e2a" stroke-width="7" stroke-linecap="round"/>
+            </g>
+            <!-- flying darts -->
+            <g stroke="#d8a91e" stroke-width="5" stroke-linecap="round">
+              <line x1="330" y1="86" x2="358" y2="82"/>
+              <line x1="390" y1="158" x2="418" y2="160"/>
+            </g>
+            <g fill="#f2c94c" stroke="#d8a91e" stroke-width="2">
+              <circle cx="330" cy="86" r="6"/>
+              <circle cx="390" cy="158" r="6"/>
+            </g>
+            <text x="410" y="40" font-size="16" text-anchor="middle" fill="#1a56b0" font-weight="800">다 같이 YES!</text>
+          </svg>
+          <div class="cap">▲ 빙글빙글 도는 다트판, 모두의 다트가 YES에 꽂히면 성공!</div>
+        </div>
+      </td>
+    </tr>
+    <tr class="check">
+      <th>☑ 체크해요</th>
+      <td colspan="3">
+        <ul>
+          <li>〈안전지도〉 다트를 사람에게 던지지 않기</li>
+          <li>실패하면 계속 도전하거나, 다른 코스로 이동할 수 있음</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<footer>2026 여름캠프 · 미션 원정대 — 믿음으로 한 걸음!</footer>
+
+</div>
+</body>
+</html>
