@@ -22,6 +22,16 @@
   }
   header h1 { font-size: 28px; margin: 14px 0 6px; color: #3e6b35; }
   header p.sub { font-size: 14px; color: #6f6a50; }
+  .print-btn {
+    margin-top: 14px; padding: 10px 22px;
+    border: none; border-radius: 24px; cursor: pointer;
+    background: #4e8a3f; color: #fff;
+    font-size: 15px; font-weight: 700;
+    font-family: inherit;
+    box-shadow: 0 3px 0 rgba(0,0,0,.12);
+    transition: transform .08s;
+  }
+  .print-btn:active { transform: translateY(2px); box-shadow: none; }
 
   /* ---------- overview table ---------- */
   .overview {
@@ -82,9 +92,49 @@
 
   footer { text-align: center; font-size: 12px; color: #8a8468; margin-top: 30px; }
 
+  /* ---------- 인쇄: A4 가로, 카드 1장 = 1페이지 ---------- */
   @media print {
+    @page { size: A4 landscape; margin: 9mm; }
     body { background: #fff; }
-    .card { box-shadow: none; }
+    .wrap { max-width: 100%; padding: 0; }
+    header { padding: 0 0 10px; }
+    header h1 { font-size: 24px; margin: 8px 0 4px; }
+    footer, .print-btn { display: none; }
+
+    /* 한눈에 보기 표는 첫 페이지에 단독 */
+    .overview {
+      page-break-after: always;
+      margin: 0;
+      border-radius: 0;
+      border-width: 1px;
+    }
+    .overview table { font-size: 15px; }
+
+    /* 카드 하나가 한 페이지를 큼직하게 차지 */
+    .card {
+      page-break-after: always;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      box-shadow: none;
+      margin: 0;
+      border-radius: 0;
+    }
+    .card:last-of-type { page-break-after: auto; }
+    .card .titlebar { font-size: 23px; padding: 12px 18px; }
+    .card table { font-size: 16px; line-height: 1.45; }
+    .card th { width: 125px; font-size: 16px; }
+    .card td { padding: 10px 15px; }
+    .card ol li { margin-bottom: 5px; }
+    .card .sub-choice { font-size: 14px; }
+
+    /* 활동 내용: 설명(왼쪽) + 그림(오른쪽)으로 가로 폭 활용 */
+    .act { display: flex; gap: 20px; align-items: center; }
+    .act ol { flex: 1.4; min-width: 0; }
+    .act .pic { flex: 1; min-width: 0; margin-top: 0; }
+    .act .pic svg { max-width: 100%; max-height: 100mm; }
+
+    /* SVG·배경색이 인쇄에서 빠지지 않도록 */
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
   @media (max-width: 560px) {
     header h1 { font-size: 22px; }
@@ -101,6 +151,7 @@
   <span class="camp">2026 여름캠프 · 미션 원정대</span>
   <h1>🗺️ 전체 코스 안내 (9개)</h1>
   <p class="sub">‘열정’ · ‘사랑’ · ‘순종’ 세 가지 테마, 테마별 3개씩 총 9개 코스!<br>난이도가 낮은 코스부터 순서대로 정리했어요.</p>
+  <button class="print-btn" onclick="window.print()">🖨️ 인쇄하기 — 카드 1장씩 A4 가로로 나와요</button>
 </header>
 
 <!-- ================= 한눈에 보기 ================= -->
@@ -143,6 +194,7 @@
     <tr>
       <th>활동 내용</th>
       <td colspan="3">
+        <div class="act">
         <ol>
           <li>벽에 붙은 <b>점수판</b>을 향해 공을 찬다.</li>
           <li>한 사람당 <b>2번씩</b> 슛! (팀 인원에 따라 3번 가능)</li>
@@ -208,6 +260,7 @@
           </svg>
           <div class="cap">▲ 내 라인에서 공을 차서 점수판을 맞혀요!</div>
         </div>
+        </div>
       </td>
     </tr>
     <tr class="check">
@@ -241,6 +294,7 @@
     <tr>
       <th>활동 내용</th>
       <td colspan="3">
+        <div class="act">
         <ol>
           <li>〈1단계〉 2명의 팀원이 각각 주사위를 던져서 같은 숫자가 나오면 성공
             <div class="sub-choice ok">– 성공하면 〈2단계〉 도전 또는 다른 방으로~ (선택)</div>
@@ -298,6 +352,7 @@
           </svg>
           <div class="cap">▲ 팀원이 동시에 던져서 같은 숫자가 나오면 성공!</div>
         </div>
+        </div>
       </td>
     </tr>
     <tr class="check">
@@ -331,6 +386,7 @@
     <tr>
       <th>활동 내용</th>
       <td colspan="3">
+        <div class="act">
         <ol>
           <li>모든 조원이 손을 잡고 서서 원을 만든다.</li>
           <li>모든 조원이 손을 잡은 채로 풍선이 떨어지지 않도록 위로 튕긴다.</li>
@@ -384,6 +440,7 @@
           </svg>
           <div class="cap">▲ 모두 손을 잡고 풍선이 떨어지지 않게 띄워요!</div>
         </div>
+        </div>
       </td>
     </tr>
     <tr class="check">
@@ -417,6 +474,7 @@
     <tr>
       <th>활동 내용</th>
       <td colspan="3">
+        <div class="act">
         <ol>
           <li>계란판 가운데 표시된 <b>‘복음 존’</b>을 향해 라인 뒤에서 탁구공을 던진다.</li>
           <li>팀원 1인당 <b>6개</b>의 탁구공을 던진다. (바운드 OK!)</li>
@@ -446,6 +504,7 @@
             <text x="395" y="192" font-size="13" text-anchor="middle" fill="#c0392b" font-weight="700">던지는 라인</text>
           </svg>
           <div class="cap">▲ 라인 뒤에서 탁구공을 던져 복음 존에 골인!</div>
+        </div>
         </div>
       </td>
     </tr>
@@ -480,6 +539,7 @@
     <tr>
       <th>활동 내용</th>
       <td colspan="3">
+        <div class="act">
         <ol>
           <li>우드락으로 만든 레인 끝에 볼링핀 10개를 세운다.</li>
           <li>팀원 1인당 <b>2회씩</b> 공을 굴려(차서) 핀을 쓰러뜨린다.</li>
@@ -519,6 +579,7 @@
           </svg>
           <div class="cap">▲ 레인을 따라 공을 굴려 사탄핀을 쓰러뜨려요!</div>
         </div>
+        </div>
       </td>
     </tr>
     <tr class="check">
@@ -553,6 +614,7 @@
     <tr>
       <th>활동 내용</th>
       <td colspan="3">
+        <div class="act">
         <ol>
           <li>테이블 한쪽 끝(출발선)에서 손가락으로 병뚜껑을 튕겨 반대편 <b>구역(존)</b> 안에 밀어 넣는다.</li>
           <li>팀원 1인당 병뚜껑 <b>3개</b>씩 도전 — <b>하나라도</b> 존 안에 들어가면 그 팀원은 성공!</li>
@@ -587,6 +649,7 @@
           </svg>
           <div class="cap">▲ 출발선에서 병뚜껑을 튕겨 반대편 존 안에 쏙!</div>
         </div>
+        </div>
       </td>
     </tr>
     <tr class="check">
@@ -620,6 +683,7 @@
     <tr>
       <th>활동 내용</th>
       <td colspan="3">
+        <div class="act">
         <ol>
           <li>방 곳곳에 <b>낱말 카드</b>가 숨어 있다. (커튼 뒤? 의자 밑?)</li>
           <li>저학년은 <b>카드를 찾아</b> 오고, 고학년은 <b>암호판(숫자→글자)</b>을 풀어 순서를 알아낸다.</li>
@@ -688,6 +752,7 @@
           </svg>
           <div class="cap">▲ 저학년은 카드를 찾고, 고학년은 암호를 풀어요!</div>
         </div>
+        </div>
       </td>
     </tr>
     <tr class="check">
@@ -721,6 +786,7 @@
     <tr>
       <th>활동 내용</th>
       <td colspan="3">
+        <div class="act">
         <ol>
           <li>바닥에 <b>원마커 길</b>이 있고, 중간중간 <b>장애물</b>(빈 박스, 콘)이 놓여 있다.</li>
           <li>도전자는 <b>안대</b>를 쓰고, 팀원들이 <b>목소리로만</b> 길을 알려준다. (“앞으로 두 걸음!”, “오른쪽!”)</li>
@@ -809,6 +875,7 @@
           </svg>
           <div class="cap">▲ 친구들의 목소리만 듣고 장애물을 피해 도착 지점까지!</div>
         </div>
+        </div>
       </td>
     </tr>
     <tr class="check">
@@ -842,6 +909,7 @@
     <tr>
       <th>활동 내용</th>
       <td colspan="3">
+        <div class="act">
         <ol>
           <li>진행자가 다트판을 매우 빠른 속도로 회전시킨다.</li>
           <li>모든 조원이 동시에 다트를 던진다.</li>
@@ -923,6 +991,7 @@
             <text x="410" y="40" font-size="16" text-anchor="middle" fill="#1a56b0" font-weight="800">다 같이 YES!</text>
           </svg>
           <div class="cap">▲ 빙글빙글 도는 다트판, 모두의 다트가 YES에 꽂히면 성공!</div>
+        </div>
         </div>
       </td>
     </tr>
