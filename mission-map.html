@@ -6,7 +6,7 @@
 <title>미션 원정대 · 미션 지도 (9개 코스)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Brush+Script&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -47,11 +47,11 @@
   }
   svg#map { display: block; width: 100%; height: auto; }
   svg#map text {
-    font-family: "Gowun Batang", "Nanum Myeongjo", "AppleMyungjo", "Batang", "바탕", serif;
+    font-family: "Noto Serif KR", "Nanum Myeongjo", "AppleMyungjo", "Batang", "바탕", serif;
     fill: #4a3220;
   }
-  svg#map .t-brush { font-family: "Nanum Brush Script", "Gungsuh", "궁서", "Gowun Batang", serif; }
-  svg#map .t-pen   { font-family: "Nanum Pen Script", "Gungsuh", "궁서", "Gowun Batang", serif; }
+  svg#map .t-brush { font-family: "Noto Serif KR", "Nanum Myeongjo", "AppleMyungjo", "Batang", "바탕", serif; font-weight: 900; }
+  svg#map .t-pen   { font-family: "Noto Serif KR", "Nanum Myeongjo", "AppleMyungjo", "Batang", "바탕", serif; font-weight: 700; }
 
   /* ---------- screen-only quick list ---------- */
   .list {
@@ -202,24 +202,24 @@
 
     <!-- ══════════ title (calligraphy) ══════════ -->
     <g>
-      <text class="t-brush" x="800" y="130" font-size="104" fill="#3f2a14" text-anchor="middle" letter-spacing="6">미션 지도</text>
-      <path d="M 545 150 q 255 30 510 0" stroke="#4a3220" stroke-width="4" fill="none" filter="url(#rough)"/>
-      <path d="M 600 164 q 200 20 400 0" stroke="#4a3220" stroke-width="2" fill="none" filter="url(#rough)" opacity=".7"/>
+      <text class="t-brush" x="800" y="126" font-size="82" fill="#3f2a14" text-anchor="middle" letter-spacing="10">미션 지도</text>
+      <path d="M 590 150 q 210 26 420 0" stroke="#4a3220" stroke-width="4" fill="none" filter="url(#rough)"/>
+      <path d="M 640 163 q 160 18 320 0" stroke="#4a3220" stroke-width="2" fill="none" filter="url(#rough)" opacity=".7"/>
       <!-- side flourishes -->
       <path d="M 520 108 C 470 84 430 92 402 116 q -16 14 4 22 q 16 6 22 -10" stroke="#4a3220" stroke-width="3" fill="none" filter="url(#rough)"/>
       <path d="M 1080 108 C 1130 84 1170 92 1198 116 q 16 14 -4 22 q -16 6 -22 -10" stroke="#4a3220" stroke-width="3" fill="none" filter="url(#rough)"/>
       <circle cx="388" cy="112" r="3.5" fill="#4a3220"/>
       <circle cx="1212" cy="112" r="3.5" fill="#4a3220"/>
       <text x="800" y="192" font-size="21" font-weight="700" fill="#6b4a26" text-anchor="middle" letter-spacing="6">· MISSION FELLOWSHIP · 2026 여름캠프 ·</text>
-      <text class="t-pen" x="800" y="234" font-size="31" fill="#5a3c20" text-anchor="middle">예수님과 함께 떠나는 모험! 아홉 개의 미션을 모두 완수하라!</text>
+      <text class="t-pen" x="800" y="232" font-size="24" fill="#5a3c20" text-anchor="middle">예수님과 함께 떠나는 모험! 아홉 개의 미션을 모두 완수하라!</text>
     </g>
 
     <!-- ══════════ red seal stamp (top-left) ══════════ -->
     <g transform="rotate(-9 156 156)" opacity=".82" filter="url(#rough)">
       <rect x="84" y="98" width="148" height="114" fill="none" stroke="#9c3a28" stroke-width="6"/>
       <rect x="94" y="108" width="128" height="94" fill="none" stroke="#9c3a28" stroke-width="2.5"/>
-      <text class="t-brush" x="158" y="152" font-size="42" fill="#9c3a28" text-anchor="middle">GO!</text>
-      <text class="t-brush" x="158" y="194" font-size="36" fill="#9c3a28" text-anchor="middle">JESUS!</text>
+      <text class="t-brush" x="158" y="150" font-size="34" fill="#9c3a28" text-anchor="middle">GO!</text>
+      <text class="t-brush" x="158" y="190" font-size="26" fill="#9c3a28" text-anchor="middle" letter-spacing="1">JESUS!</text>
     </g>
 
     <!-- ══════════ terrain (ink & wash) ══════════ -->
@@ -251,11 +251,11 @@
 
     <!-- river: wash + double ink banks -->
     <g fill="none">
-      <path d="M 640 232 C 680 320, 590 420, 560 510 C 535 590, 560 660, 610 720 C 665 790, 800 860, 865 935 C 925 962, 1040 968, 1140 985"
+      <path d="M 648 268 C 684 344, 590 420, 560 510 C 535 590, 560 660, 610 720 C 665 790, 800 860, 865 935 C 925 962, 1040 968, 1140 985"
             stroke="#a8c8d8" stroke-width="40" stroke-linecap="round" opacity=".5" filter="url(#roughSoft)"/>
-      <path d="M 640 232 C 680 320, 590 420, 560 510 C 535 590, 560 660, 610 720 C 665 790, 800 860, 865 935 C 925 962, 1040 968, 1140 985"
+      <path d="M 648 268 C 684 344, 590 420, 560 510 C 535 590, 560 660, 610 720 C 665 790, 800 860, 865 935 C 925 962, 1040 968, 1140 985"
             stroke="#4a3220" stroke-width="3" transform="translate(-20 0)" filter="url(#rough)"/>
-      <path d="M 640 232 C 680 320, 590 420, 560 510 C 535 590, 560 660, 610 720 C 665 790, 800 860, 865 935 C 925 962, 1040 968, 1140 985"
+      <path d="M 648 268 C 684 344, 590 420, 560 510 C 535 590, 560 660, 610 720 C 665 790, 800 860, 865 935 C 925 962, 1040 968, 1140 985"
             stroke="#4a3220" stroke-width="3" transform="translate(21 3)" filter="url(#rough)"/>
       <path d="M 622 320 q10 -6 20 0 M 586 470 q10 -6 20 0 M 570 610 q10 -6 20 0 M 640 750 q10 -6 20 0 M 760 840 q10 -6 20 0 M 890 940 q10 -6 20 0"
             stroke="#4a3220" stroke-width="2" filter="url(#rough)" opacity=".75"/>
@@ -310,8 +310,8 @@
     <g>
       <circle cx="1372" cy="318" r="66" fill="none" stroke="#4a3220" stroke-width="2.5" stroke-dasharray="14 10" filter="url(#rough)"/>
       <path d="M1334 284 L1410 352 M1410 284 L1334 352" stroke="#8f2417" stroke-width="19" stroke-linecap="round" filter="url(#rough)"/>
-      <text class="t-brush" x="1372" y="424" font-size="44" fill="#8f2417" text-anchor="middle">미션 완수!</text>
-      <text x="1372" y="450" font-size="14" font-weight="700" fill="#8f2417" text-anchor="middle" letter-spacing="2">MISSION COMPLETE</text>
+      <text class="t-brush" x="1372" y="420" font-size="34" fill="#8f2417" text-anchor="middle">미션 완수!</text>
+      <text x="1372" y="446" font-size="14" font-weight="700" fill="#8f2417" text-anchor="middle" letter-spacing="2">MISSION COMPLETE</text>
     </g>
 
     <!-- start camp -->
@@ -329,9 +329,9 @@
             fill="#c96b2a" fill-opacity=".8" stroke-width="3"/>
     </g>
     <g filter="url(#rough)">
-      <text class="t-brush" x="152" y="1052" font-size="52" fill="#3f2a14" text-anchor="middle">출발!</text>
-      <text x="152" y="1082" font-size="17" font-weight="700" fill="#6b4a26" text-anchor="middle" letter-spacing="5">START</text>
-      <path d="M216 1032 q52 -18 78 -44 M294 988 l-14 2 M294 988 l-2 13" stroke="#4a3220" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <text class="t-brush" x="152" y="1042" font-size="40" fill="#3f2a14" text-anchor="middle">출발!</text>
+      <text x="152" y="1068" font-size="15" font-weight="700" fill="#6b4a26" text-anchor="middle" letter-spacing="5">START</text>
+      <path d="M216 1024 q52 -18 78 -44 M294 980 l-14 2 M294 980 l-2 13" stroke="#4a3220" stroke-width="3.5" fill="none" stroke-linecap="round"/>
     </g>
 
     <!-- scattered greens -->
@@ -361,11 +361,11 @@
         <circle cx="514" cy="1092" r="11" fill="#44598c" stroke="#2c3c62" stroke-width="2" filter="url(#rough)"/>
         <text x="532" y="1099" fill="#2c3c62">순종</text>
       </g>
-      <text class="t-pen" x="455" y="1124" font-size="20" fill="#5a3c20" text-anchor="middle">번호는 쉬운 길부터라네. 도전 순서는 자유!</text>
+      <text class="t-pen" x="455" y="1122" font-size="16" fill="#5a3c20" text-anchor="middle">번호는 쉬운 길부터! 도전 순서는 자유</text>
     </g>
     <g>
       <rect x="655" y="1030" width="462" height="112" fill="none" stroke="#4a3220" stroke-width="2.5" stroke-dasharray="12 9" filter="url(#rough)"/>
-      <text class="t-pen" x="886" y="1064" font-size="26" fill="#3f2a14" text-anchor="middle">미션을 마친 자, 이곳에 스티커를 붙일지어다!</text>
+      <text class="t-pen" x="886" y="1062" font-size="20" fill="#3f2a14" text-anchor="middle">미션을 마친 자, 이곳에 스티커를 붙일지어다!</text>
       <g id="stickers"></g>
     </g>
     <!-- compass rose (ink) -->
@@ -417,18 +417,18 @@ const THEMES = {
   obey:    { seal: '#44598c', dark: '#2c3c62' },
 };
 const STATIONS = [
-  { n: 1, code: '열정 3', theme: 'passion', name: '골든슛 챌린지',        loc: '601호',          stars: 2, x: 470,  y: 950 },
-  { n: 2, code: '열정 1', theme: 'passion', name: '주사위 일심동체',      loc: '2층 정수기 앞',   stars: 3, x: 800,  y: 985 },
-  { n: 3, code: '사랑 1', theme: 'love',    name: '풍선 띄우기',          loc: '1층 로비',        stars: 3, x: 1120, y: 940 },
+  { n: 1, code: '열정 3', theme: 'passion', name: '골든슛 챌린지',        loc: '601호',          stars: 2, x: 460,  y: 950 },
+  { n: 2, code: '열정 1', theme: 'passion', name: '주사위 일심동체',      loc: '2층 정수기 앞',   stars: 3, x: 810,  y: 995 },
+  { n: 3, code: '사랑 1', theme: 'love',    name: '풍선 띄우기',          loc: '1층 로비',        stars: 3, x: 1140, y: 940 },
   { n: 4, code: '순종 2', theme: 'obey',    name: '복음 존으로 골인!',    loc: '202호',          stars: 3, x: 1330, y: 730 },
   { n: 5, code: '열정 2', theme: 'passion', name: '사탄핀을 쓰러뜨려라!', loc: '601호 앞',        stars: 4, x: 1010, y: 615 },
-  { n: 6, code: '사랑 2', theme: 'love',    name: '한마음 병뚜껑 슬라이드', loc: '201–202호 통로', stars: 4, x: 690,  y: 715 },
-  { n: 7, code: '사랑 3', theme: 'love',    name: '말씀 암호 해독',       loc: '1층 카페',        stars: 4, x: 320,  y: 640 },
+  { n: 6, code: '사랑 2', theme: 'love',    name: '한마음 병뚜껑 슬라이드', loc: '201–202호 통로', stars: 4, x: 700,  y: 715 },
+  { n: 7, code: '사랑 3', theme: 'love',    name: '말씀 암호 해독',       loc: '1층 카페',        stars: 4, x: 305,  y: 640 },
   { n: 8, code: '순종 3', theme: 'obey',    name: '신뢰의 미로',          loc: '204호',          stars: 4, x: 470,  y: 415 },
   { n: 9, code: '순종 1', theme: 'obey',    name: "'예스'로 하나되기",    loc: '205호 앞',        stars: 5, x: 880,  y: 428 },
 ];
 // fixed hand-placed tilt per note (deterministic)
-const TILT = [-2.2, 1.8, -1.4, 2.1, -1.8, 1.3, -2.4, 1.6, -1.2];
+const TILT = [-1.4, 1.1, -0.9, 1.3, -1.1, 0.9, -1.4, 1, -0.8];
 
 // ─── winding dashed trail through start → 1..9 → finish ──────────────────
 const TRAIL_POINTS = [
@@ -493,7 +493,7 @@ document.getElementById('stations').innerHTML = STATIONS.map(stationSVG).join(''
 document.getElementById('stickers').innerHTML = STATIONS.map((s, i) => {
   const cx = 703 + i * 45.5, cy = 1102;
   return `<circle cx="${cx}" cy="${cy}" r="19" fill="none" stroke="#4a3220" stroke-width="2.2" filter="url(#rough)"/>
-          <text class="t-pen" x="${cx}" y="${cy + 8}" font-size="22" fill="#6b4a26" text-anchor="middle">${s.n}</text>`;
+          <text class="t-pen" x="${cx}" y="${cy + 7}" font-size="18" fill="#6b4a26" text-anchor="middle">${s.n}</text>`;
 }).join('');
 </script>
 </body>
