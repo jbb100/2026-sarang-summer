@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>미션 원정대 · 미션 지도 (9개 코스)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Brush+Script&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -34,17 +37,21 @@
   }
   .print-btn:active { transform: translateY(2px); box-shadow: none; }
 
+  /* old map on a dark captain's table */
   .map-wrap {
     margin: 18px 0 34px;
-    border-radius: 14px;
-    box-shadow: 0 10px 30px rgba(60,50,20,.18);
+    border-radius: 12px;
+    box-shadow: 0 14px 40px rgba(20,12,4,.45);
     overflow: hidden;
-    background: #d9bd85;
+    background: radial-gradient(ellipse at 50% 40%, #4a381f 0%, #332512 55%, #241a0c 100%);
   }
   svg#map { display: block; width: 100%; height: auto; }
   svg#map text {
-    font-family: "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif;
+    font-family: "Gowun Batang", "Nanum Myeongjo", "AppleMyungjo", "Batang", "바탕", serif;
+    fill: #4a3220;
   }
+  svg#map .t-brush { font-family: "Nanum Brush Script", "Gungsuh", "궁서", "Gowun Batang", serif; }
+  svg#map .t-pen   { font-family: "Nanum Pen Script", "Gungsuh", "궁서", "Gowun Batang", serif; }
 
   /* ---------- screen-only quick list ---------- */
   .list {
@@ -72,7 +79,7 @@
     .wrap { max-width: 100%; padding: 0; }
     header, .list, footer, .print-btn { display: none; }
     .map-wrap {
-      margin: 0; border-radius: 0; box-shadow: none;
+      margin: 0; border-radius: 0; box-shadow: none; background: #fff;
       display: flex; justify-content: center;
     }
     svg#map { width: auto; max-width: 100%; height: auto; max-height: 196mm; }
@@ -86,7 +93,7 @@
 <header>
   <span class="camp">2026 여름캠프 · 미션 원정대</span>
   <h1>🗺️ 미션 지도</h1>
-  <p class="sub">9개 미션 코스의 이름·장소·난이도를 한 장에! 번호는 쉬운 코스부터, 도전 순서는 자유예요.</p>
+  <p class="sub">진짜 옛날 보물지도처럼! 9개 미션 코스의 이름·장소·난이도를 한 장에. 번호는 쉬운 코스부터, 도전 순서는 자유예요.</p>
   <button class="print-btn" onclick="window.print()">🖨️ 인쇄하기 — A4 가로 한 장 포스터</button>
   <p class="sub" style="margin-top:10px"><a href="courses.html">📋 전체 코스 상세 안내(운영용) 보러 가기 →</a></p>
 </header>
@@ -94,201 +101,285 @@
 <div class="map-wrap">
 <svg id="map" viewBox="0 0 1600 1180" role="img" aria-label="미션 원정대 미션 지도 — 9개 코스의 위치와 난이도">
 
-  <!-- ══════════ parchment ══════════ -->
-  <path d="M 40 62 L 120 36 L 230 50 L 340 28 L 470 46 L 600 32 L 730 48 L 860 30 L 990 46 L 1120 32 L 1250 48 L 1380 32 L 1490 52 L 1562 42
-           L 1552 150 L 1568 260 L 1548 380 L 1566 500 L 1550 620 L 1568 740 L 1552 860 L 1566 980 L 1548 1090 L 1558 1148
-           L 1450 1134 L 1330 1150 L 1200 1132 L 1070 1148 L 940 1130 L 810 1148 L 680 1132 L 550 1150 L 420 1132 L 290 1148 L 160 1130 L 62 1144
-           L 46 1040 L 32 920 L 48 800 L 34 680 L 50 560 L 36 440 L 50 320 L 36 200 L 48 110 Z"
-        fill="#e7cf9b" stroke="#a97e46" stroke-width="4"/>
-  <rect x="62" y="66" width="1478" height="1058" rx="18" fill="#f0deae" opacity=".65"/>
-  <!-- stains -->
-  <ellipse cx="330" cy="760" rx="90" ry="40" fill="#a9744f" opacity=".05"/>
-  <ellipse cx="1240" cy="880" rx="110" ry="46" fill="#a9744f" opacity=".05"/>
-  <ellipse cx="960" cy="500" rx="80" ry="36" fill="#a9744f" opacity=".05"/>
-  <ellipse cx="540" cy="240" rx="70" ry="30" fill="#a9744f" opacity=".05"/>
+  <defs>
+    <!-- aged paper -->
+    <radialGradient id="paper" cx="50%" cy="45%" r="78%">
+      <stop offset="0%"  stop-color="#eddbb0"/>
+      <stop offset="50%" stop-color="#e4cb96"/>
+      <stop offset="80%" stop-color="#d3ad6e"/>
+      <stop offset="100%" stop-color="#b3823f"/>
+    </radialGradient>
+    <radialGradient id="vign" cx="50%" cy="47%" r="74%">
+      <stop offset="58%" stop-color="#5a3a16" stop-opacity="0"/>
+      <stop offset="86%" stop-color="#5a3a16" stop-opacity=".20"/>
+      <stop offset="100%" stop-color="#3f270c" stop-opacity=".48"/>
+    </radialGradient>
+    <!-- torn / wobbly edges -->
+    <filter id="paperRough" x="-6%" y="-6%" width="112%" height="112%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.011 0.017" numOctaves="4" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="24"/>
+    </filter>
+    <!-- hand-drawn ink wobble -->
+    <filter id="rough" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.032" numOctaves="3" seed="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="5.5"/>
+    </filter>
+    <filter id="roughSoft" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="11" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3"/>
+    </filter>
+    <!-- paper grain speckle -->
+    <filter id="grainF">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="5"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.32  0 0 0 0 0.22  0 0 0 0 0.10  0 0 0 0.45 0"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
 
-  <!-- ══════════ GO! JESUS! tag (top-left) ══════════ -->
-  <g transform="rotate(-8 132 150)">
-    <path d="M132 90 Q100 56 58 34" stroke="#8a6b3c" stroke-width="4" fill="none"/>
-    <rect x="74" y="78" width="118" height="152" rx="12" fill="#f2e3bd" stroke="#b08a4f" stroke-width="3"/>
-    <circle cx="133" cy="98" r="7" fill="#e7cf9b" stroke="#b08a4f" stroke-width="3"/>
-    <g stroke="#a9805a" stroke-width="2.5" fill="none">
-      <circle cx="133" cy="142" r="24"/>
-      <path d="M133 118 v48 M109 142 h48 M116 125 l34 34 M150 125 l-34 34"/>
+    <clipPath id="clipParch">
+      <path d="M 40 62 L 120 36 L 230 50 L 340 28 L 470 46 L 600 32 L 730 48 L 860 30 L 990 46 L 1120 32 L 1250 48 L 1380 32 L 1490 52 L 1562 42
+               L 1552 150 L 1568 260 L 1548 380 L 1566 500 L 1550 620 L 1568 740 L 1552 860 L 1566 980 L 1548 1090 L 1558 1148
+               L 1450 1134 L 1330 1150 L 1200 1132 L 1070 1148 L 940 1130 L 810 1148 L 680 1132 L 550 1150 L 420 1132 L 290 1148 L 160 1130 L 62 1144
+               L 46 1040 L 32 920 L 48 800 L 34 680 L 50 560 L 36 440 L 50 320 L 36 200 L 48 110 Z"/>
+    </clipPath>
+
+    <!-- ink sketch trees -->
+    <g id="pine">
+      <path d="M0 -58 L14 -34 L7 -34 L20 -14 L10 -14 L24 4 L-24 4 L-10 -14 L-20 -14 L-7 -34 L-14 -34 Z"
+            fill="#8aa16b" fill-opacity=".55" stroke="#4a3220" stroke-width="3" stroke-linejoin="round" filter="url(#rough)"/>
+      <path d="M0 4 v12" stroke="#4a3220" stroke-width="4" filter="url(#rough)"/>
     </g>
-    <circle cx="133" cy="142" r="5" fill="#c0392b"/>
-    <text x="133" y="196" font-size="24" font-weight="800" fill="#6b4423" text-anchor="middle">GO!</text>
-    <text x="133" y="222" font-size="22" font-weight="800" fill="#6b4423" text-anchor="middle">JESUS!</text>
-  </g>
-
-  <!-- ══════════ title banner ══════════ -->
-  <g>
-    <polygon points="432,54 1168,54 1148,144 452,144" fill="#8a5a2a" stroke="#5f3c1a" stroke-width="4"/>
-    <polygon points="452,64 1148,64 1132,134 468,134" fill="#a97142"/>
-    <path d="M500 74 q120 8 240 2 M760 120 q140 6 280 0" stroke="#8a5a2a" stroke-width="3" fill="none" opacity=".6"/>
-    <circle cx="472" cy="70" r="5" fill="#5f3c1a"/><circle cx="1128" cy="70" r="5" fill="#5f3c1a"/>
-    <circle cx="476" cy="128" r="5" fill="#5f3c1a"/><circle cx="1124" cy="128" r="5" fill="#5f3c1a"/>
-    <text x="800" y="120" font-size="62" font-weight="900" fill="#3b2510" text-anchor="middle" letter-spacing="8">미션 지도</text>
-    <polygon points="562,144 1038,144 1020,186 580,186" fill="#4e7a3f" stroke="#35592a" stroke-width="3"/>
-    <text x="800" y="174" font-size="24" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing="4">MISSION FELLOWSHIP</text>
-    <!-- leaves -->
-    <path d="M545 160 q-30 -18 -60 -12 q22 22 48 22 z" fill="#5b8a48"/>
-    <path d="M1055 160 q30 -18 60 -12 q-22 22 -48 22 z" fill="#5b8a48"/>
-    <text x="800" y="215" font-size="24" font-weight="800" fill="#6b4423" text-anchor="middle"
-          stroke="#f0deae" stroke-width="6" paint-order="stroke">예수님과 함께 떠나는 모험! 미션 9개를 모두 완수해요!</text>
-  </g>
-
-  <!-- ══════════ scenery ══════════ -->
-  <!-- mountains (top-left) -->
-  <g>
-    <path d="M60 385 L185 240 L310 385 Z" fill="#6d9058" stroke="#55793f" stroke-width="3"/>
-    <path d="M160 269 L185 240 L210 269 Q197 281 185 272 Q173 281 160 269 Z" fill="#f4f1e4"/>
-    <path d="M225 385 L330 268 L435 385 Z" fill="#55793f" stroke="#3f6b33" stroke-width="3"/>
-    <path d="M309 291 L330 268 L351 291 Q340 301 330 294 Q320 301 309 291 Z" fill="#f4f1e4"/>
-    <g fill="#3f6b33">
-      <path d="M96 384 L112 350 L128 384 Z"/>
-      <path d="M136 384 L152 344 L168 384 Z"/>
-      <path d="M392 384 L408 348 L424 384 Z"/>
+    <g id="palm">
+      <path d="M4 -58 q-26 -14 -48 -4 q24 8 48 4 M4 -58 q26 -12 44 2 q-22 8 -44 -2" fill="#8aa16b" fill-opacity=".5" stroke="none" filter="url(#rough)"/>
+      <path d="M0 0 q-8 -34 4 -58" stroke="#4a3220" stroke-width="5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+      <path d="M4 -58 q-26 -14 -48 -4 M4 -58 q-24 -20 -44 -18 M4 -58 q4 -24 18 -32 M4 -58 q26 -12 44 2 M4 -58 q22 -22 40 -20"
+            stroke="#4a3220" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+      <circle cx="0" cy="-54" r="3.5" fill="#4a3220"/>
+      <circle cx="9" cy="-50" r="3.5" fill="#4a3220"/>
     </g>
+    <g id="bush">
+      <path d="M-26 0 q-8 -16 8 -20 q4 -12 20 -10 q14 -6 22 6 q12 4 4 16 q2 8 -10 8 z"
+            fill="#8aa16b" fill-opacity=".45" stroke="#4a3220" stroke-width="2.5" filter="url(#rough)"/>
+    </g>
+  </defs>
+
+  <!-- ══════════ parchment sheet ══════════ -->
+  <g filter="url(#paperRough)">
+    <path d="M 40 62 L 120 36 L 230 50 L 340 28 L 470 46 L 600 32 L 730 48 L 860 30 L 990 46 L 1120 32 L 1250 48 L 1380 32 L 1490 52 L 1562 42
+             L 1552 150 L 1568 260 L 1548 380 L 1566 500 L 1550 620 L 1568 740 L 1552 860 L 1566 980 L 1548 1090 L 1558 1148
+             L 1450 1134 L 1330 1150 L 1200 1132 L 1070 1148 L 940 1130 L 810 1148 L 680 1132 L 550 1150 L 420 1132 L 290 1148 L 160 1130 L 62 1144
+             L 46 1040 L 32 920 L 48 800 L 34 680 L 50 560 L 36 440 L 50 320 L 36 200 L 48 110 Z"
+          fill="url(#paper)" stroke="#5f3f18" stroke-width="5"/>
+    <!-- scorched rim -->
+    <path d="M 40 62 L 120 36 L 230 50 L 340 28 L 470 46 L 600 32 L 730 48 L 860 30 L 990 46 L 1120 32 L 1250 48 L 1380 32 L 1490 52 L 1562 42
+             L 1552 150 L 1568 260 L 1548 380 L 1566 500 L 1550 620 L 1568 740 L 1552 860 L 1566 980 L 1548 1090 L 1558 1148
+             L 1450 1134 L 1330 1150 L 1200 1132 L 1070 1148 L 940 1130 L 810 1148 L 680 1132 L 550 1150 L 420 1132 L 290 1148 L 160 1130 L 62 1144
+             L 46 1040 L 32 920 L 48 800 L 34 680 L 50 560 L 36 440 L 50 320 L 36 200 L 48 110 Z"
+          fill="none" stroke="#6d4315" stroke-width="16" opacity=".38"/>
   </g>
 
-  <!-- waterfall (top-right) -->
-  <g>
-    <path d="M1272 200 q-8 -60 40 -84 q30 -34 78 -28 q40 -26 84 -8 q46 -10 66 26 q26 30 12 66 q4 30 -22 34 z" fill="#8a8f85" stroke="#6d726a" stroke-width="3"/>
-    <rect x="1392" y="88" width="48" height="102" rx="20" fill="#bfe0f2" stroke="#8fc0e2" stroke-width="2"/>
-    <path d="M1402 96 v84 M1416 94 v90 M1430 96 v84" stroke="#eaf6fd" stroke-width="4" stroke-linecap="round"/>
-    <ellipse cx="1416" cy="196" rx="62" ry="16" fill="#bfe0f2" stroke="#8fc0e2" stroke-width="2"/>
-    <ellipse cx="1416" cy="192" rx="34" ry="8" fill="#eaf6fd"/>
-    <!-- palms -->
+  <g clip-path="url(#clipParch)">
+    <!-- grain, vignette, stains -->
+    <rect x="20" y="16" width="1560" height="1150" filter="url(#grainF)" opacity=".4"/>
+    <rect x="20" y="16" width="1560" height="1150" fill="url(#vign)"/>
+    <g filter="url(#paperRough)">
+      <ellipse cx="330" cy="770" rx="120" ry="52" fill="#7a5426" opacity=".10"/>
+      <ellipse cx="1250" cy="880" rx="140" ry="60" fill="#7a5426" opacity=".09"/>
+      <ellipse cx="960" cy="490" rx="100" ry="44" fill="#7a5426" opacity=".08"/>
+      <ellipse cx="560" cy="240" rx="80" ry="34" fill="#7a5426" opacity=".08"/>
+      <ellipse cx="120" cy="420" rx="60" ry="90" fill="#6d4315" opacity=".10"/>
+      <ellipse cx="1500" cy="620" rx="70" ry="120" fill="#6d4315" opacity=".10"/>
+    </g>
+    <!-- coffee ring -->
+    <circle cx="1255" cy="205" r="58" fill="none" stroke="#6d4a22" stroke-width="6" opacity=".14" stroke-dasharray="52 14 30 22" filter="url(#rough)"/>
+    <circle cx="285" cy="878" r="44" fill="none" stroke="#6d4a22" stroke-width="5" opacity=".12" stroke-dasharray="40 18 26 12" filter="url(#rough)"/>
+
+    <!-- inner ink frame -->
+    <g filter="url(#rough)" opacity=".55">
+      <rect x="88" y="66" width="1424" height="1048" fill="none" stroke="#4a3220" stroke-width="2.5"/>
+      <rect x="100" y="78" width="1400" height="1024" fill="none" stroke="#4a3220" stroke-width="1.2"/>
+      <path d="M88 130 q26 -34 64 -64 M1512 130 q-26 -34 -64 -64 M88 1050 q26 34 64 64 M1512 1050 q-26 34 -64 64" stroke="#4a3220" stroke-width="2" fill="none"/>
+    </g>
+
+    <!-- ══════════ title (calligraphy) ══════════ -->
     <g>
-      <path d="M1300 172 q-4 -46 8 -70" stroke="#8a5a2a" stroke-width="8" fill="none" stroke-linecap="round"/>
-      <path d="M1308 102 q-30 -14 -52 2 q26 8 52 4 M1308 102 q6 -26 28 -34 q-4 24 -20 38 M1308 102 q30 -10 48 6 q-24 10 -48 0 z" fill="#4e8a3f"/>
+      <text class="t-brush" x="800" y="130" font-size="104" fill="#3f2a14" text-anchor="middle" letter-spacing="6">미션 지도</text>
+      <path d="M 545 150 q 255 30 510 0" stroke="#4a3220" stroke-width="4" fill="none" filter="url(#rough)"/>
+      <path d="M 600 164 q 200 20 400 0" stroke="#4a3220" stroke-width="2" fill="none" filter="url(#rough)" opacity=".7"/>
+      <!-- side flourishes -->
+      <path d="M 520 108 C 470 84 430 92 402 116 q -16 14 4 22 q 16 6 22 -10" stroke="#4a3220" stroke-width="3" fill="none" filter="url(#rough)"/>
+      <path d="M 1080 108 C 1130 84 1170 92 1198 116 q 16 14 -4 22 q -16 6 -22 -10" stroke="#4a3220" stroke-width="3" fill="none" filter="url(#rough)"/>
+      <circle cx="388" cy="112" r="3.5" fill="#4a3220"/>
+      <circle cx="1212" cy="112" r="3.5" fill="#4a3220"/>
+      <text x="800" y="192" font-size="21" font-weight="700" fill="#6b4a26" text-anchor="middle" letter-spacing="6">· MISSION FELLOWSHIP · 2026 여름캠프 ·</text>
+      <text class="t-pen" x="800" y="234" font-size="31" fill="#5a3c20" text-anchor="middle">예수님과 함께 떠나는 모험! 아홉 개의 미션을 모두 완수하라!</text>
+    </g>
+
+    <!-- ══════════ red seal stamp (top-left) ══════════ -->
+    <g transform="rotate(-9 156 156)" opacity=".82" filter="url(#rough)">
+      <rect x="84" y="98" width="148" height="114" fill="none" stroke="#9c3a28" stroke-width="6"/>
+      <rect x="94" y="108" width="128" height="94" fill="none" stroke="#9c3a28" stroke-width="2.5"/>
+      <text class="t-brush" x="158" y="152" font-size="42" fill="#9c3a28" text-anchor="middle">GO!</text>
+      <text class="t-brush" x="158" y="194" font-size="36" fill="#9c3a28" text-anchor="middle">JESUS!</text>
+    </g>
+
+    <!-- ══════════ terrain (ink & wash) ══════════ -->
+    <!-- mountains -->
+    <g stroke="#4a3220" stroke-linejoin="round" fill="none" filter="url(#rough)">
+      <path d="M70 385 L192 244 L308 385 Z" fill="#cdb381" fill-opacity=".8" stroke-width="4"/>
+      <path d="M162 278 l16 -18 12 14 14 -16 14 16" stroke-width="3"/>
+      <path d="M210 330 l-30 36 M228 302 l-44 52 M244 276 l-34 40" stroke-width="1.8" opacity=".7"/>
+      <path d="M232 385 L338 262 L446 385 Z" fill="#c2a674" fill-opacity=".8" stroke-width="4"/>
+      <path d="M312 292 l14 -16 11 12 13 -14 12 14" stroke-width="3"/>
+      <path d="M366 330 l-28 34 M384 304 l-40 46" stroke-width="1.8" opacity=".7"/>
+    </g>
+    <use href="#pine" transform="translate(108 382)"/>
+    <use href="#pine" transform="translate(150 386) scale(.8)"/>
+    <use href="#pine" transform="translate(414 384) scale(.9)"/>
+
+    <!-- waterfall (top-right) -->
+    <g>
+      <path d="M1290 208 q-22 -52 20 -76 q16 -42 66 -40 q30 -30 76 -18 q46 -8 66 24 q28 22 16 58 q8 34 -22 50 z"
+            fill="#cdb381" fill-opacity=".85" stroke="#4a3220" stroke-width="4" stroke-linejoin="round" filter="url(#rough)"/>
+      <path d="M1310 160 l24 -20 M1330 190 l30 -26 M1480 170 l26 -20" stroke="#4a3220" stroke-width="1.8" opacity=".6" filter="url(#rough)"/>
+      <rect x="1394" y="92" width="44" height="102" fill="#a8c8d8" fill-opacity=".55" filter="url(#rough)"/>
+      <path d="M1398 94 q-4 50 2 96 M1414 92 q4 52 -2 100 M1430 94 q-3 48 3 96" stroke="#4a3220" stroke-width="2.2" fill="none" filter="url(#rough)"/>
+      <ellipse cx="1416" cy="200" rx="58" ry="15" fill="#a8c8d8" fill-opacity=".55" stroke="#4a3220" stroke-width="3" filter="url(#rough)"/>
+      <path d="M1378 198 q10 -6 20 0 M1426 202 q10 -6 20 0" stroke="#4a3220" stroke-width="1.8" fill="none" filter="url(#rough)"/>
+    </g>
+    <use href="#palm" transform="translate(1302 176)"/>
+    <use href="#palm" transform="translate(1516 182) scale(-.9 .9)"/>
+
+    <!-- river: wash + double ink banks -->
+    <g fill="none">
+      <path d="M 640 232 C 680 320, 590 420, 560 510 C 535 590, 560 660, 610 720 C 665 790, 800 860, 865 935 C 925 962, 1040 968, 1140 985"
+            stroke="#a8c8d8" stroke-width="40" stroke-linecap="round" opacity=".5" filter="url(#roughSoft)"/>
+      <path d="M 640 232 C 680 320, 590 420, 560 510 C 535 590, 560 660, 610 720 C 665 790, 800 860, 865 935 C 925 962, 1040 968, 1140 985"
+            stroke="#4a3220" stroke-width="3" transform="translate(-20 0)" filter="url(#rough)"/>
+      <path d="M 640 232 C 680 320, 590 420, 560 510 C 535 590, 560 660, 610 720 C 665 790, 800 860, 865 935 C 925 962, 1040 968, 1140 985"
+            stroke="#4a3220" stroke-width="3" transform="translate(21 3)" filter="url(#rough)"/>
+      <path d="M 622 320 q10 -6 20 0 M 586 470 q10 -6 20 0 M 570 610 q10 -6 20 0 M 640 750 q10 -6 20 0 M 760 840 q10 -6 20 0 M 890 940 q10 -6 20 0"
+            stroke="#4a3220" stroke-width="2" filter="url(#rough)" opacity=".75"/>
+    </g>
+    <!-- lake + little sailboat -->
+    <ellipse cx="1170" cy="992" rx="80" ry="26" fill="#a8c8d8" fill-opacity=".5" stroke="#4a3220" stroke-width="3" filter="url(#rough)"/>
+    <g filter="url(#rough)">
+      <path d="M1146 986 q22 12 46 0 l-6 10 q-17 8 -34 0 z" fill="#4a3220"/>
+      <path d="M1168 984 v-26 M1168 958 q18 8 0 24" stroke="#4a3220" stroke-width="2.5" fill="none"/>
+      <path d="M1168 958 q-16 10 -1 25" stroke="#4a3220" stroke-width="2" fill="#e9d8ac"/>
+    </g>
+
+    <!-- bridges -->
+    <g stroke="#4a3220" fill="none" stroke-linecap="round" filter="url(#rough)">
+      <path d="M 828 964 q 48 -28 100 -10" stroke-width="5"/>
+      <path d="M 834 946 q 44 -24 88 -10" stroke-width="4"/>
+      <path d="M846 954 l-2 14 M868 946 l-2 15 M890 942 l0 15 M910 942 l2 14" stroke-width="2.5"/>
+      <path d="M 550 692 q 42 -24 88 -8" stroke-width="5"/>
+      <path d="M 556 676 q 38 -20 76 -8" stroke-width="4"/>
+      <path d="M568 682 l-2 12 M588 674 l-1 13 M608 671 l1 13" stroke-width="2.5"/>
+    </g>
+
+    <!-- village (near the finish) -->
+    <g stroke="#4a3220" stroke-linejoin="round" filter="url(#rough)">
+      <rect x="1130" y="456" width="34" height="92" fill="#e2cfa0" fill-opacity=".85" stroke-width="3.5"/>
+      <path d="M1124 456 q23 -28 46 0 z" fill="#b06a3a" fill-opacity=".7" stroke-width="3.5"/>
+      <rect x="1140" y="474" width="14" height="18" fill="#4a3220" stroke="none"/>
+      <rect x="1178" y="486" width="72" height="62" fill="#e2cfa0" fill-opacity=".85" stroke-width="3.5"/>
+      <polygon points="1168,486 1214,446 1260,486" fill="#b06a3a" fill-opacity=".7" stroke-width="3.5"/>
+      <path d="M1188 460 l40 0 M1198 448 l24 0" stroke-width="1.6" opacity="0"/>
+      <rect x="1204" y="516" width="20" height="32" fill="#4a3220" stroke="none"/>
+      <rect x="1270" y="496" width="58" height="52" fill="#e2cfa0" fill-opacity=".85" stroke-width="3.5"/>
+      <polygon points="1262,496 1299,460 1336,496" fill="#b06a3a" fill-opacity=".7" stroke-width="3.5"/>
+      <rect x="1288" y="514" width="16" height="16" fill="#4a3220" stroke="none"/>
+      <path d="M1174 452 l36 -30 M1268 492 l30 -28" stroke-width="1.6" opacity=".6"/>
+    </g>
+    <use href="#palm" transform="translate(1354 548) scale(.9)"/>
+
+    <!-- treasure chest + gold -->
+    <g stroke="#4a3220" stroke-linejoin="round" filter="url(#rough)">
+      <rect x="1200" y="294" width="62" height="40" fill="#c2a674" fill-opacity=".9" stroke-width="3.5"/>
+      <path d="M1200 294 q31 -28 62 0 z" fill="#b08a4f" fill-opacity=".9" stroke-width="3.5"/>
+      <path d="M1226 270 v64" stroke-width="3"/>
+      <path d="M1236 270 v64" stroke-width="3"/>
+      <circle cx="1231" cy="304" r="6" fill="#b9862e" stroke-width="2.5"/>
+      <circle cx="1214" cy="292" r="4" fill="#b9862e" stroke-width="2"/>
+      <circle cx="1250" cy="290" r="4" fill="#b9862e" stroke-width="2"/>
+      <path d="M1196 262 l-9 -12 M1231 254 v-13 M1266 262 l9 -12" stroke-width="3" stroke-linecap="round"/>
+    </g>
+
+    <!-- X marks the spot -->
+    <g>
+      <circle cx="1372" cy="318" r="66" fill="none" stroke="#4a3220" stroke-width="2.5" stroke-dasharray="14 10" filter="url(#rough)"/>
+      <path d="M1334 284 L1410 352 M1410 284 L1334 352" stroke="#8f2417" stroke-width="19" stroke-linecap="round" filter="url(#rough)"/>
+      <text class="t-brush" x="1372" y="424" font-size="44" fill="#8f2417" text-anchor="middle">미션 완수!</text>
+      <text x="1372" y="450" font-size="14" font-weight="700" fill="#8f2417" text-anchor="middle" letter-spacing="2">MISSION COMPLETE</text>
+    </g>
+
+    <!-- start camp -->
+    <g stroke="#4a3220" stroke-linejoin="round" filter="url(#rough)">
+      <path d="M112 872 v-92" stroke-width="4" stroke-linecap="round"/>
+      <path d="M112 780 h54 l-10 17 10 17 h-54 z" fill="#9c3a28" fill-opacity=".85" stroke-width="3"/>
+      <path d="M128 789 v17 M119 797 h18" stroke="#eddbb0" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M98 975 L185 844 L272 975 Z" fill="#d3b47c" fill-opacity=".9" stroke-width="4"/>
+      <path d="M152 975 L185 892 L218 975 Z" fill="#4a3220" fill-opacity=".8" stroke-width="3"/>
+      <path d="M185 844 v48" stroke-width="3"/>
+      <path d="M120 940 l30 -44 M236 928 l-24 -36" stroke-width="1.6" opacity=".6"/>
+      <!-- campfire -->
+      <path d="M296 962 l40 -14 M296 948 l40 14" stroke-width="5" stroke-linecap="round"/>
+      <path d="M316 942 q-16 -22 0 -44 q4 14 14 20 q-2 -16 8 -26 q2 24 10 32 q8 10 0 20 q-12 14 -32 -2 z"
+            fill="#c96b2a" fill-opacity=".8" stroke-width="3"/>
+    </g>
+    <g filter="url(#rough)">
+      <text class="t-brush" x="152" y="1052" font-size="52" fill="#3f2a14" text-anchor="middle">출발!</text>
+      <text x="152" y="1082" font-size="17" font-weight="700" fill="#6b4a26" text-anchor="middle" letter-spacing="5">START</text>
+      <path d="M216 1032 q52 -18 78 -44 M294 988 l-14 2 M294 988 l-2 13" stroke="#4a3220" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    </g>
+
+    <!-- scattered greens -->
+    <use href="#pine" transform="translate(496 764) scale(.85)"/>
+    <use href="#pine" transform="translate(1524 706) scale(.8)"/>
+    <use href="#pine" transform="translate(84 664) scale(.75)"/>
+    <use href="#palm" transform="translate(636 402)"/>
+    <use href="#bush" transform="translate(262 880)"/>
+    <use href="#bush" transform="translate(1476 908)"/>
+    <use href="#bush" transform="translate(122 532) scale(.85)"/>
+    <use href="#bush" transform="translate(922 532) scale(.9)"/>
+
+    <!-- ══════════ trail + stations (generated) ══════════ -->
+    <g id="trail"></g>
+    <g id="stations"></g>
+
+    <!-- ══════════ bottom: legend / stickers / compass ══════════ -->
+    <g transform="rotate(-1 450 1086)">
+      <rect x="292" y="1030" width="326" height="112" fill="#eeddab" fill-opacity=".85" stroke="#4a3220" stroke-width="3" filter="url(#rough)"/>
+      <rect x="299" y="1037" width="312" height="98" fill="none" stroke="#4a3220" stroke-width="1.2" opacity=".55" filter="url(#rough)"/>
+      <text x="352" y="1066" font-size="23" font-weight="700" fill="#3f2a14">길잡이</text>
+      <g font-size="19" font-weight="700">
+        <circle cx="322" cy="1092" r="11" fill="#b05a20" stroke="#7a3c12" stroke-width="2" filter="url(#rough)"/>
+        <text x="340" y="1099" fill="#7a3c12">열정</text>
+        <circle cx="418" cy="1092" r="11" fill="#a04456" stroke="#6d2a38" stroke-width="2" filter="url(#rough)"/>
+        <text x="436" y="1099" fill="#6d2a38">사랑</text>
+        <circle cx="514" cy="1092" r="11" fill="#44598c" stroke="#2c3c62" stroke-width="2" filter="url(#rough)"/>
+        <text x="532" y="1099" fill="#2c3c62">순종</text>
+      </g>
+      <text class="t-pen" x="455" y="1124" font-size="20" fill="#5a3c20" text-anchor="middle">번호는 쉬운 길부터라네. 도전 순서는 자유!</text>
     </g>
     <g>
-      <path d="M1510 178 q6 -42 -6 -64" stroke="#8a5a2a" stroke-width="8" fill="none" stroke-linecap="round"/>
-      <path d="M1504 114 q-28 -16 -50 -2 q24 10 50 8 M1504 114 q2 -26 22 -36 q0 24 -14 40 M1504 114 q30 -8 46 10 q-24 8 -46 -4 z" fill="#5b8a48"/>
+      <rect x="655" y="1030" width="462" height="112" fill="none" stroke="#4a3220" stroke-width="2.5" stroke-dasharray="12 9" filter="url(#rough)"/>
+      <text class="t-pen" x="886" y="1064" font-size="26" fill="#3f2a14" text-anchor="middle">미션을 마친 자, 이곳에 스티커를 붙일지어다!</text>
+      <g id="stickers"></g>
     </g>
-  </g>
-
-  <!-- river -->
-  <g fill="none">
-    <path d="M 640 232 C 680 320, 590 420, 560 510 C 535 590, 560 660, 610 720 C 665 790, 800 860, 865 935 C 925 962, 1040 968, 1140 985"
-          stroke="#8fc0e2" stroke-width="42" stroke-linecap="round"/>
-    <path d="M 640 232 C 680 320, 590 420, 560 510 C 535 590, 560 660, 610 720 C 665 790, 800 860, 865 935 C 925 962, 1040 968, 1140 985"
-          stroke="#b9dcf2" stroke-width="24" stroke-linecap="round"/>
-    <path d="M 632 300 q-6 40 -24 78 M 574 560 q-8 42 10 84 M 700 790 q34 30 66 58"
-          stroke="#eaf6fd" stroke-width="5" stroke-linecap="round" opacity=".9"/>
-  </g>
-  <!-- small lake where the river ends -->
-  <ellipse cx="1170" cy="990" rx="78" ry="26" fill="#8fc0e2" stroke="#79aed3" stroke-width="3"/>
-  <ellipse cx="1170" cy="986" rx="44" ry="12" fill="#b9dcf2"/>
-
-  <!-- bridges where the trail crosses the river -->
-  <g stroke-linecap="round">
-    <path d="M 830 962 q 46 -26 96 -10" stroke="#8a5a2a" stroke-width="16" fill="none"/>
-    <path d="M 830 962 q 46 -26 96 -10" stroke="#c9935f" stroke-width="9" fill="none" stroke-dasharray="10 6"/>
-    <path d="M 836 944 q 44 -24 88 -10" stroke="#6d4426" stroke-width="4" fill="none"/>
-    <path d="M 552 690 q 40 -22 84 -8" stroke="#8a5a2a" stroke-width="14" fill="none"/>
-    <path d="M 552 690 q 40 -22 84 -8" stroke="#c9935f" stroke-width="8" fill="none" stroke-dasharray="9 6"/>
-  </g>
-
-  <!-- village (near the finish) -->
-  <g>
-    <rect x="1128" y="452" width="34" height="96" fill="#e8d9b8" stroke="#a97142" stroke-width="3"/>
-    <path d="M1124 452 q21 -26 42 0 z" fill="#c9803c" stroke="#a05a24" stroke-width="3"/>
-    <rect x="1138" y="470" width="14" height="18" fill="#7a5230"/>
-    <rect x="1176" y="482" width="72" height="66" fill="#efe3c4" stroke="#a97142" stroke-width="3"/>
-    <polygon points="1166,482 1212,442 1258,482" fill="#c96b3f" stroke="#a05a24" stroke-width="3"/>
-    <rect x="1202" y="514" width="20" height="34" fill="#7a5230"/>
-    <rect x="1268" y="494" width="58" height="54" fill="#e8d9b8" stroke="#a97142" stroke-width="3"/>
-    <polygon points="1260,494 1297,458 1334,494" fill="#d18a4a" stroke="#a05a24" stroke-width="3"/>
-    <rect x="1286" y="512" width="16" height="16" fill="#7a5230"/>
-    <path d="M1352 548 q4 -40 -6 -60" stroke="#8a5a2a" stroke-width="7" fill="none" stroke-linecap="round"/>
-    <path d="M1346 488 q-26 -14 -46 0 q22 10 46 6 M1346 488 q2 -24 20 -32 q0 22 -12 36 M1346 488 q26 -8 42 8 q-22 8 -42 -2 z" fill="#5b8a48"/>
-  </g>
-
-  <!-- treasure chest + MISSION COMPLETE (finish) -->
-  <g>
-    <rect x="1200" y="292" width="64" height="42" rx="6" fill="#a9744f" stroke="#6d4426" stroke-width="3"/>
-    <path d="M1200 292 q32 -28 64 0 z" fill="#c9935f" stroke="#6d4426" stroke-width="3"/>
-    <rect x="1226" y="268" width="12" height="66" fill="#8a5a2a" stroke="#6d4426" stroke-width="2"/>
-    <circle cx="1232" cy="300" r="7" fill="#f2c94c" stroke="#b8901e" stroke-width="2"/>
-    <path d="M1196 262 l-8 -12 M1232 254 v-14 M1268 262 l8 -12" stroke="#f2c94c" stroke-width="4" stroke-linecap="round"/>
-  </g>
-  <g>
-    <line x1="1332" y1="282" x2="1412" y2="356" stroke="#c0392b" stroke-width="17" stroke-linecap="round"/>
-    <line x1="1412" y1="282" x2="1332" y2="356" stroke="#c0392b" stroke-width="17" stroke-linecap="round"/>
-    <text x="1372" y="398" font-size="27" font-weight="900" fill="#c0392b" text-anchor="middle"
-          stroke="#f0deae" stroke-width="6" paint-order="stroke">미션 완수!</text>
-    <text x="1372" y="426" font-size="16" font-weight="800" fill="#c0392b" text-anchor="middle"
-          stroke="#f0deae" stroke-width="5" paint-order="stroke">MISSION COMPLETE!</text>
-  </g>
-
-  <!-- start camp (bottom-left) -->
-  <g>
-    <line x1="112" y1="872" x2="112" y2="782" stroke="#6d4426" stroke-width="6" stroke-linecap="round"/>
-    <path d="M112 782 h56 l-10 18 10 18 h-56 z" fill="#c0392b" stroke="#8f2a1f" stroke-width="2"/>
-    <path d="M128 791 v18 M119 800 h18" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
-    <path d="M98 975 L185 842 L272 975 Z" fill="#d9b269" stroke="#a97e3c" stroke-width="4"/>
-    <path d="M152 975 L185 890 L218 975 Z" fill="#7a5a2b"/>
-    <path d="M185 842 L185 890" stroke="#a97e3c" stroke-width="4"/>
-    <!-- campfire -->
-    <line x1="296" y1="962" x2="336" y2="948" stroke="#8a5a2a" stroke-width="8" stroke-linecap="round"/>
-    <line x1="296" y1="948" x2="336" y2="962" stroke="#8a5a2a" stroke-width="8" stroke-linecap="round"/>
-    <path d="M316 942 q-16 -22 0 -44 q4 14 14 20 q-2 -16 8 -26 q2 24 10 32 q8 10 0 20 q-12 14 -32 -2 z" fill="#e0762c"/>
-    <path d="M316 938 q-6 -12 2 -22 q6 10 10 12 q4 6 -2 12 q-6 4 -10 -2 z" fill="#f2c94c"/>
-    <!-- start sign -->
-    <line x1="152" y1="1105" x2="152" y2="1030" stroke="#6d4426" stroke-width="8" stroke-linecap="round"/>
-    <rect x="84" y="1006" width="136" height="62" rx="10" fill="#8a5a2a" stroke="#5f3c1a" stroke-width="3"/>
-    <text x="152" y="1036" font-size="27" font-weight="900" fill="#f2c94c" text-anchor="middle">출발!</text>
-    <text x="152" y="1060" font-size="16" font-weight="800" fill="#f0deae" text-anchor="middle" letter-spacing="3">START</text>
-  </g>
-
-  <!-- scattered greens -->
-  <g>
-    <path d="M636 402 q-6 -44 6 -66" stroke="#8a5a2a" stroke-width="7" fill="none" stroke-linecap="round"/>
-    <path d="M642 336 q-28 -14 -50 0 q24 10 50 6 M642 336 q2 -24 20 -32 q0 22 -12 36 M642 336 q26 -8 42 8 q-22 8 -42 -2 z" fill="#4e8a3f"/>
-    <ellipse cx="252" cy="878" rx="30" ry="14" fill="#7fae64"/><ellipse cx="282" cy="884" rx="22" ry="11" fill="#5b8a48"/>
-    <ellipse cx="1478" cy="906" rx="30" ry="14" fill="#7fae64"/><ellipse cx="1450" cy="912" rx="20" ry="10" fill="#5b8a48"/>
-    <ellipse cx="118" cy="530" rx="26" ry="12" fill="#7fae64"/><ellipse cx="144" cy="536" rx="18" ry="9" fill="#5b8a48"/>
-    <ellipse cx="920" cy="530" rx="26" ry="12" fill="#7fae64"/>
-    <path d="M488 762 L504 726 L520 762 Z" fill="#3f6b33"/>
-    <path d="M1520 700 L1534 668 L1548 700 Z" fill="#3f6b33"/>
-    <path d="M76 664 L90 632 L104 664 Z" fill="#3f6b33"/>
-  </g>
-
-  <!-- ══════════ trail + stations (generated) ══════════ -->
-  <g id="trail"></g>
-  <g id="stations"></g>
-
-  <!-- ══════════ bottom band: legend / stickers / compass ══════════ -->
-  <g>
-    <rect x="285" y="1028" width="330" height="118" rx="14" fill="#f2e3bd" stroke="#b08a4f" stroke-width="3"/>
-    <text x="450" y="1058" font-size="20" font-weight="900" fill="#6b4423" text-anchor="middle">🧭 테마 안내</text>
-    <rect x="305" y="1072" width="88" height="30" rx="15" fill="#e0762c"/>
-    <text x="349" y="1094" font-size="17" font-weight="800" fill="#fff" text-anchor="middle">열정 ×3</text>
-    <rect x="405" y="1072" width="88" height="30" rx="15" fill="#d4547a"/>
-    <text x="449" y="1094" font-size="17" font-weight="800" fill="#fff" text-anchor="middle">사랑 ×3</text>
-    <rect x="505" y="1072" width="88" height="30" rx="15" fill="#4a6fb5"/>
-    <text x="549" y="1094" font-size="17" font-weight="800" fill="#fff" text-anchor="middle">순종 ×3</text>
-    <text x="450" y="1132" font-size="15" font-weight="700" fill="#8a6d3c" text-anchor="middle">번호는 쉬운 코스부터! 도전 순서는 자유예요</text>
-  </g>
-  <g>
-    <rect x="655" y="1028" width="460" height="118" rx="14" fill="none" stroke="#a9805a" stroke-width="3" stroke-dasharray="10 8"/>
-    <text x="885" y="1060" font-size="19" font-weight="800" fill="#6b4423" text-anchor="middle">미션을 완수하면 스티커를 붙여요!</text>
-    <g id="stickers"></g>
-  </g>
-  <!-- compass rose -->
-  <g transform="translate(1400 1080)">
-    <circle r="64" fill="#f2e3bd" stroke="#8a6b3c" stroke-width="4"/>
-    <circle r="50" fill="none" stroke="#b08a4f" stroke-width="2"/>
-    <polygon points="0,-46 10,-10 46,0 10,10 0,46 -10,10 -46,0 -10,-10" fill="#c9803c" stroke="#8a5a2a" stroke-width="2"/>
-    <polygon points="0,-46 6,-8 0,0 -6,-8" fill="#c0392b"/>
-    <circle r="7" fill="#5f3c1a"/>
-    <text x="0" y="-72" font-size="22" font-weight="900" fill="#5f3c1a" text-anchor="middle">N</text>
-    <text x="78" y="8" font-size="20" font-weight="800" fill="#5f3c1a" text-anchor="middle">E</text>
-    <text x="0" y="92" font-size="20" font-weight="800" fill="#5f3c1a" text-anchor="middle">S</text>
-    <text x="-78" y="8" font-size="20" font-weight="800" fill="#5f3c1a" text-anchor="middle">W</text>
+    <!-- compass rose (ink) -->
+    <g transform="translate(1400 1080)" filter="url(#rough)">
+      <circle r="62" fill="none" stroke="#4a3220" stroke-width="3"/>
+      <circle r="50" fill="none" stroke="#4a3220" stroke-width="1.5"/>
+      <polygon points="0,-46 9,-9 46,0 9,9 0,46 -9,9 -46,0 -9,-9" fill="#e9d8ac" stroke="#4a3220" stroke-width="2.5"/>
+      <polygon points="0,-46 7,-8 0,0 -7,-8" fill="#8f2417"/>
+      <circle r="5" fill="#4a3220"/>
+      <text x="0" y="-72" font-size="22" font-weight="700" text-anchor="middle">N</text>
+      <text x="76" y="8" font-size="19" font-weight="700" text-anchor="middle">E</text>
+      <text x="0" y="90" font-size="19" font-weight="700" text-anchor="middle">S</text>
+      <text x="-76" y="8" font-size="19" font-weight="700" text-anchor="middle">W</text>
+    </g>
   </g>
 </svg>
 </div>
@@ -321,31 +412,33 @@
 <script>
 // ─── course data (order = difficulty, easiest first) ─────────────────────
 const THEMES = {
-  passion: { dark: '#b85a18', main: '#e0762c' },
-  love:    { dark: '#b03a60', main: '#d4547a' },
-  obey:    { dark: '#35548f', main: '#4a6fb5' },
+  passion: { seal: '#b05a20', dark: '#7a3c12' },
+  love:    { seal: '#a04456', dark: '#6d2a38' },
+  obey:    { seal: '#44598c', dark: '#2c3c62' },
 };
 const STATIONS = [
   { n: 1, code: '열정 3', theme: 'passion', name: '골든슛 챌린지',        loc: '601호',          stars: 2, x: 470,  y: 950 },
   { n: 2, code: '열정 1', theme: 'passion', name: '주사위 일심동체',      loc: '2층 정수기 앞',   stars: 3, x: 800,  y: 985 },
-  { n: 3, code: '사랑 1', theme: 'love',    name: '풍선 띄우기',          loc: '1층 로비',        stars: 3, x: 1090, y: 940 },
-  { n: 4, code: '순종 2', theme: 'obey',    name: '복음 존으로 골인!',    loc: '202호',          stars: 3, x: 1350, y: 730 },
-  { n: 5, code: '열정 2', theme: 'passion', name: '사탄핀을 쓰러뜨려라!', loc: '601호 앞',        stars: 4, x: 1010, y: 630 },
-  { n: 6, code: '사랑 2', theme: 'love',    name: '한마음 병뚜껑 슬라이드', loc: '201–202호 통로', stars: 4, x: 690,  y: 705 },
-  { n: 7, code: '사랑 3', theme: 'love',    name: '말씀 암호 해독',       loc: '1층 카페',        stars: 4, x: 330,  y: 640 },
+  { n: 3, code: '사랑 1', theme: 'love',    name: '풍선 띄우기',          loc: '1층 로비',        stars: 3, x: 1120, y: 940 },
+  { n: 4, code: '순종 2', theme: 'obey',    name: '복음 존으로 골인!',    loc: '202호',          stars: 3, x: 1330, y: 730 },
+  { n: 5, code: '열정 2', theme: 'passion', name: '사탄핀을 쓰러뜨려라!', loc: '601호 앞',        stars: 4, x: 1010, y: 615 },
+  { n: 6, code: '사랑 2', theme: 'love',    name: '한마음 병뚜껑 슬라이드', loc: '201–202호 통로', stars: 4, x: 690,  y: 715 },
+  { n: 7, code: '사랑 3', theme: 'love',    name: '말씀 암호 해독',       loc: '1층 카페',        stars: 4, x: 320,  y: 640 },
   { n: 8, code: '순종 3', theme: 'obey',    name: '신뢰의 미로',          loc: '204호',          stars: 4, x: 470,  y: 415 },
   { n: 9, code: '순종 1', theme: 'obey',    name: "'예스'로 하나되기",    loc: '205호 앞',        stars: 5, x: 880,  y: 428 },
 ];
+// fixed hand-placed tilt per note (deterministic)
+const TILT = [-2.2, 1.8, -1.4, 2.1, -1.8, 1.3, -2.4, 1.6, -1.2];
 
 // ─── winding dashed trail through start → 1..9 → finish ──────────────────
 const TRAIL_POINTS = [
-  [232, 972],                                   // camp
+  [232, 972],
   ...STATIONS.slice(0, 3).map(s => [s.x, s.y + 8]),
-  [1428, 848],                                  // right turn, up
+  [1428, 848],
   ...STATIONS.slice(3, 7).map(s => [s.x, s.y + 8]),
-  [238, 518],                                   // left turn, up
+  [238, 518],
   ...STATIONS.slice(7).map(s => [s.x, s.y + 8]),
-  [1345, 348],                                  // X marks the spot
+  [1345, 348],
 ];
 
 function catmullRomPath(pts) {
@@ -361,51 +454,46 @@ function catmullRomPath(pts) {
 }
 
 document.getElementById('trail').innerHTML =
-  `<path d="${catmullRomPath(TRAIL_POINTS)}" fill="none" stroke="#5f3c1a" stroke-width="7"
-         stroke-linecap="round" stroke-dasharray="20 17" opacity=".85"/>`;
+  `<path d="${catmullRomPath(TRAIL_POINTS)}" fill="none" stroke="#4a2f18" stroke-width="8"
+         stroke-linecap="round" stroke-dasharray="24 20" opacity=".88" filter="url(#rough)"/>`;
 
-// ─── station signposts ────────────────────────────────────────────────────
-function stationSVG(s) {
+// ─── station notes: aged paper slips pinned with a wax seal ───────────────
+function stationSVG(s, i) {
   const t = THEMES[s.theme];
   const stars = '★'.repeat(s.stars);
-  const nameW = s.name.length * 25 + 108;
-  const locW = (s.loc.length + 2) * 22 + 60;
-  const lineW = s.stars * 22 + (s.code.length + 3) * 18 + 50;
-  const W = Math.max(216, nameW, locW, lineW);
-  const pw = W - 26;                       // plaque width
-  const nameCx = s.x - W / 2 + 54 + (W - 62) / 2;
+  const nameW = s.name.length * 27 + 92;
+  const infoW = (s.loc.length + s.code.length) * 18 + s.stars * 19 + 70;
+  const W = Math.max(230, nameW, infoW);
   return `
-  <g>
-    <ellipse cx="${s.x}" cy="${s.y + 6}" rx="26" ry="8" fill="#5f3c1a" opacity=".18"/>
-    <line x1="${s.x}" y1="${s.y}" x2="${s.x}" y2="${s.y - 184}" stroke="#6d4426" stroke-width="7" stroke-linecap="round"/>
-    <path d="M ${s.x} ${s.y - 192} l 36 11 l -36 11 z" fill="${t.main}" stroke="${t.dark}" stroke-width="2"/>
-    <rect x="${s.x - W / 2}" y="${s.y - 162}" width="${W}" height="48" rx="10"
-          fill="${t.main}" stroke="${t.dark}" stroke-width="3"/>
-    <circle cx="${s.x - W / 2 + 30}" cy="${s.y - 138}" r="21" fill="#fff" stroke="${t.dark}" stroke-width="3"/>
-    <text x="${s.x - W / 2 + 30}" y="${s.y - 129}" font-size="26" font-weight="900"
-          fill="${t.dark}" text-anchor="middle">${s.n}</text>
-    <text x="${nameCx}" y="${s.y - 128}" font-size="25" font-weight="800"
-          fill="#fff" text-anchor="middle">${s.name}</text>
-    <line x1="${s.x - 34}" y1="${s.y - 114}" x2="${s.x - 34}" y2="${s.y - 106}" stroke="${t.dark}" stroke-width="3"/>
-    <line x1="${s.x + 34}" y1="${s.y - 114}" x2="${s.x + 34}" y2="${s.y - 106}" stroke="${t.dark}" stroke-width="3"/>
-    <rect x="${s.x - pw / 2}" y="${s.y - 106}" width="${pw}" height="60" rx="9"
-          fill="#fdf4dc" stroke="#a9805a" stroke-width="3"/>
-    <text x="${s.x}" y="${s.y - 80}" font-size="22" font-weight="800"
-          fill="#5a4632" text-anchor="middle">📍 ${s.loc}</text>
-    <text x="${s.x}" y="${s.y - 54}" font-size="19" text-anchor="middle">
-      <tspan fill="#e0762c" font-weight="800">${stars}</tspan>
-      <tspan fill="${t.dark}" font-weight="800">&#160; ${s.code} 코스</tspan>
+  <g transform="rotate(${TILT[i]} ${s.x} ${s.y})">
+    <line x1="${s.x}" y1="${s.y - 26}" x2="${s.x}" y2="${s.y - 6}" stroke="#4a3220" stroke-width="2.5" filter="url(#rough)"/>
+    <rect x="${s.x - W / 2}" y="${s.y - 122}" width="${W}" height="96"
+          fill="#f2e3b6" fill-opacity=".94" stroke="#4a3220" stroke-width="3.5" filter="url(#rough)"/>
+    <rect x="${s.x - W / 2 + 7}" y="${s.y - 115}" width="${W - 14}" height="82"
+          fill="none" stroke="#4a3220" stroke-width="1.2" opacity=".5" filter="url(#rough)"/>
+    <!-- wax seal with number -->
+    <circle cx="${s.x - W / 2 + 6}" cy="${s.y - 116}" r="23" fill="${t.seal}" stroke="${t.dark}" stroke-width="3" filter="url(#rough)"/>
+    <circle cx="${s.x - W / 2 + 6}" cy="${s.y - 116}" r="16" fill="none" stroke="#f2e3b6" stroke-width="1.6" opacity=".8" filter="url(#rough)"/>
+    <text x="${s.x - W / 2 + 6}" y="${s.y - 106}" font-size="27" font-weight="700"
+          fill="#f6ecca" text-anchor="middle">${s.n}</text>
+    <text x="${s.x + 10}" y="${s.y - 84}" font-size="27" font-weight="700"
+          fill="#3f2a14" text-anchor="middle">${s.name}</text>
+    <text x="${s.x}" y="${s.y - 46}" font-size="19" text-anchor="middle">
+      <tspan fill="#5a3c20" font-weight="700">⚑ ${s.loc}</tspan>
+      <tspan fill="#9c6b1e" font-weight="700">&#160;&#160;${stars}</tspan>
+      <tspan fill="${t.seal}" font-weight="700">&#160;&#160;${s.code}</tspan>
     </text>
-    <circle cx="${s.x}" cy="${s.y}" r="8" fill="${t.main}" stroke="#fff" stroke-width="3"/>
+    <circle cx="${s.x}" cy="${s.y}" r="10" fill="#f2e3b6" stroke="#4a3220" stroke-width="2.5" filter="url(#rough)"/>
+    <circle cx="${s.x}" cy="${s.y}" r="4.5" fill="${t.seal}"/>
   </g>`;
 }
 document.getElementById('stations').innerHTML = STATIONS.map(stationSVG).join('');
 
-// ─── sticker circles 1–9 ─────────────────────────────────────────────────
+// ─── sticker circles 1–9 (hand-drawn) ────────────────────────────────────
 document.getElementById('stickers').innerHTML = STATIONS.map((s, i) => {
   const cx = 703 + i * 45.5, cy = 1102;
-  return `<circle cx="${cx}" cy="${cy}" r="19" fill="none" stroke="#a9805a" stroke-width="2.5" stroke-dasharray="5 5"/>
-          <text x="${cx}" y="${cy + 7}" font-size="18" font-weight="700" fill="#b08a4f" text-anchor="middle">${s.n}</text>`;
+  return `<circle cx="${cx}" cy="${cy}" r="19" fill="none" stroke="#4a3220" stroke-width="2.2" filter="url(#rough)"/>
+          <text class="t-pen" x="${cx}" y="${cy + 8}" font-size="22" fill="#6b4a26" text-anchor="middle">${s.n}</text>`;
 }).join('');
 </script>
 </body>
