@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>말씀 암호 해독 · 인쇄용 준비물 세트</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif;
+    background: #f2efe2;
+    color: #222;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 20px 16px 60px; }
+
+  header { text-align: center; padding: 28px 12px 18px; }
+  header .camp {
+    display: inline-block; background: #d4547a; color: #fff;
+    font-size: 13px; font-weight: 700; padding: 5px 16px;
+    border-radius: 20px; letter-spacing: 1px;
+  }
+  header h1 { font-size: 28px; margin: 14px 0 6px; color: #b03a60; }
+  header p.sub { font-size: 14px; color: #6f6a50; }
+  .print-btn {
+    margin-top: 14px; padding: 10px 22px;
+    border: none; border-radius: 24px; cursor: pointer;
+    background: #d4547a; color: #fff;
+    font-size: 15px; font-weight: 700;
+    font-family: inherit;
+    box-shadow: 0 3px 0 rgba(0,0,0,.12);
+    transition: transform .08s;
+  }
+  .print-btn:active { transform: translateY(2px); box-shadow: none; }
+
+  .sheet {
+    background: #fff; border: 1px solid #e3c9d2; border-radius: 12px;
+    padding: 26px 24px; margin: 22px 0;
+    box-shadow: 0 4px 14px rgba(60,50,20,.08);
+  }
+  .sheet > h2 {
+    font-size: 20px; color: #b03a60; margin-bottom: 4px;
+  }
+  .sheet > p.desc { font-size: 13px; color: #8a8468; margin-bottom: 16px; }
+
+  /* ---------- 1. 진행자 안내 ---------- */
+  .guide table { width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 14px; }
+  .guide th, .guide td { border: 1px solid #e3c9d2; padding: 8px 12px; text-align: left; vertical-align: top; }
+  .guide th { background: #fdeef3; width: 110px; text-align: center; white-space: nowrap; color: #b03a60; }
+  .guide ol { margin-left: 20px; }
+  .guide ol li { margin-bottom: 4px; }
+  .answer {
+    border: 2px solid #d4547a; border-radius: 10px;
+    background: #fdeef3; padding: 14px 16px; margin-top: 6px;
+  }
+  .answer h3 { font-size: 15px; color: #b03a60; margin-bottom: 6px; }
+  .answer .verse { font-size: 19px; font-weight: 800; color: #222; }
+  .answer .ref { font-size: 13px; color: #8a8468; }
+
+  /* ---------- 2. 암호판 ---------- */
+  .cipher-board { border: 4px solid #b03a60; border-radius: 16px; padding: 18px; background: #fffdf6; }
+  .cipher-board h3 {
+    text-align: center; font-size: 26px; color: #b03a60; margin-bottom: 4px;
+  }
+  .cipher-board p.hint { text-align: center; font-size: 14px; color: #8a8468; margin-bottom: 14px; }
+  .cipher-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+  }
+  .cipher-cell {
+    border: 2px solid #e0a86e; border-radius: 10px; background: #fff;
+    text-align: center; padding: 8px 4px 10px;
+  }
+  .cipher-cell .num {
+    display: inline-block; min-width: 34px; padding: 1px 8px;
+    background: #4a6fb5; color: #fff; border-radius: 14px;
+    font-size: 17px; font-weight: 800;
+  }
+  .cipher-cell .syl { display: block; font-size: 34px; font-weight: 800; color: #222; margin-top: 2px; }
+
+  /* ---------- 3. 암호문 ---------- */
+  .code-sheet { border: 4px dashed #4a6fb5; border-radius: 16px; padding: 18px 20px; background: #f6f9ff; }
+  .code-sheet h3 { text-align: center; font-size: 24px; color: #35548f; margin-bottom: 4px; }
+  .code-sheet p.hint { text-align: center; font-size: 14px; color: #6f8bab; margin-bottom: 14px; }
+  .code-row {
+    display: flex; align-items: center; gap: 12px;
+    border-bottom: 1px dashed #bcd7f2; padding: 9px 0;
+  }
+  .code-row:last-child { border-bottom: none; }
+  .code-row .ord {
+    flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%;
+    background: #35548f; color: #fff; font-weight: 800; font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .code-row .nums { flex: 0 0 auto; display: flex; gap: 6px; }
+  .code-row .nums span {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 42px; height: 38px; padding: 0 8px;
+    border: 2px solid #4a6fb5; border-radius: 8px; background: #fff;
+    font-size: 20px; font-weight: 800; color: #35548f;
+  }
+  .code-row .eq { color: #8a8468; font-weight: 800; }
+  .code-row .blanks { display: flex; gap: 6px; }
+  .code-row .blanks span {
+    width: 42px; height: 42px; border: 2px solid #e0a86e; border-radius: 8px;
+    background: #fffdf6;
+  }
+
+  /* ---------- 4. 낱말 카드 ---------- */
+  .cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .word-card {
+    border: 3px dashed #b03a60; border-radius: 14px;
+    background: #fff; position: relative;
+    min-height: 210px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .word-card .inner {
+    width: 100%; height: 100%; min-height: 170px;
+    border: 3px solid #f9c8d8; border-radius: 10px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 6px;
+  }
+  .word-card .word { font-size: 52px; font-weight: 900; color: #222; letter-spacing: 2px; }
+  .word-card .deco { font-size: 16px; }
+  .word-card .cut { position: absolute; top: -12px; left: 14px; font-size: 16px; background: #fff; padding: 0 4px; }
+
+  /* ---------- 5. 힌트 카드 ---------- */
+  .hint-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .hint-card {
+    border: 3px dashed #8a6d10; border-radius: 14px; background: #fdf3d0;
+    min-height: 130px; padding: 18px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; position: relative;
+  }
+  .hint-card .tag { font-size: 14px; font-weight: 800; color: #8a6d10; margin-bottom: 6px; }
+  .hint-card .txt { font-size: 18px; font-weight: 700; color: #5c4a0a; line-height: 1.5; }
+  .hint-card .cut { position: absolute; top: -12px; left: 14px; font-size: 16px; background: #fdf3d0; padding: 0 4px; }
+
+  footer { text-align: center; font-size: 12px; color: #8a8468; margin-top: 30px; }
+
+  /* ---------- 인쇄: A4 세로, 시트 1장 = 1페이지 ---------- */
+  @media print {
+    @page { size: A4 portrait; margin: 10mm; }
+    body { background: #fff; }
+    .wrap { max-width: 100%; padding: 0; }
+    header, footer, .print-btn, .screen-only { display: none; }
+    .sheet {
+      page-break-after: always;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      box-shadow: none; border: none;
+      border-radius: 0; margin: 0; padding: 0;
+    }
+    .sheet:last-of-type { page-break-after: auto; }
+    .sheet > h2 { font-size: 22px; }
+    .cipher-cell .syl { font-size: 40px; }
+    .word-card { min-height: 62mm; }
+    .word-card .inner { min-height: 50mm; }
+    .word-card .word { font-size: 60px; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  @media (max-width: 560px) {
+    header h1 { font-size: 22px; }
+    .cipher-grid { grid-template-columns: repeat(2, 1fr); }
+    .cards-grid, .hint-grid { grid-template-columns: 1fr; }
+    .word-card .word { font-size: 40px; }
+    .code-row { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="camp">2026 여름캠프 · 미션 원정대</span>
+  <h1>🔍 말씀 암호 해독 — 인쇄용 준비물 세트</h1>
+  <p class="sub">‘사랑’ 코스 3 (1층 카페) 운영에 필요한 <b>암호판 · 암호문 · 낱말 카드 · 힌트 카드</b>를 한 번에 인쇄하세요.<br>가위선(✂)을 따라 잘라서 사용합니다.</p>
+  <button class="print-btn" onclick="window.print()">🖨️ 인쇄하기 — 시트 1장씩 A4 세로로 나와요</button>
+  <p class="sub" style="margin-top:10px"><a href="courses.html" style="color:#b03a60;font-weight:800">🗺️ 전체 코스 안내로 돌아가기 →</a></p>
+</header>
+
+<!-- ================= 시트 1. 진행자 안내 + 정답지 ================= -->
+<section class="sheet guide">
+  <h2>📋 시트 1 — 진행자 안내 · 정답지 (운영자 보관용)</h2>
+  <p class="desc">이 시트는 진행자만 봅니다. 아이들에게 보여 주지 마세요!</p>
+  <table>
+    <tr>
+      <th>준비</th>
+      <td>
+        <ol>
+          <li><b>낱말 카드 8장</b>(시트 4·5)을 잘라 방 곳곳에 숨긴다. (커튼 뒤, 의자 밑 — 저학년 눈높이!)</li>
+          <li><b>암호판</b>(시트 2)은 테이블 위에 펼쳐 둔다.</li>
+          <li><b>암호문</b>(시트 3)은 고학년 팀원에게 건넨다. (연필 함께 준비)</li>
+          <li><b>힌트 카드</b>(시트 6)는 잘라 두었다가 팀이 막힐 때 하나씩 준다.</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>진행</th>
+      <td>
+        <ol>
+          <li>저학년은 숨겨진 <b>낱말 카드</b>를 찾아온다.</li>
+          <li>고학년은 <b>암호판(숫자→글자)</b>으로 암호문을 풀어 낱말의 순서를 알아낸다.</li>
+          <li>카드를 올바른 순서로 놓아 <b>성경 말씀을 완성</b>하면 성공!</li>
+          <li>완성한 말씀을 팀 모두가 큰 소리로 함께 낭독한다. 📖</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>성공 보상</th>
+      <td>지구젤리 3개 (+ 어린이 안내 기준: 열쇠 1개 + 말씀 퍼즐 조각)</td>
+    </tr>
+  </table>
+  <div class="answer">
+    <h3>🔐 정답 (낱말 카드 순서)</h3>
+    <p class="verse">내가 → 너희를 → 사랑한 → 것 → 같이 → 너희도 → 서로 → 사랑하라</p>
+    <p class="ref">요한복음 13장 34절 — “내가 너희를 사랑한 것 같이 너희도 서로 사랑하라”</p>
+    <p style="font-size:13px;margin-top:8px;color:#5c4a0a">
+      암호 풀이: ① 3·14=내가 &nbsp;② 7·1·10=너희를 &nbsp;③ 5·12·8=사랑한 &nbsp;④ 2=것<br>
+      ⑤ 15·6=같이 &nbsp;⑥ 7·1·11=너희도 &nbsp;⑦ 16·4=서로 &nbsp;⑧ 5·12·9·13=사랑하라
+      &nbsp;(17~20번은 함정 글자 — 암호문에 안 나와요)
+    </p>
+  </div>
+</section>
+
+<!-- ================= 시트 2. 암호판 ================= -->
+<section class="sheet">
+  <h2>🔑 시트 2 — 암호판 (테이블에 펼쳐 두기)</h2>
+  <p class="desc">숫자마다 글자가 하나씩! 암호문의 숫자를 글자로 바꾸면 낱말이 돼요.</p>
+  <div class="cipher-board">
+    <h3>🔑 비밀 암호판</h3>
+    <p class="hint">숫자 → 글자로 바꿔 보세요! (안 쓰이는 함정 숫자도 있어요 🙊)</p>
+    <div class="cipher-grid">
+      <div class="cipher-cell"><span class="num">1</span><span class="syl">희</span></div>
+      <div class="cipher-cell"><span class="num">2</span><span class="syl">것</span></div>
+      <div class="cipher-cell"><span class="num">3</span><span class="syl">내</span></div>
+      <div class="cipher-cell"><span class="num">4</span><span class="syl">로</span></div>
+      <div class="cipher-cell"><span class="num">5</span><span class="syl">사</span></div>
+      <div class="cipher-cell"><span class="num">6</span><span class="syl">이</span></div>
+      <div class="cipher-cell"><span class="num">7</span><span class="syl">너</span></div>
+      <div class="cipher-cell"><span class="num">8</span><span class="syl">한</span></div>
+      <div class="cipher-cell"><span class="num">9</span><span class="syl">하</span></div>
+      <div class="cipher-cell"><span class="num">10</span><span class="syl">를</span></div>
+      <div class="cipher-cell"><span class="num">11</span><span class="syl">도</span></div>
+      <div class="cipher-cell"><span class="num">12</span><span class="syl">랑</span></div>
+      <div class="cipher-cell"><span class="num">13</span><span class="syl">라</span></div>
+      <div class="cipher-cell"><span class="num">14</span><span class="syl">가</span></div>
+      <div class="cipher-cell"><span class="num">15</span><span class="syl">같</span></div>
+      <div class="cipher-cell"><span class="num">16</span><span class="syl">서</span></div>
+      <div class="cipher-cell"><span class="num">17</span><span class="syl">믿</span></div>
+      <div class="cipher-cell"><span class="num">18</span><span class="syl">음</span></div>
+      <div class="cipher-cell"><span class="num">19</span><span class="syl">기</span></div>
+      <div class="cipher-cell"><span class="num">20</span><span class="syl">쁨</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 시트 3. 암호문 ================= -->
+<section class="sheet">
+  <h2>🕵️ 시트 3 — 암호문 (고학년 팀원에게 주기)</h2>
+  <p class="desc">암호판으로 숫자를 글자로 바꿔서 빈칸에 쓰세요. ①→⑧ 순서가 낱말 카드의 순서예요!</p>
+  <div class="code-sheet">
+    <h3>🕵️ 비밀 암호문</h3>
+    <p class="hint">숫자를 글자로 바꾸면 낱말이 완성! 낱말을 순서대로 놓으면 말씀이 완성!</p>
+    <div class="code-row">
+      <span class="ord">①</span>
+      <span class="nums"><span>3</span><span>14</span></span>
+      <span class="eq">=</span>
+      <span class="blanks"><span></span><span></span></span>
+    </div>
+    <div class="code-row">
+      <span class="ord">②</span>
+      <span class="nums"><span>7</span><span>1</span><span>10</span></span>
+      <span class="eq">=</span>
+      <span class="blanks"><span></span><span></span><span></span></span>
+    </div>
+    <div class="code-row">
+      <span class="ord">③</span>
+      <span class="nums"><span>5</span><span>12</span><span>8</span></span>
+      <span class="eq">=</span>
+      <span class="blanks"><span></span><span></span><span></span></span>
+    </div>
+    <div class="code-row">
+      <span class="ord">④</span>
+      <span class="nums"><span>2</span></span>
+      <span class="eq">=</span>
+      <span class="blanks"><span></span></span>
+    </div>
+    <div class="code-row">
+      <span class="ord">⑤</span>
+      <span class="nums"><span>15</span><span>6</span></span>
+      <span class="eq">=</span>
+      <span class="blanks"><span></span><span></span></span>
+    </div>
+    <div class="code-row">
+      <span class="ord">⑥</span>
+      <span class="nums"><span>7</span><span>1</span><span>11</span></span>
+      <span class="eq">=</span>
+      <span class="blanks"><span></span><span></span><span></span></span>
+    </div>
+    <div class="code-row">
+      <span class="ord">⑦</span>
+      <span class="nums"><span>16</span><span>4</span></span>
+      <span class="eq">=</span>
+      <span class="blanks"><span></span><span></span></span>
+    </div>
+    <div class="code-row">
+      <span class="ord">⑧</span>
+      <span class="nums"><span>5</span><span>12</span><span>9</span><span>13</span></span>
+      <span class="eq">=</span>
+      <span class="blanks"><span></span><span></span><span></span><span></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 시트 4. 낱말 카드 1~4 ================= -->
+<section class="sheet">
+  <h2>💌 시트 4 — 낱말 카드 (1/2) · 잘라서 숨기기</h2>
+  <p class="desc">점선을 따라 자른 뒤 방 곳곳에 숨겨요. 카드에는 순서 표시가 없어요 — 순서는 암호문으로!</p>
+  <div class="cards-grid">
+    <div class="word-card"><span class="cut">✂</span><div class="inner"><span class="deco">💗</span><span class="word">내가</span></div></div>
+    <div class="word-card"><span class="cut">✂</span><div class="inner"><span class="deco">💗</span><span class="word">너희를</span></div></div>
+    <div class="word-card"><span class="cut">✂</span><div class="inner"><span class="deco">💗</span><span class="word">사랑한</span></div></div>
+    <div class="word-card"><span class="cut">✂</span><div class="inner"><span class="deco">💗</span><span class="word">것</span></div></div>
+  </div>
+</section>
+
+<!-- ================= 시트 5. 낱말 카드 5~8 ================= -->
+<section class="sheet">
+  <h2>💌 시트 5 — 낱말 카드 (2/2) · 잘라서 숨기기</h2>
+  <p class="desc">점선을 따라 자른 뒤 방 곳곳에 숨겨요. ‘너희를/너희도’가 헷갈리게 생겼어요 — 그게 포인트!</p>
+  <div class="cards-grid">
+    <div class="word-card"><span class="cut">✂</span><div class="inner"><span class="deco">💗</span><span class="word">같이</span></div></div>
+    <div class="word-card"><span class="cut">✂</span><div class="inner"><span class="deco">💗</span><span class="word">너희도</span></div></div>
+    <div class="word-card"><span class="cut">✂</span><div class="inner"><span class="deco">💗</span><span class="word">서로</span></div></div>
+    <div class="word-card"><span class="cut">✂</span><div class="inner"><span class="deco">💗</span><span class="word">사랑하라</span></div></div>
+  </div>
+</section>
+
+<!-- ================= 시트 6. 힌트 카드 ================= -->
+<section class="sheet">
+  <h2>💡 시트 6 — 힌트 카드 (막힐 때 하나씩)</h2>
+  <p class="desc">팀이 오래 막히면 진행자가 순서대로 한 장씩 건네 주세요.</p>
+  <div class="hint-grid">
+    <div class="hint-card"><span class="cut">✂</span><span class="tag">힌트 1</span><span class="txt">낱말 카드는 모두 <b>8장</b>이에요.<br>다 찾았는지 세어 보세요!</span></div>
+    <div class="hint-card"><span class="cut">✂</span><span class="tag">힌트 2</span><span class="txt">암호판의 <b>17~20번</b> 글자는<br>함정! 암호문에 안 나와요.</span></div>
+    <div class="hint-card"><span class="cut">✂</span><span class="tag">힌트 3</span><span class="txt">‘너희를’과 ‘너희도’는<br>다른 카드예요. 끝 글자를 잘 보세요!</span></div>
+    <div class="hint-card"><span class="cut">✂</span><span class="tag">힌트 4</span><span class="txt">완성될 말씀은<br><b>요한복음 13장 34절</b>이에요. 📖</span></div>
+  </div>
+</section>
+
+<footer>2026 여름캠프 · 미션 원정대 — ‘사랑’ 코스 3 〈말씀 암호 해독〉 준비물</footer>
+
+</div>
+</body>
+</html>
