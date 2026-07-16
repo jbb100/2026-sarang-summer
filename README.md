@@ -10,6 +10,10 @@
 
 **🧭 미션 지도(포스터): https://jbb100.github.io/2026-sarang-summer/mission-map.html** — 9개 코스의 이름·장소·난이도를 보물지도 스타일 한 장에, A4 가로 인쇄 지원 (`mission-map.html`)
 
+**🔍 말씀 암호 해독 준비물(인쇄용): https://jbb100.github.io/2026-sarang-summer/cipher-cards.html** — ‘사랑’ 코스 3에 필요한 암호판·암호문·낱말 카드 8장·힌트 카드를 A4 세로로 시트별 인쇄, 말씀은 개회예배 암송구절 사도행전 1:8 (`cipher-cards.html`)
+
+**📖 암송구절 말씀카드(인쇄용): https://jbb100.github.io/2026-sarang-summer/verse-cards.html** — 주제 성경구절(마 28:19–20) + 예배별 암송구절 4개를 A4 세로 카드로 인쇄, 말씀흐름 요약표 포함 (`verse-cards.html`)
+
 사진은 서버로 전송되지 않고 전부 기기 안에서만 처리됩니다.
 
 ## 현장에서 쓰는 법
