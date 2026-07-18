@@ -133,7 +133,7 @@
     <button class="btn btn-save" id="btnSave" disabled>💾 PNG로 저장</button>
     <button class="btn btn-ghost" id="btnReset">전체 초기화</button>
   </div>
-  <button class="btn btn-save" id="btnSavePrint" disabled>🖨️ 4×6 인화용 저장 (2장 나란히)</button>
+  <button class="btn btn-save" id="btnSavePrint" disabled>🖨️ 4×6 인화용 저장 (4컷 크게)</button>
 
   <div id="help">
     <b>사용법</b><br>
@@ -234,32 +234,31 @@ function photoGeometry(p, slot) {
   return { dx, dy, dw, dh };
 }
 
+// 사진 한 장을 cover-fit + 팬/줌/회전 상태대로 slot 영역에 그림 (radius > 0이면 모서리 라운드 클리핑)
+function drawPhoto(c, p, slot, radius) {
+  const g = photoGeometry(p, slot);
+  c.save();
+  if (radius) roundRectPath(c, slot.x, slot.y, slot.w, slot.h, radius);
+  else { c.beginPath(); c.rect(slot.x, slot.y, slot.w, slot.h); }
+  c.clip();
+  if (p.rot === 0) {
+    c.drawImage(p.bitmap, g.dx, g.dy, g.dw, g.dh);
+  } else {
+    c.translate(g.dx + g.dw / 2, g.dy + g.dh / 2);
+    c.rotate(p.rot * Math.PI / 2);
+    const rotated = p.rot % 2 === 1;
+    const w = rotated ? g.dh : g.dw;
+    const h = rotated ? g.dw : g.dh;
+    c.drawImage(p.bitmap, -w / 2, -h / 2, w, h);
+  }
+  c.restore();
+}
+
 // 템플릿+사진+오버레이를 주어진 컨텍스트에 그림 (TPL_W x TPL_H 좌표계 기준)
 function drawScene(c) {
   c.clearRect(0, 0, TPL_W, TPL_H);
   c.drawImage(templateImg, 0, 0, TPL_W, TPL_H);
-
-  SLOTS.forEach((slot, i) => {
-    const p = photos[i];
-    if (!p) return;
-    const g = photoGeometry(p, slot);
-    c.save();
-    c.beginPath();
-    c.rect(slot.x, slot.y, slot.w, slot.h);
-    c.clip();
-    if (p.rot === 0) {
-      c.drawImage(p.bitmap, g.dx, g.dy, g.dw, g.dh);
-    } else {
-      c.translate(g.dx + g.dw / 2, g.dy + g.dh / 2);
-      c.rotate(p.rot * Math.PI / 2);
-      const rotated = p.rot % 2 === 1;
-      const w = rotated ? g.dh : g.dw;
-      const h = rotated ? g.dw : g.dh;
-      c.drawImage(p.bitmap, -w / 2, -h / 2, w, h);
-    }
-    c.restore();
-  });
-
+  SLOTS.forEach((slot, i) => { if (photos[i]) drawPhoto(c, photos[i], slot, 0); });
   c.drawImage(overlayImg, 0, 0, TPL_W, TPL_H);
 }
 
@@ -275,29 +274,61 @@ function buildExportCanvas() {
   return out;
 }
 
-// 4x6인치 인화지용: 2x6 스트립 2장을 나란히 배치 (인쇄 후 반으로 자르면 2장)
-// 2배율 = 2896x4344px, 4x6인치 기준 약 724dpi, iOS 캔버스 픽셀 한도 내
+// 4x6인치 인화지용(가로 6x4): 사진 4장을 2x2 그리드로 크게 배치하고
+// 오른쪽 패널에 템플릿의 로고·타이틀 아트를 세로로 얹음
+// 2배율 = 4344x2896px, 6x4인치 기준 약 724dpi, iOS 캔버스 픽셀 한도 내
 const PRINT_SCALE = 2;
+const PRINT_W = 2172, PRINT_H = 1448;      // 1x 기준 362px/inch
+// 템플릿은 흰 바탕에 크림 질감이 가장자리로 갈수록 페이드되는 디자인이라
+// 흰 배경이어야 패널의 템플릿 크롭 경계가 자연스럽게 이어짐
+const PRINT_BG = '#fdfdfd';
+const PRINT_CELLS = [
+  { x: 32,  y: 32,  w: 701, h: 683 },
+  { x: 751, y: 32,  w: 701, h: 683 },
+  { x: 32,  y: 733, w: 701, h: 683 },
+  { x: 751, y: 733, w: 701, h: 683 },
+];
+
+function roundRectPath(c, x, y, w, h, r) {
+  c.beginPath();
+  c.moveTo(x + r, y);
+  c.arcTo(x + w, y, x + w, y + h, r);
+  c.arcTo(x + w, y + h, x, y + h, r);
+  c.arcTo(x, y + h, x, y, r);
+  c.arcTo(x, y, x + w, y, r);
+  c.closePath();
+}
+
 function buildPrintCanvas() {
   const out = document.createElement('canvas');
-  out.width = TPL_W * 2 * PRINT_SCALE;
-  out.height = TPL_H * PRINT_SCALE;
+  out.width = PRINT_W * PRINT_SCALE;
+  out.height = PRINT_H * PRINT_SCALE;
   const c = out.getContext('2d');
   c.imageSmoothingQuality = 'high';
   c.scale(PRINT_SCALE, PRINT_SCALE);
-  drawScene(c);
-  c.save();
-  c.translate(TPL_W, 0);
-  drawScene(c);
-  c.restore();
-  // 가운데 절취선 (연한 점선)
-  c.strokeStyle = 'rgba(0,0,0,.2)';
-  c.lineWidth = 1;
-  c.setLineDash([6, 6]);
-  c.beginPath();
-  c.moveTo(TPL_W, 0);
-  c.lineTo(TPL_W, TPL_H);
-  c.stroke();
+  c.fillStyle = PRINT_BG;
+  c.fillRect(0, 0, PRINT_W, PRINT_H);
+
+  PRINT_CELLS.forEach((cell, i) => {
+    c.save();
+    c.shadowColor = 'rgba(90,70,40,.28)';
+    c.shadowBlur = 12;
+    c.shadowOffsetY = 4;
+    c.fillStyle = '#fff';
+    roundRectPath(c, cell.x - 8, cell.y - 8, cell.w + 16, cell.h + 16, 22);
+    c.fill();
+    c.restore();
+    if (photos[i]) drawPhoto(c, photos[i], cell, 14);
+  });
+
+  // 오른쪽 패널: 템플릿 상단(로고)과 하단(타이틀·캠프 아트) 크롭
+  const panelX = 1470, panelW = PRINT_W - panelX - 32;
+  const headH = 232, footY = 1548, footH = TPL_H - footY;
+  const w = 660;
+  const hHead = headH * w / TPL_W;
+  const hFoot = footH * w / TPL_W;
+  c.drawImage(templateImg, 0, 0, TPL_W, headH, panelX + (panelW - w) / 2, 40, w, hHead);
+  c.drawImage(templateImg, 0, footY, TPL_W, footH, panelX + (panelW - w) / 2, PRINT_H - 36 - hFoot, w, hFoot);
   return out;
 }
 
