@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>암송구절 말씀카드 · 인쇄용</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif;
+    background: #f2efe2;
+    color: #222;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 20px 16px 60px; }
+
+  header { text-align: center; padding: 28px 12px 18px; }
+  header .camp {
+    display: inline-block; background: #3e6b35; color: #fff;
+    font-size: 13px; font-weight: 700; padding: 5px 16px;
+    border-radius: 20px; letter-spacing: 1px;
+  }
+  header h1 { font-size: 28px; margin: 14px 0 6px; color: #3e6b35; }
+  header p.sub { font-size: 14px; color: #6f6a50; }
+  .print-btn {
+    margin-top: 14px; padding: 10px 22px;
+    border: none; border-radius: 24px; cursor: pointer;
+    background: #4e8a3f; color: #fff;
+    font-size: 15px; font-weight: 700;
+    font-family: inherit;
+    box-shadow: 0 3px 0 rgba(0,0,0,.12);
+    transition: transform .08s;
+  }
+  .print-btn:active { transform: translateY(2px); box-shadow: none; }
+
+  /* ---------- 카드 ---------- */
+  .page { margin: 22px 0; }
+  .verse-card {
+    border: 3px dashed #9a9478; border-radius: 16px;
+    background: #fff; position: relative;
+    margin-bottom: 18px; overflow: hidden;
+    box-shadow: 0 4px 14px rgba(60,50,20,.08);
+  }
+  .verse-card .cut { position: absolute; top: -2px; left: 14px; font-size: 16px; z-index: 2; }
+  .verse-card .band {
+    padding: 12px 20px 10px;
+    color: #fff; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px;
+  }
+  .verse-card .band .title { font-size: 22px; font-weight: 900; }
+  .verse-card .band .when { font-size: 13px; font-weight: 700; opacity: .92; }
+  .verse-card .band .who {
+    margin-left: auto; font-size: 13px; font-weight: 800;
+    background: rgba(255,255,255,.25); padding: 2px 12px; border-radius: 14px;
+  }
+  .verse-card .body { padding: 22px 26px 18px; text-align: center; }
+  .verse-card .txt {
+    font-size: 24px; font-weight: 800; line-height: 1.75;
+    word-break: keep-all;
+  }
+  .verse-card .ref {
+    display: inline-block; margin-top: 14px;
+    font-size: 16px; font-weight: 900; color: #fff;
+    padding: 4px 18px; border-radius: 18px;
+  }
+  .verse-card .note { font-size: 12px; color: #8a8468; margin-top: 8px; }
+
+  /* 테마 색 */
+  .theme  .band, .theme  .ref { background: #3e6b35; }
+  .passion .band, .passion .ref { background: #e0762c; }
+  .love    .band, .love    .ref { background: #d4547a; }
+  .spirit  .band, .spirit  .ref { background: #7b5ea7; }
+  .obey    .band, .obey    .ref { background: #4a6fb5; }
+  .theme   { border-color: #3e6b35; }
+  .passion { border-color: #e0762c; }
+  .love    { border-color: #d4547a; }
+  .spirit  { border-color: #7b5ea7; }
+  .obey    { border-color: #4a6fb5; }
+
+  /* ---------- 말씀흐름 한눈에 ---------- */
+  .flow {
+    background: #fffdf3; border: 2px solid #d8d2b8; border-radius: 16px;
+    padding: 18px 20px; margin-bottom: 18px;
+  }
+  .flow h2 { font-size: 17px; color: #3e6b35; margin-bottom: 10px; }
+  .flow table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .flow th, .flow td { border: 1px solid #d8d2b8; padding: 6px 8px; text-align: center; }
+  .flow th { background: #e7efdd; }
+  .flow td.t { font-weight: 800; }
+
+  footer { text-align: center; font-size: 12px; color: #8a8468; margin-top: 30px; }
+
+  /* ---------- 인쇄: A4 세로, 카드 2장 = 1페이지 ---------- */
+  @media print {
+    @page { size: A4 portrait; margin: 10mm; }
+    body { background: #fff; }
+    .wrap { max-width: 100%; padding: 0; }
+    header, footer, .print-btn { display: none; }
+    .page { page-break-after: always; margin: 0; }
+    .page:last-of-type { page-break-after: auto; }
+    .verse-card {
+      page-break-inside: avoid; break-inside: avoid;
+      box-shadow: none;
+      min-height: 128mm;
+      display: flex; flex-direction: column;
+    }
+    .verse-card .body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .verse-card .txt { font-size: 27px; }
+    .flow { page-break-inside: avoid; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  @media (max-width: 560px) {
+    header h1 { font-size: 22px; }
+    .verse-card .txt { font-size: 18px; }
+    .verse-card .band .title { font-size: 18px; }
+    .verse-card .band .who { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="camp">2026 여름캠프 · 미션 원정대</span>
+  <h1>📖 암송구절 말씀카드</h1>
+  <p class="sub">말씀흐름표의 <b>주제 성경구절 + 예배별 암송구절 4개</b>를 카드로 인쇄해요. (개역개정)<br>A4 세로 한 장에 카드 2장 — 잘라서 벽에 붙이거나 소그룹에서 사용하세요.</p>
+  <button class="print-btn" onclick="window.print()">🖨️ 인쇄하기 — A4 세로, 총 3장</button>
+  <p class="sub" style="margin-top:10px">
+    <a href="courses.html" style="color:#4e8a3f;font-weight:800">🗺️ 전체 코스 안내 →</a> &nbsp;·&nbsp;
+    <a href="cipher-cards.html" style="color:#b03a60;font-weight:800">🔍 말씀 암호 해독 준비물 →</a>
+  </p>
+</header>
+
+<!-- ================= 1페이지: 주제구절 + 열정 ================= -->
+<div class="page">
+  <div class="verse-card theme">
+    <span class="cut">✂</span>
+    <div class="band">
+      <span class="title">🌍 주제 성경구절</span>
+      <span class="when">2026 여름캠프 · 미션 원정대</span>
+    </div>
+    <div class="body">
+      <p class="txt">그러므로 너희는 가서 모든 민족을 제자로 삼아 아버지와 아들과 성령의 이름으로 세례를 베풀고 내가 너희에게 분부한 모든 것을 가르쳐 지키게 하라 볼지어다 내가 세상 끝날까지 너희와 항상 함께 있으리라 하시니라</p>
+      <span class="ref">마태복음 28:19–20</span>
+    </div>
+  </div>
+  <div class="verse-card passion">
+    <span class="cut">✂</span>
+    <div class="band">
+      <span class="title">🔥 열정으로 달려요</span>
+      <span class="when">7/12(주일)</span>
+      <span class="who">인물 · 야고보</span>
+    </div>
+    <div class="body">
+      <p class="txt">내가 달려갈 길과 주 예수께 받은 사명 곧 하나님의 은혜의 복음을 증언하는 일을 마치려 함에는 나의 생명조차 조금도 귀한 것으로 여기지 아니하노라</p>
+      <span class="ref">사도행전 20:24</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 2페이지: 사랑 + 성령 ================= -->
+<div class="page">
+  <div class="verse-card love">
+    <span class="cut">✂</span>
+    <div class="band">
+      <span class="title">💗 사랑으로 전해요</span>
+      <span class="when">7/19(토) 개회예배</span>
+      <span class="who">인물 · 안드레</span>
+    </div>
+    <div class="body">
+      <p class="txt">오직 성령이 너희에게 임하시면 너희가 권능을 받고 예루살렘과 온 유대와 사마리아와 땅 끝까지 이르러 내 증인이 되리라 하시니라</p>
+      <span class="ref">사도행전 1:8</span>
+      <p class="note">🔍 ‘말씀 암호 해독’ 코스에서 완성하는 바로 그 말씀!</p>
+    </div>
+  </div>
+  <div class="verse-card spirit">
+    <span class="cut">✂</span>
+    <div class="band">
+      <span class="title">🕊️ 성령으로 충만해요</span>
+      <span class="when">7/19(토) 저녁집회</span>
+      <span class="who">인물 · 베드로와 요한</span>
+    </div>
+    <div class="body">
+      <p class="txt">빌기를 다하매 모인 곳이 진동하더니 무리가 다 성령이 충만하여 담대히 하나님의 말씀을 전하니라</p>
+      <span class="ref">사도행전 4:31</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 3페이지: 순종 + 말씀흐름 ================= -->
+<div class="page">
+  <div class="verse-card obey">
+    <span class="cut">✂</span>
+    <div class="band">
+      <span class="title">🙏 순종으로 살아요</span>
+      <span class="when">7/20(주일) 폐회예배</span>
+      <span class="who">인물 · 다대오와 작은 야고보</span>
+    </div>
+    <div class="body">
+      <p class="txt">보라 내가 너희를 보냄이 양을 이리 가운데로 보냄과 같도다 그러므로 너희는 뱀 같이 지혜롭고 비둘기 같이 순결하라</p>
+      <span class="ref">마태복음 10:16</span>
+    </div>
+  </div>
+  <div class="flow">
+    <h2>📋 말씀흐름 한눈에 보기 (진행자용)</h2>
+    <table>
+      <thead>
+        <tr><th></th><th>7/12(주일)</th><th>7/19(토) 개회예배</th><th>7/19(토) 저녁집회</th><th>7/20(주일) 폐회예배</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>설교</th><td class="t">열정으로 달려요</td><td class="t">사랑으로 전해요</td><td class="t">성령으로 충만해요</td><td class="t">순종으로 살아요</td></tr>
+        <tr><th>인물</th><td>야고보</td><td>안드레</td><td>베드로와 요한</td><td>다대오와 작은 야고보</td></tr>
+        <tr><th>암송구절</th><td>사도행전 20:24</td><td>사도행전 1:8</td><td>사도행전 4:31</td><td>마태복음 10:16</td></tr>
+        <tr><th>소그룹</th><td>미션1 + 별봉</td><td>미션2 + 전도북</td><td>성령의 9가지 열매 카드</td><td>미션3 + 예수님을 전하는 아이스크림 마이크</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:#8a8468;margin-top:8px">주제 성경구절: 마태복음 28:19–20 · 본문은 개역개정 기준</p>
+  </div>
+</div>
+
+<footer>2026 여름캠프 · 미션 원정대 — 암송구절 말씀카드 (개역개정)</footer>
+
+</div>
+</body>
+</html>
