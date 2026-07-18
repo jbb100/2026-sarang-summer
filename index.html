@@ -279,14 +279,11 @@ function buildExportCanvas() {
 // 2배율 = 4344x2896px, 6x4인치 기준 약 724dpi, iOS 캔버스 픽셀 한도 내
 const PRINT_SCALE = 2;
 const PRINT_W = 2172, PRINT_H = 1448;      // 1x 기준 362px/inch
-// 템플릿은 흰 바탕에 크림 질감이 가장자리로 갈수록 페이드되는 디자인이라
-// 흰 배경이어야 패널의 템플릿 크롭 경계가 자연스럽게 이어짐
-const PRINT_BG = '#fdfdfd';
 const PRINT_CELLS = [
-  { x: 32,  y: 32,  w: 701, h: 683 },
-  { x: 751, y: 32,  w: 701, h: 683 },
-  { x: 32,  y: 733, w: 701, h: 683 },
-  { x: 751, y: 733, w: 701, h: 683 },
+  { x: 62,  y: 62,  w: 678, h: 649 },
+  { x: 768, y: 62,  w: 678, h: 649 },
+  { x: 62,  y: 739, w: 678, h: 649 },
+  { x: 768, y: 739, w: 678, h: 649 },
 ];
 
 function roundRectPath(c, x, y, w, h, r) {
@@ -306,29 +303,97 @@ function buildPrintCanvas() {
   const c = out.getContext('2d');
   c.imageSmoothingQuality = 'high';
   c.scale(PRINT_SCALE, PRINT_SCALE);
-  c.fillStyle = PRINT_BG;
+
+  // 크림 종이 배경 + 가장자리 비네트 (인쇄물의 깊이감)
+  c.fillStyle = '#fbf4de';
+  c.fillRect(0, 0, PRINT_W, PRINT_H);
+  const vg = c.createRadialGradient(PRINT_W / 2, PRINT_H / 2, PRINT_H * 0.45, PRINT_W / 2, PRINT_H / 2, PRINT_W * 0.62);
+  vg.addColorStop(0, 'rgba(0,0,0,0)');
+  vg.addColorStop(1, 'rgba(160,128,66,.12)');
+  c.fillStyle = vg;
   c.fillRect(0, 0, PRINT_W, PRINT_H);
 
+  // 이중 테두리: 초록 실선 + 골드 점선 (보물지도 카드 느낌)
+  c.strokeStyle = '#4e8a3f';
+  c.lineWidth = 3;
+  roundRectPath(c, 20, 20, PRINT_W - 40, PRINT_H - 40, 28);
+  c.stroke();
+  c.strokeStyle = '#c9a86a';
+  c.lineWidth = 1.5;
+  c.setLineDash([10, 7]);
+  roundRectPath(c, 34, 34, PRINT_W - 68, PRINT_H - 68, 20);
+  c.stroke();
+  c.setLineDash([]);
+
+  // 2x2 사진 그리드: 흰 폴라로이드 프레임 + 그림자 + 슬롯 번호 깃발
   PRINT_CELLS.forEach((cell, i) => {
     c.save();
-    c.shadowColor = 'rgba(90,70,40,.28)';
-    c.shadowBlur = 12;
-    c.shadowOffsetY = 4;
+    c.shadowColor = 'rgba(90,70,40,.3)';
+    c.shadowBlur = 14;
+    c.shadowOffsetY = 5;
     c.fillStyle = '#fff';
-    roundRectPath(c, cell.x - 8, cell.y - 8, cell.w + 16, cell.h + 16, 22);
+    roundRectPath(c, cell.x - 9, cell.y - 9, cell.w + 18, cell.h + 18, 22);
     c.fill();
     c.restore();
     if (photos[i]) drawPhoto(c, photos[i], cell, 14);
+    // 사진 왼쪽 위 원형 번호 배지 (템플릿 깃발과 같은 초록 계열)
+    const bx = cell.x + 10, by = cell.y + 10, r = 31;
+    c.save();
+    c.shadowColor = 'rgba(0,0,0,.28)';
+    c.shadowBlur = 8;
+    c.shadowOffsetY = 3;
+    c.fillStyle = '#4e8a3f';
+    c.beginPath();
+    c.arc(bx, by, r, 0, Math.PI * 2);
+    c.fill();
+    c.restore();
+    c.strokeStyle = '#fff';
+    c.lineWidth = 4;
+    c.beginPath();
+    c.arc(bx, by, r - 2, 0, Math.PI * 2);
+    c.stroke();
+    c.fillStyle = '#fff';
+    c.font = '800 30px sans-serif';
+    c.textAlign = 'center';
+    c.textBaseline = 'middle';
+    c.fillText('0' + (i + 1), bx, by + 2);
   });
 
-  // 오른쪽 패널: 템플릿 상단(로고)과 하단(타이틀·캠프 아트) 크롭
-  const panelX = 1470, panelW = PRINT_W - panelX - 32;
+  // 오른쪽 패널: 로고(상단)와 타이틀·캠프 아트(하단)를 multiply로 종이에 스며들게
+  const panelX = 1470, panelW = PRINT_W - panelX - 62;
   const headH = 232, footY = 1548, footH = TPL_H - footY;
-  const w = 660;
+  const w = 620;
   const hHead = headH * w / TPL_W;
   const hFoot = footH * w / TPL_W;
-  c.drawImage(templateImg, 0, 0, TPL_W, headH, panelX + (panelW - w) / 2, 40, w, hHead);
-  c.drawImage(templateImg, 0, footY, TPL_W, footH, panelX + (panelW - w) / 2, PRINT_H - 36 - hFoot, w, hFoot);
+  const cx = panelX + (panelW - w) / 2;
+  c.save();
+  c.globalCompositeOperation = 'multiply';
+  c.drawImage(templateImg, 0, 0, TPL_W, headH, cx, 64, w, hHead);
+  c.drawImage(templateImg, 0, footY, TPL_W, footH, cx, PRINT_H - 64 - hFoot, w, hFoot);
+  c.restore();
+
+  // 로고와 아트 사이를 잇는 지도풍 점선 트레일 (출발 O → 도착 X)
+  const tx = panelX + panelW / 2;
+  const ty0 = 64 + hHead + 56, ty1 = PRINT_H - 64 - hFoot - 56;
+  c.strokeStyle = 'rgba(139,105,58,.6)';
+  c.lineWidth = 4;
+  c.lineCap = 'round';
+  c.setLineDash([1, 16]);
+  c.beginPath();
+  c.moveTo(tx - 120, ty0);
+  c.bezierCurveTo(tx + 220, ty0 + (ty1 - ty0) * 0.3, tx - 240, ty0 + (ty1 - ty0) * 0.65, tx + 110, ty1);
+  c.stroke();
+  c.setLineDash([]);
+  c.lineWidth = 5;
+  c.strokeStyle = 'rgba(139,105,58,.75)';
+  c.beginPath();                                   // 출발점 O
+  c.arc(tx - 120, ty0, 11, 0, Math.PI * 2);
+  c.stroke();
+  c.strokeStyle = 'rgba(190,60,45,.8)';            // 도착점 X
+  c.beginPath();
+  c.moveTo(tx + 96, ty1 - 14); c.lineTo(tx + 124, ty1 + 14);
+  c.moveTo(tx + 124, ty1 - 14); c.lineTo(tx + 96, ty1 + 14);
+  c.stroke();
   return out;
 }
 
