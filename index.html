@@ -133,6 +133,7 @@
     <button class="btn btn-save" id="btnSave" disabled>💾 PNG로 저장</button>
     <button class="btn btn-ghost" id="btnReset">전체 초기화</button>
   </div>
+  <button class="btn btn-save" id="btnSavePrint" disabled>🖨️ 4×6 인화용 저장 (2장 나란히)</button>
 
   <div id="help">
     <b>사용법</b><br>
@@ -274,6 +275,32 @@ function buildExportCanvas() {
   return out;
 }
 
+// 4x6인치 인화지용: 2x6 스트립 2장을 나란히 배치 (인쇄 후 반으로 자르면 2장)
+// 2배율 = 2896x4344px, 4x6인치 기준 약 724dpi, iOS 캔버스 픽셀 한도 내
+const PRINT_SCALE = 2;
+function buildPrintCanvas() {
+  const out = document.createElement('canvas');
+  out.width = TPL_W * 2 * PRINT_SCALE;
+  out.height = TPL_H * PRINT_SCALE;
+  const c = out.getContext('2d');
+  c.imageSmoothingQuality = 'high';
+  c.scale(PRINT_SCALE, PRINT_SCALE);
+  drawScene(c);
+  c.save();
+  c.translate(TPL_W, 0);
+  drawScene(c);
+  c.restore();
+  // 가운데 절취선 (연한 점선)
+  c.strokeStyle = 'rgba(0,0,0,.2)';
+  c.lineWidth = 1;
+  c.setLineDash([6, 6]);
+  c.beginPath();
+  c.moveTo(TPL_W, 0);
+  c.lineTo(TPL_W, TPL_H);
+  c.stroke();
+  return out;
+}
+
 function render() {
   if (!templateImg) return;
   drawScene(ctx);
@@ -300,7 +327,9 @@ function render() {
     }
   });
 
-  document.getElementById('btnSave').disabled = !photos.some(Boolean);
+  const empty = !photos.some(Boolean);
+  document.getElementById('btnSave').disabled = empty;
+  document.getElementById('btnSavePrint').disabled = empty;
 }
 
 // ---------- coordinates ----------
@@ -467,13 +496,13 @@ canvas.addEventListener('wheel', (e) => {
 }, { passive: false });
 
 // ---------- save ----------
-document.getElementById('btnSave').onclick = async () => {
+async function saveImage(buildCanvas, tag) {
   const d = new Date();
   const pad = n => String(n).padStart(2, '0');
-  const name = `미션원정대_${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}_${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}.png`;
+  const name = `미션원정대_${tag}${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}_${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}.png`;
 
   // 안내 문구·선택 테두리 없이 고해상도로 별도 렌더링
-  const exportCanvas = buildExportCanvas();
+  const exportCanvas = buildCanvas();
 
   try {
     const blob = await new Promise((res, rej) =>
@@ -517,7 +546,10 @@ document.getElementById('btnSave').onclick = async () => {
       toast('저장 실패: ' + err.message);
     }
   }
-};
+}
+
+document.getElementById('btnSave').onclick = () => saveImage(buildExportCanvas, '');
+document.getElementById('btnSavePrint').onclick = () => saveImage(buildPrintCanvas, '4x6_');
 
 function toast(msg) {
   const t = document.getElementById('toast');
