@@ -274,20 +274,36 @@ function buildExportCanvas() {
   return out;
 }
 
-// 4x6인치 인화지용(가로 6x4): 사진 4장을 2x2 그리드로 크게 배치하고
-// 오른쪽 패널에 템플릿의 로고·타이틀 아트를 세로로 얹음
+// 4x6인치 인화지용(가로 6x4): 인생네컷 부스 스타일 —
+// 진초록 프레임에 사진 4장을 2x2로 꽉 차게, 오른쪽 크림 띠에 로고·타이틀
 // 2배율 = 4344x2896px, 6x4인치 기준 약 724dpi, iOS 캔버스 픽셀 한도 내
 const PRINT_SCALE = 2;
 const PRINT_W = 2172, PRINT_H = 1448;      // 1x 기준 362px/inch
-// 템플릿은 흰 바탕에 크림 질감이 가장자리로 갈수록 페이드되는 디자인이라
-// 흰 배경이어야 패널의 템플릿 크롭 경계가 자연스럽게 이어짐
-const PRINT_BG = '#fdfdfd';
 const PRINT_CELLS = [
-  { x: 32,  y: 32,  w: 701, h: 683 },
-  { x: 751, y: 32,  w: 701, h: 683 },
-  { x: 32,  y: 733, w: 701, h: 683 },
-  { x: 751, y: 733, w: 701, h: 683 },
+  { x: 44,  y: 44,  w: 829, h: 671 },
+  { x: 891, y: 44,  w: 829, h: 671 },
+  { x: 44,  y: 733, w: 829, h: 671 },
+  { x: 891, y: 733, w: 829, h: 671 },
 ];
+
+// 템플릿에서 잘라낸 조각의 네 가장자리를 투명하게 페이드시켜
+// 어떤 배경 위에서도 크롭 경계선이 보이지 않게 함
+function fadedTemplateCrop(sx, sy, sw, sh, fade) {
+  const t = document.createElement('canvas');
+  t.width = sw;
+  t.height = sh;
+  const g = t.getContext('2d');
+  g.drawImage(templateImg, sx, sy, sw, sh, 0, 0, sw, sh);
+  g.globalCompositeOperation = 'destination-out';
+  [[0, 0, 0, fade], [0, sh, 0, sh - fade], [0, 0, fade, 0], [sw, 0, sw - fade, 0]].forEach(([x0, y0, x1, y1]) => {
+    const gr = g.createLinearGradient(x0, y0, x1, y1);
+    gr.addColorStop(0, 'rgba(0,0,0,1)');
+    gr.addColorStop(1, 'rgba(0,0,0,0)');
+    g.fillStyle = gr;
+    g.fillRect(0, 0, sw, sh);
+  });
+  return t;
+}
 
 function roundRectPath(c, x, y, w, h, r) {
   c.beginPath();
@@ -306,29 +322,84 @@ function buildPrintCanvas() {
   const c = out.getContext('2d');
   c.imageSmoothingQuality = 'high';
   c.scale(PRINT_SCALE, PRINT_SCALE);
-  c.fillStyle = PRINT_BG;
-  c.fillRect(0, 0, PRINT_W, PRINT_H);
 
+  // 진초록 카드 프레임 (템플릿 깃발과 같은 초록 계열) + 골드 핀스트라이프
+  c.fillStyle = '#33582a';
+  c.fillRect(0, 0, PRINT_W, PRINT_H);
+  c.strokeStyle = 'rgba(217,192,138,.85)';
+  c.lineWidth = 2;
+  roundRectPath(c, 22, 22, PRINT_W - 44, PRINT_H - 44, 14);
+  c.stroke();
+
+  // 2x2 사진 그리드: 얇은 흰 테두리, 사진 위에는 아무 효과도 얹지 않음
   PRINT_CELLS.forEach((cell, i) => {
-    c.save();
-    c.shadowColor = 'rgba(90,70,40,.28)';
-    c.shadowBlur = 12;
-    c.shadowOffsetY = 4;
     c.fillStyle = '#fff';
-    roundRectPath(c, cell.x - 8, cell.y - 8, cell.w + 16, cell.h + 16, 22);
+    roundRectPath(c, cell.x - 6, cell.y - 6, cell.w + 12, cell.h + 12, 12);
     c.fill();
-    c.restore();
-    if (photos[i]) drawPhoto(c, photos[i], cell, 14);
+    if (photos[i]) drawPhoto(c, photos[i], cell, 8);
   });
 
-  // 오른쪽 패널: 템플릿 상단(로고)과 하단(타이틀·캠프 아트) 크롭
-  const panelX = 1470, panelW = PRINT_W - panelX - 32;
+  // 오른쪽 종이 띠: 템플릿 안쪽 종이색과 같은 크림 카드에 로고(상단)·타이틀 아트(하단)
+  // 크롭 가장자리는 페더링되므로 띠 색과 자연스럽게 이어짐
+  const band = { x: 1738, y: 44, w: 390, h: PRINT_H - 88 };
+  c.fillStyle = '#fcf8e5';
+  roundRectPath(c, band.x, band.y, band.w, band.h, 14);
+  c.fill();
+
   const headH = 232, footY = 1548, footH = TPL_H - footY;
-  const w = 660;
-  const hHead = headH * w / TPL_W;
+  // 로고는 90도 회전해 띠를 따라 세로로 크게 (부스 인생네컷의 옆면 브랜딩처럼)
+  // 로고·아트 모두 사진과 같은 흰 라운드 카드 위에 얹어 디자인을 통일
+  const ls = 0.85;
+  const logoW = TPL_W * ls, logoH = headH * ls;   // 회전 후: 가로 logoH, 세로 logoW
+  const w = 344;
   const hFoot = footH * w / TPL_W;
-  c.drawImage(templateImg, 0, 0, TPL_W, headH, panelX + (panelW - w) / 2, 40, w, hHead);
-  c.drawImage(templateImg, 0, footY, TPL_W, footH, panelX + (panelW - w) / 2, PRINT_H - 36 - hFoot, w, hFoot);
+  const headCrop = fadedTemplateCrop(0, 0, TPL_W, headH, 14);
+  const footCrop = fadedTemplateCrop(0, footY, TPL_W, footH, 14);
+
+  const cardShadow = fn => {
+    c.save();
+    c.shadowColor = 'rgba(0,0,0,.15)';
+    c.shadowBlur = 8;
+    c.shadowOffsetY = 3;
+    c.fillStyle = '#fff';
+    fn();
+    c.fill();
+    c.restore();
+  };
+  const logoCardY = band.y + 26;
+  cardShadow(() => roundRectPath(c, band.x + (band.w - logoH) / 2 - 10, logoCardY, logoH + 20, logoW + 20, 12));
+  c.save();
+  c.translate(band.x + (band.w + logoH) / 2, logoCardY + 10);
+  c.rotate(Math.PI / 2);
+  c.drawImage(headCrop, 0, 0, logoW, logoH);
+  c.restore();
+
+  const footCardY = band.y + band.h - 26 - hFoot - 20;
+  cardShadow(() => roundRectPath(c, band.x + (band.w - w) / 2 - 10, footCardY, w + 20, hFoot + 20, 12));
+  c.drawImage(footCrop, band.x + (band.w - w) / 2, footCardY + 10, w, hFoot);
+
+  // 로고와 아트 사이 지도풍 점선 트레일 (출발 O → 도착 X)
+  const tx = band.x + band.w / 2;
+  const ty0 = logoCardY + logoW + 20 + 42, ty1 = footCardY - 42;
+  c.strokeStyle = 'rgba(139,105,58,.55)';
+  c.lineWidth = 4;
+  c.lineCap = 'round';
+  c.setLineDash([1, 15]);
+  c.beginPath();
+  c.moveTo(tx - 70, ty0);
+  c.bezierCurveTo(tx + 150, ty0 + (ty1 - ty0) * 0.3, tx - 160, ty0 + (ty1 - ty0) * 0.65, tx + 70, ty1);
+  c.stroke();
+  c.setLineDash([]);
+  c.lineWidth = 5;
+  c.strokeStyle = 'rgba(139,105,58,.7)';
+  c.beginPath();                                 // 출발점 O
+  c.arc(tx - 70, ty0, 10, 0, Math.PI * 2);
+  c.stroke();
+  c.strokeStyle = 'rgba(190,60,45,.75)';         // 도착점 X
+  c.beginPath();
+  c.moveTo(tx + 58, ty1 - 12); c.lineTo(tx + 82, ty1 + 12);
+  c.moveTo(tx + 82, ty1 - 12); c.lineTo(tx + 58, ty1 + 12);
+  c.stroke();
   return out;
 }
 
