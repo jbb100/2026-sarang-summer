@@ -70,6 +70,28 @@
   .theme-tag.love    { background: #d4547a; }
   .theme-tag.obey    { background: #4a6fb5; }
 
+  /* ---------- screen-only activity guide ---------- */
+  .guide {
+    background: #fffdf3; border: 2px solid #d8d2b8; border-radius: 16px;
+    padding: 20px; margin: 0 0 34px;
+  }
+  .guide h2 { font-size: 18px; color: #3e6b35; margin-bottom: 14px; }
+  .guide .time { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .guide .tcard {
+    flex: 1; min-width: 220px; border-radius: 12px; padding: 14px 16px;
+    color: #fff; text-align: center;
+  }
+  .guide .tcard.end  { background: #3e6b35; }
+  .guide .tcard.move { background: #e0762c; }
+  .guide .tcard .big { display: block; font-size: 32px; font-weight: 800; line-height: 1.2; }
+  .guide .tcard .lbl { font-size: 15px; font-weight: 700; }
+  .guide .tcard .sm  { display: block; font-size: 12px; opacity: .9; margin-top: 2px; }
+  .guide .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; }
+  .guide .card { background: #f8f5e8; border-radius: 12px; padding: 12px 14px; font-size: 14px; color: #444; }
+  .guide .card b.h { display: block; font-size: 15px; margin-bottom: 4px; color: #3e6b35; }
+  .guide .card.warn b.h { color: #b03a30; }
+  .guide .card.bonus b.h { color: #b85a18; }
+
   footer { text-align: center; font-size: 12px; color: #8a8468; margin-top: 30px; }
 
   /* ---------- print: map fills one A4 landscape page ---------- */
@@ -77,7 +99,7 @@
     @page { size: A4 landscape; margin: 6mm; }
     body { background: #fff; }
     .wrap { max-width: 100%; padding: 0; }
-    header, .list, footer, .print-btn { display: none; }
+    header, .list, .guide, footer, .print-btn { display: none; }
     .map-wrap {
       margin: 0; border-radius: 0; box-shadow: none; background: #fff;
       display: flex; justify-content: center;
@@ -403,6 +425,51 @@
       <tr><td>9</td><td>순종 1</td><td><span class="theme-tag obey">순종</span></td><td class="name">‘예스’로 하나되기</td><td class="stars">★★★★★</td><td class="loc">205호 앞</td></tr>
     </tbody>
   </table>
+</section>
+
+<!-- ================= screen-only activity guide ================= -->
+<section class="guide">
+  <h2>🎒 코스활동, 이렇게 해요!</h2>
+
+  <div class="time">
+    <div class="tcard end">
+      <span class="lbl">⏰ 코스활동 종료</span>
+      <span class="big">11:10</span>
+      <span class="sm">이 시간이 되면 하던 미션까지만 마무리해요</span>
+    </div>
+    <div class="tcard move">
+      <span class="lbl">🚪 202호 도착 완료</span>
+      <span class="big">11:20</span>
+      <span class="sm">늦지 않게 우리 조 다 함께 모여요</span>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <b class="h">🗺️ 코스는 모두 9개!</b>
+      열정 1·2·3, 사랑 1·2·3, 순종 1·2·3 — 위 지도에서 각 코스의 내용과 난이도(★)를 확인하세요.
+    </div>
+    <div class="card">
+      <b class="h">🧭 우리 조 마음대로, 자유 탐험</b>
+      조별로 가고 싶은 코스를 자유롭게 찾아가서 활동해요. 순서는 자유!
+    </div>
+    <div class="card">
+      <b class="h">✍️ 선생님 사인 받기</b>
+      코스활동을 할 때마다 담당 선생님께서 해당 코스에 사인을 해 주세요.
+    </div>
+    <div class="card warn">
+      <b class="h">🚫 같은 코스 반복은 안 돼요</b>
+      9개 코스를 모두 완료하기 전에는 같은 코스를 반복할 수 없어요.
+    </div>
+    <div class="card bonus">
+      <b class="h">🔁 다 돌았으면 보너스 찬스!</b>
+      9개를 모두 완료하고 시간이 남으면, 11:10까지 자유롭게 다시 참여해서 지구젤리를 더 모을 수 있어요.
+    </div>
+    <div class="card">
+      <b class="h">🌍 지구젤리 &amp; 순위</b>
+      코스 성공 시 지구젤리(1, 2, 3개 등)를 받아요. 최종 지구젤리 개수로 1·2·3·4위를 정해요!
+    </div>
+  </div>
 </section>
 
 <footer>2026 여름캠프 · 미션 원정대 — 믿음으로 한 걸음!</footer>
